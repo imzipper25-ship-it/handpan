@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ding Handpan School Lisboa | Handpan.pt</title>
+    <title>Handpan.pt</title>
     <meta name="description" content="Learn to play the Handpan in Lisbon. Lessons, workshops, and shop.">
 
     <!-- Alpine.js -->
@@ -42,7 +42,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="bg-cream text-wood font-sans antialiased" x-data="{ mobileMenuOpen: false, cartOpen: false }">
+<body class="bg-cream text-wood font-sans antialiased"
+    x-data="{ mobileMenuOpen: false, cartOpen: false, bookingModalOpen: false }">
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 glass-header border-b border-wood/5 transition-all duration-300">
@@ -59,7 +60,7 @@
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="#about" class="text-wood hover:text-sage-dark font-medium transition">About</a>
                     <a href="#services" class="text-wood hover:text-sage-dark font-medium transition">Lessons</a>
-                    <a href="#shop" class="text-wood hover:text-sage-dark font-medium transition">Shop</a>
+                    <a href="shop.html" class="text-wood hover:text-sage-dark font-medium transition">Shop</a>
                     <a href="#contacts" class="text-wood hover:text-sage-dark font-medium transition">Contacts</a>
                     <button
                         class="bg-wood text-cream px-5 py-2.5 rounded-full font-semibold hover:bg-sage-dark transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
@@ -91,7 +92,7 @@
                     class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">About</a>
                 <a href="#services" @click="mobileMenuOpen = false"
                     class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">Lessons</a>
-                <a href="#shop" @click="mobileMenuOpen = false"
+                <a href="shop.html" @click="mobileMenuOpen = false"
                     class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">Shop</a>
                 <a href="#contacts" @click="mobileMenuOpen = false"
                     class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">Contacts</a>
@@ -103,7 +104,8 @@
     <header class="relative pt-32 pb-40 lg:pt-48 lg:pb-56 overflow-hidden">
         <!-- Background Image with Overlay -->
         <div class="absolute inset-0 z-0">
-            <img src="assets/images/hero.png" alt="Handpan Background" class="w-full h-full object-cover object-center"
+            <img src="assets/images/hero-new.png.jpg" alt="Handpan Background"
+                class="w-full h-full object-cover object-center"
                 onerror="this.src='https://images.unsplash.com/photo-1621360841012-3f82bd6428c0?q=80&w=2670&auto=format&fit=crop'">
             <div class="absolute inset-0 bg-gradient-to-r from-cream/90 via-cream/60 to-transparent"></div>
         </div>
@@ -111,18 +113,19 @@
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
                 <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-wood-dark mb-6 leading-tight">
-                    Ding Handpan <br /> School Lisboa
+                    Handpan.pt <br /> Portugal
                 </h1>
                 <p class="text-xl md:text-2xl text-wood-light mb-10 max-w-lg leading-relaxed">
-                    Discover the healing sounds of the handpan. Join our community in Lisbon for lessons, workshops, and
+                    Discover the healing sounds of the handpan. Join our community in Lisbon, Ericeira, Cascais for
+                    lessons, workshops, and
                     mastery.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#services"
+                    <button @click="bookingModalOpen = true"
                         class="inline-flex justify-center items-center px-8 py-4 rounded-full bg-wood text-white font-bold text-lg hover:bg-sage-dark transition duration-300 shadow-lg hover:shadow-wood/30 transform hover:-translate-y-1">
                         Book a Lesson
-                    </a>
-                    <a href="#shop"
+                    </button>
+                    <a href="shop.html"
                         class="inline-flex justify-center items-center px-8 py-4 rounded-full glass-card text-wood-dark font-bold text-lg hover:bg-white/60 transition duration-300 backdrop-blur-sm">
                         Visit Shop
                     </a>
@@ -146,7 +149,7 @@
                     <h3 class="text-4xl font-bold text-wood-dark mb-6">Connecting Through Sound</h3>
                     <div class="prose prose-lg text-wood-light">
                         <p class="mb-6">
-                            Nestled in the heart of Lisbon and Ericeira, Ding Handpan School is more than just a place
+                            Nestled in the heart of Lisbon, Ericeira, Cascais - Handpan.pt is more than just a place
                             to learn; it's a sanctuary for sound. We believe in the transformative power of the
                             handpan/pantam.
                         </p>
@@ -185,7 +188,7 @@
 
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Service 1 -->
-                <div
+                <div @click="bookingModalOpen = true"
                     class="group glass-card p-8 rounded-2xl hover:bg-white transition duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
                     <div
                         class="w-14 h-14 bg-sage/20 rounded-full flex items-center justify-center mb-6 text-sage-dark group-hover:bg-sage group-hover:text-white transition-colors duration-300">
@@ -199,8 +202,8 @@
                     <p class="text-wood-light mb-6">Private or group sessions tailored to your pace. Learn rhythm,
                         melody, and touch.</p>
                     <span
-                        class="text-sage-dark font-bold group-hover:translate-x-1 inline-block transition-transform">Learn
-                        more →</span>
+                        class="text-sage-dark font-bold group-hover:translate-x-1 inline-block transition-transform">Book
+                        Now →</span>
                 </div>
 
                 <!-- Service 2 -->
@@ -251,7 +254,7 @@
                     <h2 class="text-wood-light font-semibold tracking-wide uppercase mb-3">Shop</h2>
                     <h3 class="text-4xl font-bold text-wood-dark">Handpicked Instruments</h3>
                 </div>
-                <a href="#" class="hidden md:block text-sage-dark font-bold hover:text-wood transition">View all
+                <a href="shop.html" class="hidden md:block text-sage-dark font-bold hover:text-wood transition">View all
                     products →</a>
             </div>
 
@@ -326,7 +329,7 @@
                 </div>
             </div>
             <div class="mt-8 text-center md:hidden">
-                <a href="#" class="text-sage-dark font-bold hover:text-wood transition">View all products →</a>
+                <a href="shop.html" class="text-sage-dark font-bold hover:text-wood transition">View all products →</a>
             </div>
         </div>
     </section>
@@ -411,6 +414,98 @@
             </div>
         </div>
     </footer>
+
+    <!-- Booking Modal -->
+    <div x-show="bookingModalOpen" class="fixed inset-0 z-[100] overflow-y-auto" aria-labelledby="modal-title"
+        role="dialog" aria-modal="true" x-cloak>
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Background overlay -->
+            <div x-show="bookingModalOpen" x-transition:enter="ease-out duration-300"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="fixed inset-0 bg-wood-dark/75 backdrop-blur-sm transition-opacity" aria-hidden="true"
+                @click="bookingModalOpen = false"></div>
+
+            <!-- This element is to trick the browser into centering the modal contents. -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!-- Modal panel -->
+            <div x-show="bookingModalOpen" x-transition:enter="ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave="ease-in duration-200"
+                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                class="relative inline-block align-bottom bg-cream rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full border border-wood/10">
+
+                <div class="absolute top-0 right-0 pt-4 pr-4">
+                    <button type="button" class="bg-cream rounded-md text-wood-light hover:text-wood focus:outline-none"
+                        @click="bookingModalOpen = false">
+                        <span class="sr-only">Close</span>
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                            <h3 class="text-2xl leading-6 font-bold text-wood-dark" id="modal-title">
+                                Book a Lesson
+                            </h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-wood-light">
+                                    Fill in your details to reserve your spot in our handpan classes.
+                                </p>
+                            </div>
+
+                            <form class="mt-6 space-y-4"
+                                @submit.prevent="bookingModalOpen = false; alert('Booking Request Sent!')">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-wood-dark">Name</label>
+                                    <input type="text" name="name" id="name" required
+                                        class="mt-1 block w-full px-3 py-2 bg-white/50 border border-wood/20 rounded-lg focus:outline-none focus:border-sage text-wood-dark placeholder-wood-light/50 sm:text-sm">
+                                </div>
+
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-wood-dark">Email</label>
+                                    <input type="email" name="email" id="email" required
+                                        class="mt-1 block w-full px-3 py-2 bg-white/50 border border-wood/20 rounded-lg focus:outline-none focus:border-sage text-wood-dark placeholder-wood-light/50 sm:text-sm">
+                                </div>
+
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-wood-dark">Phone</label>
+                                    <input type="tel" name="phone" id="phone"
+                                        class="mt-1 block w-full px-3 py-2 bg-white/50 border border-wood/20 rounded-lg focus:outline-none focus:border-sage text-wood-dark placeholder-wood-light/50 sm:text-sm">
+                                </div>
+
+                                <div>
+                                    <label for="location" class="block text-sm font-medium text-wood-dark">Location &
+                                        Time</label>
+                                    <select id="location" name="location" required
+                                        class="mt-1 block w-full pl-3 pr-10 py-2 bg-white/50 border border-wood/20 rounded-lg focus:outline-none focus:border-sage text-wood-dark sm:text-sm">
+                                        <option value="Lisbon">Lisbon (Every Monday)</option>
+                                        <option value="Ericeira">Ericeira (Every Wednesday)</option>
+                                        <option value="Cascais">Cascais (Every Friday)</option>
+                                    </select>
+                                </div>
+
+                                <div class="pt-4">
+                                    <button type="submit"
+                                        class="w-full inline-flex justify-center rounded-xl border border-transparent shadow-sm px-4 py-3 bg-wood text-base font-bold text-cream hover:bg-sage-dark focus:outline-none sm:text-sm transition duration-300">
+                                        Confirm Booking
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 

@@ -12,3 +12,6 @@ yarn-error.log
 .vscode/
 .idea/
 *.swp
+
+# Large image files
+assets/images/Instruments/
