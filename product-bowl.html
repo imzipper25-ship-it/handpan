@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop | Handpan.pt</title>
-    <meta name="description" content="Buy Handpans and accessories in Lisbon.">
+    <title>Crystal Singing Bowl | Handpan.pt</title>
+    <meta name="description" content="Crystal Singing Bowl - Handmade in Spain with Pure Quartz">
 
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
@@ -47,7 +47,6 @@
     <nav class="fixed w-full z-50 glass-header border-b border-wood/5 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="index.html"
                         class="text-2xl font-bold tracking-tight text-wood-dark hover:text-sage transition">
@@ -55,12 +54,11 @@
                     </a>
                 </div>
 
-                <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="index.html#about" class="text-wood hover:text-sage-dark font-medium transition">About</a>
                     <a href="index.html#services"
                         class="text-wood hover:text-sage-dark font-medium transition">Lessons</a>
-                    <a href="shop.html" class="text-sage-dark font-bold font-medium transition">Shop</a>
+                    <a href="shop.html" class="text-wood hover:text-sage-dark font-medium transition">Shop</a>
                     <a href="index.html#contacts"
                         class="text-wood hover:text-sage-dark font-medium transition">Contacts</a>
                     <button
@@ -70,7 +68,6 @@
                     </button>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
                     <button @click="mobileMenuOpen = !mobileMenuOpen"
                         class="text-wood hover:text-sage focus:outline-none p-2">
@@ -85,7 +82,6 @@
             </div>
         </div>
 
-        <!-- Mobile Menu -->
         <div x-show="mobileMenuOpen" x-transition.origin.top
             class="md:hidden absolute w-full bg-cream/95 backdrop-blur-lg border-b border-wood/10" x-cloak>
             <div class="px-4 pt-2 pb-6 space-y-2 shadow-xl">
@@ -94,96 +90,107 @@
                 <a href="index.html#services" @click="mobileMenuOpen = false"
                     class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">Lessons</a>
                 <a href="shop.html" @click="mobileMenuOpen = false"
-                    class="block px-3 py-3 rounded-md text-base font-medium text-sage-dark bg-sage/5">Shop</a>
+                    class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">Shop</a>
                 <a href="index.html#contacts" @click="mobileMenuOpen = false"
                     class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">Contacts</a>
             </div>
         </div>
     </nav>
 
-    <!-- Shop Content -->
+    <!-- Product Detail -->
     <main class="pt-32 pb-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-end mb-12">
-                <div>
-                    <h2 class="text-wood-light font-semibold tracking-wide uppercase mb-3">Shop</h2>
-                    <h1 class="text-4xl font-bold text-wood-dark">Handpicked Instruments</h1>
-                    <p class="mt-4 text-wood-light">Explore our collection of high-quality handpans and accessories.</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-                <!-- Product 1: Handpan -->
-                <a href="product-handpan.html" class="group block">
-                    <div class="relative overflow-hidden rounded-2xl bg-cream aspect-[4/5] mb-6">
-                        <img src="assets/images/Instruments/handpan/handpan.jpeg" alt="Handmade Handpan"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700 ease-out"
-                            onerror="this.src='https://plus.unsplash.com/premium_photo-1621360841012-3f82bd6428c0?q=80&w=2670&auto=format&fit=crop'">
-                        <div
-                            class="absolute inset-x-0 bottom-0 p-6 opacity-0 group-hover:opacity-100 transition duration-300 translate-y-4 group-hover:translate-y-0">
-                            <button
-                                class="w-full bg-white/90 backdrop-blur text-wood-dark font-bold py-4 rounded-xl hover:bg-wood hover:text-white transition shadow-lg">
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-bold text-wood-dark">Handpan Master Series</h4>
-                            <span class="text-lg font-bold text-sage-dark">€1,800</span>
-                        </div>
-                        <p class="text-wood-light text-sm mb-1">Handmade in Spain • Nitrided Steel</p>
-                        <p class="text-xs text-wood-light/70 uppercase tracking-widest">Premium Collection</p>
-                    </div>
-                </a>
-
-                <!-- Product 2: Shamanic Drum (Buben) -->
-                <a href="product-drum.html" class="group block">
-                    <div class="relative overflow-hidden rounded-2xl bg-cream aspect-[4/5] mb-6">
-                        <img src="assets/images/Instruments/buben/buben front.jpg" alt="Shamanic Drum"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700 ease-out"
-                            onerror="this.src='https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?q=80&w=2670&auto=format&fit=crop'">
-                        <div
-                            class="absolute inset-x-0 bottom-0 p-6 opacity-0 group-hover:opacity-100 transition duration-300 translate-y-4 group-hover:translate-y-0">
-                            <button
-                                class="w-full bg-white/90 backdrop-blur text-wood-dark font-bold py-4 rounded-xl hover:bg-wood hover:text-white transition shadow-lg">
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-bold text-wood-dark">Shamanic Drum</h4>
-                            <span class="text-lg font-bold text-sage-dark">€250</span>
-                        </div>
-                        <p class="text-wood-light text-sm mb-1">Handmade in Spain • Authentic Sound</p>
-                        <p class="text-xs text-wood-light/70 uppercase tracking-widest">Traditional Craft</p>
-                    </div>
-                </a>
-
-                <!-- Product 3: Quartz Bowls -->
-                <a href="product-bowl.html" class="group block">
-                    <div class="relative overflow-hidden rounded-2xl bg-cream aspect-[4/5] mb-6">
-                        <img src="assets/images/Instruments/quartz/DSC03259.jpg" alt="Quartz Crystal Bowl"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700 ease-out"
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <!-- Product Image -->
+                <div class="sticky top-32">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl bg-white">
+                        <img src="assets/images/Instruments/quartz/DSC03259.jpg" alt="Crystal Singing Bowl"
+                            class="w-full h-auto object-cover"
                             onerror="this.src='https://images.unsplash.com/photo-1549834125-906c85a1dd00?q=80&w=2668&auto=format&fit=crop'">
-                        <div
-                            class="absolute inset-x-0 bottom-0 p-6 opacity-0 group-hover:opacity-100 transition duration-300 translate-y-4 group-hover:translate-y-0">
-                            <button
-                                class="w-full bg-white/90 backdrop-blur text-wood-dark font-bold py-4 rounded-xl hover:bg-wood hover:text-white transition shadow-lg">
-                                View Details
-                            </button>
-                        </div>
                     </div>
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-bold text-wood-dark">Crystal Singing Bowl</h4>
-                            <span class="text-lg font-bold text-sage-dark">€350</span>
-                        </div>
-                        <p class="text-wood-light text-sm mb-1">Handmade in Spain • Pure Quartz</p>
-                        <p class="text-xs text-wood-light/70 uppercase tracking-widest">Healing Frequencies</p>
+                </div>
+
+                <!-- Product Info -->
+                <div>
+                    <div class="mb-4">
+                        <span
+                            class="inline-block px-4 py-1 bg-stone/40 text-wood-dark rounded-full text-sm font-semibold uppercase tracking-wider">Healing
+                            Frequencies</span>
                     </div>
-                </a>
+
+                    <h1 class="text-4xl md:text-5xl font-bold text-wood-dark mb-4">Crystal Singing Bowl</h1>
+
+                    <div class="flex items-baseline gap-4 mb-8">
+                        <span class="text-4xl font-bold text-sage-dark">€350</span>
+                    </div>
+
+                    <div class="prose prose-lg text-wood-light mb-8">
+                        <p class="text-lg mb-4">
+                            Experience the pure, ethereal tones of our Crystal Singing Bowl. Handcrafted in Spain from
+                            99.9% pure quartz crystal, this bowl produces healing frequencies that resonate with the
+                            body's energy centers.
+                        </p>
+                        <p>
+                            The crystal bowl creates powerful vibrations that promote deep relaxation, meditation, and
+                            energy healing. Each bowl is tuned to specific frequencies that correspond to different
+                            chakras, making it an essential tool for sound therapy and spiritual practice.
+                        </p>
+                    </div>
+
+                    <!-- Specifications -->
+                    <div class="bg-white/50 rounded-xl p-6 mb-8">
+                        <h3 class="text-xl font-bold text-wood-dark mb-4">Specifications</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-sage-dark flex-shrink-0" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-wood">Handmade in Spain</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-sage-dark flex-shrink-0" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-wood">99.9% Pure Quartz Crystal</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-sage-dark flex-shrink-0" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-wood">Chakra-Tuned Frequencies</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-sage-dark flex-shrink-0" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-wood">Includes Mallet and Ring</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Add to Cart Button -->
+                    <button
+                        class="w-full bg-wood text-cream px-8 py-4 rounded-xl font-bold text-lg hover:bg-sage-dark transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 mb-4">
+                        Add to Cart - €350
+                    </button>
+
+                    <a href="shop.html"
+                        class="block text-center text-wood-light hover:text-wood transition font-medium">
+                        ← Back to Shop
+                    </a>
+                </div>
             </div>
         </div>
     </main>
