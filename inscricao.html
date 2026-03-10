@@ -280,17 +280,17 @@
                     <div class="location-card" data-loc="Ericeira" onclick="selectLoc(this)">
                         <div class="loc-emoji">🌊</div>
                         <div class="loc-name">Ericeira</div>
-                        <div class="loc-sub">Quartas, 10h–20h</div>
+                        <div class="loc-sub">Quartas · 18:30</div>
                     </div>
                     <div class="location-card" data-loc="Cascais" onclick="selectLoc(this)">
                         <div class="loc-emoji">⛵</div>
                         <div class="loc-name">Cascais</div>
-                        <div class="loc-sub">Sextas, 10h–20h</div>
+                        <div class="loc-sub">Sextas · 17:00 &amp; 18:30</div>
                     </div>
                     <div class="location-card" data-loc="Lisboa" onclick="selectLoc(this)">
                         <div class="loc-emoji">🏙️</div>
                         <div class="loc-name">Lisboa</div>
-                        <div class="loc-sub">Seg–Sáb, 9h–21h</div>
+                        <div class="loc-sub">Segundas · 17:00 &amp; 18:30</div>
                     </div>
                 </div>
                 <button id="toStep2" class="btn-primary"
@@ -537,6 +537,13 @@
             goStep(5);
         }
 
+        // Schedule config: dow = day-of-week (0=Sun,1=Mon,3=Wed,5=Fri)
+        const LOC_SCHEDULE = {
+            'Lisboa': { dow: 1, slots: ['17:00', '18:30'] },  // Monday
+            'Ericeira': { dow: 3, slots: ['18:30'] },           // Wednesday
+            'Cascais': { dow: 5, slots: ['17:00', '18:30'] },  // Friday
+        };
+
         // Calendar
         let calYear = new Date().getFullYear();
         let calMonth = new Date().getMonth();
@@ -550,6 +557,8 @@
             const firstDay = new Date(calYear, calMonth, 1).getDay();
             const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
             const today = new Date();
+            // Only highlight valid weekday for selected location
+            const validDow = selLoc && LOC_SCHEDULE[selLoc] ? LOC_SCHEDULE[selLoc].dow : null;
 
             for (let i = 0; i < firstDay; i++) {
                 const d = document.createElement('div'); d.className = 'cal-day empty'; grid.appendChild(d);
@@ -558,29 +567,35 @@
                 const date = new Date(calYear, calMonth, d);
                 const isToday = date.toDateString() === today.toDateString();
                 const isPast = date < new Date(today.toDateString());
+                const isWrongDay = validDow !== null && date.getDay() !== validDow;
+                const isDisabled = isPast || isWrongDay;
                 const el = document.createElement('div');
-                el.className = 'cal-day' + (isToday ? ' today' : '') + (isPast ? ' disabled' : '') + (!isPast ? ' available' : '');
+                el.className = 'cal-day'
+                    + (isToday && !isDisabled ? ' today' : '')
+                    + (isDisabled ? ' disabled' : ' available');
                 el.textContent = d;
-                if (!isPast) {
+                if (!isDisabled) {
                     el.addEventListener('click', () => {
                         document.querySelectorAll('.cal-day.selected').forEach(c => c.classList.remove('selected'));
                         el.classList.add('selected');
                         selDate = d + ' de ' + monthNames[calMonth] + ' ' + calYear;
-                        showTimeSlots(date.getDay());
+                        showTimeSlots();
                     });
                 }
                 grid.appendChild(el);
             }
         }
 
-        function showTimeSlots(dow) {
+        function showTimeSlots() {
             const section = document.getElementById('timeSlotSection');
             const container = document.getElementById('timeSlots');
+            if (!selLoc || !LOC_SCHEDULE[selLoc]) return;
             section.style.display = 'block';
-            const slots = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
-            const available = slots.filter((_, i) => i % 3 !== 1); // some slots unavailable
+            const slots = LOC_SCHEDULE[selLoc].slots;
             container.innerHTML = '';
-            available.forEach(t => {
+            selTime = '';
+            checkStep2();
+            slots.forEach(t => {
                 const el = document.createElement('div');
                 el.className = 'time-slot';
                 el.textContent = t;
