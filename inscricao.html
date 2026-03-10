@@ -306,22 +306,22 @@
                     <div class="type-card" onclick="selectType(this,'individual')">
                         <div class="t-icon">🎵</div>
                         <div class="t-name">Individual</div>
-                        <div class="t-price">€60/hora</div>
+                        <div class="t-price">€50/hora</div>
                     </div>
                     <div class="type-card" onclick="selectType(this,'grupo')">
                         <div class="t-icon">👥</div>
                         <div class="t-name">Grupo</div>
-                        <div class="t-price">€35/pessoa</div>
+                        <div class="t-price">€20/pessoa</div>
                     </div>
                     <div class="type-card" onclick="selectType(this,'intro')">
                         <div class="t-icon">🌟</div>
                         <div class="t-name">Introdutória</div>
-                        <div class="t-price">Grátis</div>
+                        <div class="t-price">€20</div>
                     </div>
                     <div class="type-card" onclick="selectType(this,'online')">
                         <div class="t-icon">💻</div>
                         <div class="t-name">Online</div>
-                        <div class="t-price">€45/hora</div>
+                        <div class="t-price">€35/hora</div>
                     </div>
                 </div>
 
@@ -482,7 +482,7 @@
     <script src="shared-components.js"></script>
     <script>
         let selLoc = '', selType = '', selDate = '', selTime = '', selPrice = '';
-        const prices = { individual: '€60', grupo: '€35', intro: 'Grátis', online: '€45' };
+        const prices = { individual: '€50', grupo: '€20', intro: '€20', online: '€35' };
         const typeLabels = { individual: 'Individual (60 min)', grupo: 'Grupo (90 min)', intro: 'Introdutória (30 min)', online: 'Online (60 min)' };
 
         function goStep(n) {
