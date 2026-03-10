@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Loja — handpan.pt</title>
+    <meta name="description"
+        content="Compre, alugue ou afine o seu handpan em handpan.pt. Instrumentos, reparação e serviços especializados.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style-new.css">
+    <style>
+        .page-hero {
+            padding: 120px 0 60px;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .shop-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 0 20px 16px;
+            scrollbar-width: none;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .shop-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .shop-tab {
+            padding: 10px 22px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-glass);
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .shop-tab.active {
+            background: var(--cta-color);
+            border-color: var(--cta-color);
+            color: #fff;
+        }
+
+        .shop-tab:hover:not(.active) {
+            border-color: rgba(139, 92, 246, 0.5);
+            color: var(--text-primary);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        @media(max-width:600px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+        }
+
+        .product-card {
+            border-radius: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .product-card .thumb {
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: #111;
+            position: relative;
+        }
+
+        .product-card .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .thumb img {
+            transform: scale(1.08);
+        }
+
+        .product-card .thumb .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-card:hover .thumb .overlay {
+            opacity: 1;
+        }
+
+        .product-card .quick-action {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            opacity: 0;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .product-card:hover .quick-action {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .product-card .info {
+            padding: 16px;
+        }
+
+        .product-card .cat {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .product-card .name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .product-card .sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .product-card .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-card .price {
+            font-size: 1.1rem;
+            font-weight: 900;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .cart-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .cart-btn:hover {
+            background: var(--cta-color);
+            border-color: transparent;
+        }
+
+        .service-section {
+            border-radius: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            padding: 36px 28px;
+            margin-bottom: 24px;
+        }
+
+        .service-section h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .service-section p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .service-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+        }
+
+        .service-item {
+            padding: 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-glass);
+        }
+
+        .service-item .si-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .service-item .si-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .service-item .si-price {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #c4b5fd;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="logo">handpan.pt</a>
+        <ul class="nav-links"></ul>
+    </nav>
+
+    <div class="page-content">
+        <section class="page-hero">
+            <div class="container">
+                <span class="section-tag">Loja</span>
+                <h1 class="section-title" style="margin-top:12px;margin-bottom:16px;">Instrumentos <span
+                        class="grad-text">&amp; Serviços</span></h1>
+                <p class="section-subtitle" style="margin:0 auto 28px;">Compre, alugue, afine ou repare o seu
+                    instrumento.</p>
+                <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+                    <a href="tel:+351968841230" class="contact-action-btn"
+                        style="width:auto;border-radius:var(--radius-pill);padding:12px 20px;">
+                        <div class="icon-wrap phone" style="width:36px;height:36px;"><span>📞</span></div>
+                        <div>
+                            <div class="btn-value" style="font-size:0.9rem;">968 841 230</div>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/351968841230" class="contact-action-btn"
+                        style="width:auto;border-radius:var(--radius-pill);padding:12px 20px;" target="_blank">
+                        <div class="icon-wrap wa" style="width:36px;height:36px;"><span>💬</span></div>
+                        <div>
+                            <div class="btn-value" style="font-size:0.9rem;">WhatsApp</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabs -->
+        <div class="shop-tabs" id="shopTabs">
+            <button class="shop-tab active" data-s="all">Todos</button>
+            <button class="shop-tab" data-s="handpan">Handpan</button>
+            <button class="shop-tab" data-s="outros">Outros</button>
+            <button class="shop-tab" data-s="servicos">Serviços</button>
+        </div>
+
+        <!-- Products section -->
+        <section class="section" style="padding-top:0;position:relative;z-index:1;" id="productsSection">
+            <div class="container">
+                <div class="product-grid" id="productGrid">
+                    <!-- Handpan -->
+                    <a href="product-handpan.html" class="product-card" data-cat="handpan"
+                        style="text-decoration:none;">
+                        <div class="thumb">
+                            <img src="assets/images/Instruments/handpan/handpan.jpeg" alt="Handpan Master Series"
+                                onerror="this.src='https://images.unsplash.com/photo-1621360841012-3f82bd6428c0?q=80&w=600'">
+                            <div class="overlay"></div>
+                            <a href="product-handpan.html" class="btn-primary quick-action"
+                                style="padding:10px 20px;font-size:0.85rem;">Ver detalhes</a>
+                        </div>
+                        <div class="info">
+                            <div class="cat">Handpan · Nitrided Steel</div>
+                            <div class="name">Handpan Master Series</div>
+                            <div class="sub">Fabricado em Espanha · 9 notas · D Minor</div>
+                            <div class="price-row">
+                                <div class="price grad-text">€1,800</div>
+                                <div class="cart-btn">🛒</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="product-card" data-cat="handpan">
+                        <div class="thumb">
+                            <img src="https://images.unsplash.com/photo-1526327934048-d83ddf70f2df?q=80&w=600"
+                                alt="Handpan Starter" onerror="this.style.background='#1a1a2e'">
+                            <div class="overlay"></div>
+                            <span class="btn-primary quick-action" style="padding:10px 20px;font-size:0.85rem;">Ver
+                                detalhes</span>
+                        </div>
+                        <div class="info">
+                            <div class="cat">Handpan · Starter</div>
+                            <div class="name">Handpan Entrada</div>
+                            <div class="sub">Ideal para iniciantes · 8 notas</div>
+                            <div class="price-row">
+                                <div class="price" style="color:#fbbf24;">€950</div>
+                                <div class="cart-btn">🛒</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drum -->
+                    <a href="product-drum.html" class="product-card" data-cat="outros" style="text-decoration:none;">
+                        <div class="thumb">
+                            <img src="assets/images/Instruments/buben/buben front.jpg" alt="Shamanic Drum"
+                                onerror="this.src='https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?q=80&w=600'">
+                            <div class="overlay"></div>
+                            <a href="product-drum.html" class="btn-primary quick-action"
+                                style="padding:10px 20px;font-size:0.85rem;">Ver detalhes</a>
+                        </div>
+                        <div class="info">
+                            <div class="cat">Percussão</div>
+                            <div class="name">Tambor Xamânico</div>
+                            <div class="sub">Artesanal · Som autêntico</div>
+                            <div class="price-row">
+                                <div class="price" style="color:#34d399;">€250</div>
+                                <div class="cart-btn">🛒</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Bowl -->
+                    <a href="product-bowl.html" class="product-card" data-cat="outros" style="text-decoration:none;">
+                        <div class="thumb">
+                            <img src="assets/images/Instruments/quartz/DSC03259.jpg" alt="Crystal Bowl"
+                                onerror="this.src='https://images.unsplash.com/photo-1549834125-906c85a1dd00?q=80&w=600'">
+                            <div class="overlay"></div>
+                            <a href="product-bowl.html" class="btn-primary quick-action"
+                                style="padding:10px 20px;font-size:0.85rem;">Ver detalhes</a>
+                        </div>
+                        <div class="info">
+                            <div class="cat">Som Terapêutico</div>
+                            <div class="name">Taça de Cristal</div>
+                            <div class="sub">Quartzo puro · Frequências de cura</div>
+                            <div class="price-row">
+                                <div class="price" style="color:#67e8f9;">€350</div>
+                                <div class="cart-btn">🛒</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Rental -->
+                    <div class="product-card" data-cat="servicos">
+                        <div class="thumb"
+                            style="background:linear-gradient(135deg,rgba(14,165,233,0.3),rgba(124,58,237,0.2));display:flex;align-items:center;justify-content:center;font-size:4rem;">
+                            🎸</div>
+                        <div class="info">
+                            <div class="cat">Serviço</div>
+                            <div class="name">Aluguer de Handpan</div>
+                            <div class="sub">Mensal com opção de compra</div>
+                            <div class="price-row">
+                                <div class="price" style="color:#38bdf8;">€120<small
+                                        style="font-size:0.7rem;font-weight:400;color:var(--text-muted)">/mês</small>
+                                </div>
+                                <a href="inscricao.html" class="cart-btn"
+                                    style="background:rgba(14,165,233,0.2);border-color:rgba(14,165,233,0.4);">→</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tuning -->
+                    <div class="product-card" data-cat="servicos">
+                        <div class="thumb"
+                            style="background:linear-gradient(135deg,rgba(245,158,11,0.3),rgba(239,68,68,0.2));display:flex;align-items:center;justify-content:center;font-size:4rem;">
+                            🔧</div>
+                        <div class="info">
+                            <div class="cat">Serviço</div>
+                            <div class="name">Afinação Profissional</div>
+                            <div class="sub">Restauração do som original</div>
+                            <div class="price-row">
+                                <div class="price" style="color:#fbbf24;">A partir de €80</div>
+                                <a href="contactos.html" class="cart-btn"
+                                    style="background:rgba(245,158,11,0.2);border-color:rgba(245,158,11,0.4);">→</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services details -->
+        <section class="section" style="position:relative;z-index:1;padding-top:0;padding-bottom:120px;"
+            id="servicesSection">
+            <div class="container">
+                <div class="section-header" style="margin-bottom:24px;">
+                    <span class="section-tag">Serviços</span>
+                    <h2 class="section-title" style="margin-top:12px;">Serviços especializados</h2>
+                </div>
+
+                <div class="service-section">
+                    <h3>🔧 Reparação & Afinação</h3>
+                    <p>O seu handpan perdeu o tom ou foi amolgado? Os nossos técnicos especializados restauram cada nota
+                        com precisão cen tisimal.</p>
+                    <div class="service-items">
+                        <div class="service-item">
+                            <div class="si-name">Afinação Completa</div>
+                            <div class="si-desc">Todas as notas reajustadas ao centésimo de semitom.</div>
+                            <div class="si-price">€80–150</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="si-name">Reparação de Amolgado</div>
+                            <div class="si-desc">Restauração estrutural e de som.</div>
+                            <div class="si-price">€120–300</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="si-name">Limpeza & Proteção</div>
+                            <div class="si-desc">Tratamento anti-ferrugem e polimento.</div>
+                            <div class="si-price">€40</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="si-name">Avaliação Gratuita</div>
+                            <div class="si-desc">Diagnóstico do estado do seu instrumento.</div>
+                            <div class="si-price">Grátis</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-section">
+                    <h3>🎸 Aluguer de Instrumento</h3>
+                    <p>Experimente o handpan antes de investir. Alugue mensalmente com todo o equipamento incluído.</p>
+                    <div class="service-items">
+                        <div class="service-item">
+                            <div class="si-name">Plano Básico</div>
+                            <div class="si-desc">1 handpan · Bag incluída</div>
+                            <div class="si-price">€120/mês</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="si-name">Plano Plus</div>
+                            <div class="si-desc">1 handpan premium + acessórios</div>
+                            <div class="si-price">€180/mês</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="si-name">Compra Futura</div>
+                            <div class="si-desc">50% do aluguel desconta no preço final</div>
+                            <div class="si-price">Incluído</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align:center;margin-top:32px;">
+                    <a href="contactos.html" class="btn-primary" style="margin-right:12px;">Solicitar orçamento</a>
+                    <a href="inscricao.html" class="btn-secondary">Reservar serviço</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="shared-components.js"></script>
+    <script>
+        document.querySelectorAll('.shop-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.shop-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const s = tab.dataset.s;
+                document.querySelectorAll('.product-card').forEach(card => {
+                    card.style.display = (s === 'all' || card.dataset.cat === s) ? '' : 'none';
+                });
+                document.getElementById('servicesSection').style.display = (s === 'all' || s === 'servicos') ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>

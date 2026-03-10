@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Sobre Nós — handpan.pt</title>
+    <meta name="description"
+        content="Conheça a equipa handpan.pt — instrutores apaixonados e a filosofia da nossa escola de handpan em Portugal.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style-new.css">
+    <style>
+        .page-hero {
+            padding: 120px 0 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media(max-width:767px) {
+            .hero-split {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
+        .hero-img-wrap {
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            position: relative;
+        }
+
+        .hero-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-img-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(14, 165, 233, 0.2));
+            mix-blend-mode: multiply;
+        }
+
+        .value-card {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 20px;
+            border-radius: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+        }
+
+        .value-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(139, 92, 246, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .value-text h4 {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .value-text p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        @media(max-width:600px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--cta-color), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 32px 24px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--cta-color);
+            box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+        }
+
+        .timeline-item .year {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #c4b5fd;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-item h4 {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .timeline-item p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="logo">handpan.pt</a>
+        <ul class="nav-links"></ul>
+    </nav>
+
+    <div class="page-content">
+        <!-- Hero split -->
+        <section class="page-hero">
+            <div class="container">
+                <div class="hero-split">
+                    <div class="hero-img-wrap">
+                        <img src="assets/images/about-new.png" alt="handpan.pt escola"
+                            onerror="this.src='https://images.unsplash.com/photo-1598460678889-4cb5032599c9?q=80&w=800&auto=format&fit=crop'">
+                    </div>
+                    <div>
+                        <span class="section-tag">Sobre Nós</span>
+                        <h1 class="section-title" style="margin:14px 0 20px;">A nossa <span
+                                class="grad-text">história</span></h1>
+                        <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">A
+                            <strong>handpan.pt</strong> nasceu em 2015 da paixão pelo handpan e pelo desejo de levar
+                            este instrumento único ao coração de Portugal. Somos mais do que uma escola — somos uma
+                            comunidade de amantes do som.</p>
+                        <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:32px;">Acreditamos no poder
+                            transformador da música. Cada nota do handpan é uma oportunidade de conexão interior — com
+                            você mesmo e com os outros.</p>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+                            <div class="stat-item">
+                                <div class="number">500+</div>
+                                <div class="label">Alunos</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="number">3</div>
+                                <div class="label">Estúdios</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="number">10+</div>
+                                <div class="label">Anos</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="number">4</div>
+                                <div class="label">Idiomas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values -->
+        <section class="section" style="padding-top:0;position:relative;z-index:1;">
+            <div class="container">
+                <div class="section-header" style="margin-bottom:32px;">
+                    <span class="section-tag">Filosofia</span>
+                    <h2 class="section-title" style="margin-top:12px;">O que nos move</h2>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+                    <div class="value-card">
+                        <div class="value-icon">💜</div>
+                        <div class="value-text">
+                            <h4>Paixão pelo som</h4>
+                            <p>Cada aula é uma jornada de descoberta. O handpan é um instrumento espiritual e tratamo-lo
+                                como tal.</p>
+                        </div>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🌍</div>
+                        <div class="value-text">
+                            <h4>Diversidade cultural</h4>
+                            <p>Ensinamos em PT, EN, UA e RU — a música une culturas e pessoas de todo o mundo.</p>
+                        </div>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🌱</div>
+                        <div class="value-text">
+                            <h4>Crescimento constante</h4>
+                            <p>Acompanhamos cada aluno com paciência, celebrando cada progresso como uma vitória.</p>
+                        </div>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🤝</div>
+                        <div class="value-text">
+                            <h4>Comunidade</h4>
+                            <p>Construímos laços duradouros entre músicos, através de jams, eventos e partilha.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section class="section" style="padding-top:0;position:relative;z-index:1;">
+            <div class="container">
+                <div class="section-header" style="margin-bottom:32px;">
+                    <span class="section-tag">Equipa</span>
+                    <h2 class="section-title" style="margin-top:12px;">Conheça os instrutores</h2>
+                </div>
+                <div class="team-grid">
+                    <div class="instructor-card" style="background:var(--bg-card);">
+                        <div class="photo"><img
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop"
+                                alt="Pedro Araújo" onerror="this.parentElement.style.background='#1a1a2e'"></div>
+                        <div class="info">
+                            <div class="name">Pedro Araújo</div>
+                            <div class="role">Fundador & Instrutor Principal</div>
+                            <div class="bio">10 anos de experiência. Formado em música, performer internacio nal e
+                                apaixonado por partilhar a magia do handpan com todos.</div>
+                        </div>
+                    </div>
+                    <div class="instructor-card" style="background:var(--bg-card);">
+                        <div class="photo"><img
+                                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=600&auto=format&fit=crop"
+                                alt="Sofia Lima" onerror="this.parentElement.style.background='#1a1a2e'"></div>
+                        <div class="info">
+                            <div class="name">Sofia Lima</div>
+                            <div class="role">Instrutora Sénior · Ericeira</div>
+                            <div class="bio">Especialista em sound healing e meditação através do som. Lidera as sessões
+                                de Gong Bath e Sound Bath.</div>
+                        </div>
+                    </div>
+                    <div class="instructor-card" style="background:var(--bg-card);">
+                        <div class="photo"><img
+                                src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=600&auto=format&fit=crop"
+                                alt="Mikhail V" onerror="this.parentElement.style.background='#1a1a2e'"></div>
+                        <div class="info">
+                            <div class="name">Mikhail Volkov</div>
+                            <div class="role">Instrutor · Cascais · EN/UA/RU</div>
+                            <div class="bio">Ex-músico profissional de Kiev. Especializado em técnicas de composição e
+                                alunos internacionais de habla não portuguesa.</div>
+                        </div>
+                    </div>
+                    <div class="instructor-card" style="background:var(--bg-card);">
+                        <div class="photo"><img
+                                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop"
+                                alt="Ana Costa" onerror="this.parentElement.style.background='#1a1a2e'"></div>
+                        <div class="info">
+                            <div class="name">Ana Costa</div>
+                            <div class="role">Técnica de Afinação · Lisboa</div>
+                            <div class="bio">Engenheira de som especializada em instrumentos de percussão. Responsável
+                                pela afinação e reparações.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="section" style="padding-top:0;position:relative;z-index:1;padding-bottom:120px;">
+            <div class="container">
+                <div class="section-header" style="margin-bottom:32px;">
+                    <span class="section-tag">História</span>
+                    <h2 class="section-title" style="margin-top:12px;">A nossa jornada</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="year">2015</div>
+                        <h4>Fundação em Lisboa</h4>
+                        <p>Pedro Araújo funda a escola com a primeira sala em Alfama, Lisboa.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">2017</div>
+                        <h4>Abertura em Ericeira</h4>
+                        <p>Expansão para a costa. O fresco da surf town inspira novas melodias.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">2019</div>
+                        <h4>500 alunos formados</h4>
+                        <p>Um marco histórico: meio milhar de músicos nascidos na escola.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">2021</div>
+                        <h4>Estúdio em Cascais</h4>
+                        <p>Terceiro espaço, focado em aulas online e sound healing.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">2024</div>
+                        <h4>Reconhecimento internacional</h4>
+                        <p>Parceria com artistas como Hang Massive e festival de handpan em Portugal.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">2026</div>
+                        <h4>Novo website · handpan.pt</h4>
+                        <p>Lançamento do novo site com reservas online e presença digital renovada.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="shared-components.js"></script>
+</body>
+
+</html>

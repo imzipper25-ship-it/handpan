@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Eventos — handpan.pt</title>
+    <meta name="description"
+        content="Concertos, workshops e sound baths de handpan em Portugal. handpan.pt em Lisboa, Ericeira e Cascais.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style-new.css">
+    <style>
+        .page-hero {
+            padding: 120px 0 60px;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 0 20px 16px;
+            scrollbar-width: none;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .filter-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-pill {
+            padding: 9px 20px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-glass);
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .filter-pill.active {
+            background: var(--cta-color);
+            border-color: var(--cta-color);
+            color: #fff;
+        }
+
+        .filter-pill:hover:not(.active) {
+            border-color: rgba(139, 92, 246, 0.5);
+            color: var(--text-primary);
+        }
+
+        .events-featured {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        @media(min-width:768px) {
+            .events-featured {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .event-big {
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            background: var(--bg-card);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .event-big:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .event-big .img-wrap {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .event-big .img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .event-big:hover .img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .event-big .img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 60%, transparent 100%);
+        }
+
+        .event-big .event-meta {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+        }
+
+        .event-big .event-meta .badge {
+            margin-bottom: 8px;
+        }
+
+        .event-big .event-meta h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .event-big .event-meta .info {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .event-big .event-meta .price {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #c4b5fd;
+        }
+
+        .events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .event-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            border-radius: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            transition: all 0.25s;
+            cursor: default;
+        }
+
+        .event-row:hover {
+            transform: translateX(4px);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .event-row .date-block {
+            flex-shrink: 0;
+            width: 52px;
+            text-align: center;
+            background: rgba(139, 92, 246, 0.15);
+            border-radius: 12px;
+            padding: 10px 6px;
+        }
+
+        .event-row .date-block .day {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #c4b5fd;
+        }
+
+        .event-row .date-block .mon {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .event-row .details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .event-row .ev-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .event-row .ev-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .event-row .ev-price {
+            flex-shrink: 0;
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: #c4b5fd;
+        }
+
+        .newsletter-box {
+            border-radius: 24px;
+            background: var(--bg-card);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 40px 28px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.12), transparent 70%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="logo">handpan.pt</a>
+        <ul class="nav-links"></ul>
+    </nav>
+
+    <div class="page-content">
+        <section class="page-hero">
+            <div class="container">
+                <span class="section-tag">Eventos</span>
+                <h1 class="section-title" style="margin-top:12px;margin-bottom:16px;">Concertos & <span
+                        class="grad-text">Workshops</span></h1>
+                <p class="section-subtitle" style="margin:0 auto;">Viva experiências únicas com handpan ao vivo em
+                    Portugal.</p>
+            </div>
+        </section>
+
+        <!-- Filter -->
+        <div class="filter-bar" id="filterBar">
+            <button class="filter-pill active" data-f="all">Todos</button>
+            <button class="filter-pill" data-f="concerto">Concertos</button>
+            <button class="filter-pill" data-f="workshop">Workshops</button>
+            <button class="filter-pill" data-f="sound">Sound Bath</button>
+            <button class="filter-pill" data-f="jam">Jam Session</button>
+        </div>
+
+        <!-- Featured Events -->
+        <section class="section" style="padding-top:0;position:relative;z-index:1;">
+            <div class="container">
+                <h2
+                    style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1.2rem;margin-bottom:20px;color:var(--text-secondary);">
+                    Próximos eventos em destaque</h2>
+
+                <!-- Mobile: swipeable carousel -->
+                <div class="card-carousel" style="padding-left:0;padding-right:0;" id="featuredCarousel">
+                    <div class="event-big" style="min-width:min(90vw,500px);" data-cat="concerto">
+                        <div class="img-wrap">
+                            <img src="https://images.unsplash.com/photo-1574091285739-bdb1c95dc9ef?q=80&w=900&auto=format&fit=crop"
+                                alt="Hang Massive Concert"
+                                onerror="this.src='';this.parentElement.style.background='#1a1a2e'">
+                            <div class="img-overlay"></div>
+                        </div>
+                        <div class="event-meta">
+                            <span class="badge badge-hot">🔥 Em destaque</span>
+                            <h3>Hang Massive — Concerto Ao Vivo</h3>
+                            <div class="info">
+                                <span>📅 22 Mar 2026 · 20h00</span>
+                                <span>📍 Teatro São Luiz, Lisboa</span>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;">
+                                <div class="price">€25 — €85</div>
+                                <a href="inscricao.html" class="btn-primary"
+                                    style="padding:10px 20px;font-size:0.85rem;">Reservar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-big" style="min-width:min(90vw,500px);" data-cat="sound">
+                        <div class="img-wrap">
+                            <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=900&auto=format&fit=crop"
+                                alt="Gong Bath" onerror="this.src='';this.parentElement.style.background='#0d1b2a'">
+                            <div class="img-overlay"></div>
+                        </div>
+                        <div class="event-meta">
+                            <span class="badge badge-new">🛁 Sound Bath</span>
+                            <h3>Gong Bath & Sound Healing</h3>
+                            <div class="info">
+                                <span>📅 29 Mar 2026 · 11h00</span>
+                                <span>📍 Ericeira Studio</span>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;">
+                                <div class="price">€30/pessoa</div>
+                                <a href="inscricao.html" class="btn-primary"
+                                    style="padding:10px 20px;font-size:0.85rem;">Reservar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-big" style="min-width:min(90vw,500px);" data-cat="workshop">
+                        <div class="img-wrap">
+                            <img src="https://images.unsplash.com/photo-1595064085577-7c2ef98ec311?q=80&w=900&auto=format&fit=crop"
+                                alt="Workshop" onerror="this.src='';this.parentElement.style.background='#1a0630'">
+                            <div class="img-overlay"></div>
+                        </div>
+                        <div class="event-meta">
+                            <span class="badge badge-new">Workshop</span>
+                            <h3>Masterclass com Pedro Araújo</h3>
+                            <div class="info">
+                                <span>📅 5 Abr 2026 · 15h00</span>
+                                <span>📍 Cascais Studio</span>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;">
+                                <div class="price">€45/pessoa</div>
+                                <a href="inscricao.html" class="btn-primary"
+                                    style="padding:10px 20px;font-size:0.85rem;">Reservar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- All events list -->
+                <h2
+                    style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1.2rem;margin:40px 0 20px;color:var(--text-secondary);">
+                    Agenda completa</h2>
+                <div class="events-list" id="eventsList">
+                    <div class="event-row" data-cat="concerto">
+                        <div class="date-block">
+                            <div class="day">22</div>
+                            <div class="mon">Mar</div>
+                        </div>
+                        <div class="details">
+                            <div class="ev-title">Hang Massive — Concerto Ao Vivo</div>
+                            <div class="ev-sub"><span>📍 Teatro São Luiz, Lisboa</span><span>20h00</span></div>
+                        </div>
+                        <div class="ev-price">€25–85</div>
+                    </div>
+                    <div class="event-row" data-cat="sound">
+                        <div class="date-block">
+                            <div class="day">29</div>
+                            <div class="mon">Mar</div>
+                        </div>
+                        <div class="details">
+                            <div class="ev-title">Gong Bath & Sound Healing</div>
+                            <div class="ev-sub"><span>📍 Ericeira</span><span>11h00</span></div>
+                        </div>
+                        <div class="ev-price">€30</div>
+                    </div>
+                    <div class="event-row" data-cat="workshop">
+                        <div class="date-block">
+                            <div class="day">5</div>
+                            <div class="mon">Abr</div>
+                        </div>
+                        <div class="details">
+                            <div class="ev-title">Masterclass Avançada</div>
+                            <div class="ev-sub"><span>📍 Cascais</span><span>15h00</span></div>
+                        </div>
+                        <div class="ev-price">€45</div>
+                    </div>
+                    <div class="event-row" data-cat="jam">
+                        <div class="date-block">
+                            <div class="day">12</div>
+                            <div class="mon">Abr</div>
+                        </div>
+                        <div class="details">
+                            <div class="ev-title">Jam Session Aberta</div>
+                            <div class="ev-sub"><span>📍 Lisboa</span><span>19h00</span></div>
+                        </div>
+                        <div class="ev-price">Grátis</div>
+                    </div>
+                    <div class="event-row" data-cat="concerto">
+                        <div class="date-block">
+                            <div class="day">19</div>
+                            <div class="mon">Abr</div>
+                        </div>
+                        <div class="details">
+                            <div class="ev-title">Concerto Primavera · handpan.pt</div>
+                            <div class="ev-sub"><span>📍 Ericeira</span><span>18h00</span></div>
+                        </div>
+                        <div class="ev-price">€15</div>
+                    </div>
+                    <div class="event-row" data-cat="sound">
+                        <div class="date-block">
+                            <div class="day">26</div>
+                            <div class="mon">Abr</div>
+                        </div>
+                        <div class="details">
+                            <div class="ev-title">Meditação & Sound Bath</div>
+                            <div class="ev-sub"><span>📍 Cascais</span><span>10h00</span></div>
+                        </div>
+                        <div class="ev-price">€25</div>
+                    </div>
+                    <div class="event-row" data-cat="workshop">
+                        <div class="date-block">
+                            <div class="day">3</div>
+                            <div class="mon">Mai</div>
+                        </div>
+                        <div class="details">
+                            <div class="ev-title">Workshop Iniciantes</div>
+                            <div class="ev-sub"><span>📍 Lisboa</span><span>14h00</span></div>
+                        </div>
+                        <div class="ev-price">€35</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="section" style="position:relative;z-index:1;padding-top:0;padding-bottom:120px;">
+            <div class="container">
+                <div class="newsletter-box">
+                    <h2 class="section-title" style="margin-bottom:12px;">Não perca nenhum evento</h2>
+                    <p style="color:var(--text-secondary);margin-bottom:24px;">Receba notificações dos próximos eventos
+                        diretamente no seu email.</p>
+                    <div style="display:flex;gap:12px;max-width:460px;margin:0 auto;">
+                        <input type="email" class="form-input" placeholder="O seu email" style="flex:1;">
+                        <button class="btn-primary" style="white-space:nowrap;">Subscrever</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="shared-components.js"></script>
+    <script>
+        document.querySelectorAll('.filter-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                const f = pill.dataset.f;
+                document.querySelectorAll('.event-row').forEach(ev => {
+                    ev.style.display = (f === 'all' || ev.dataset.cat === f) ? '' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

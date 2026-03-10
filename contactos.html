@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Contactos — handpan.pt</title>
+    <meta name="description"
+        content="Contacte a handpan.pt em Lisboa, Ericeira ou Cascais. Telefone, WhatsApp, email. Mapa interativo.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style-new.css">
+    <style>
+        .page-hero {
+            padding: 120px 0 60px;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        @media(max-width:600px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .locations-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .locations-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .loc-tab {
+            padding: 10px 22px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-glass);
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .loc-tab.active {
+            background: var(--cta-color);
+            border-color: var(--cta-color);
+            color: #fff;
+        }
+
+        .loc-tab:hover:not(.active) {
+            border-color: rgba(139, 92, 246, 0.5);
+            color: var(--text-primary);
+        }
+
+        .location-panel {
+            display: none;
+            animation: fadeInUp 0.4s ease both;
+        }
+
+        .location-panel.active {
+            display: block;
+        }
+
+        .loc-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        @media(max-width:600px) {
+            .loc-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .loc-info-card {
+            padding: 20px;
+            border-radius: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+        }
+
+        .loc-info-card h4 {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .loc-info-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media(max-width:600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .feedback-msg {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            border-radius: 16px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            font-weight: 700;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="logo">handpan.pt</a>
+        <ul class="nav-links"></ul>
+    </nav>
+
+    <div class="page-content">
+        <section class="page-hero">
+            <div class="container">
+                <span class="section-tag">Contactos</span>
+                <h1 class="section-title" style="margin-top:12px;margin-bottom:16px;">Fale <span
+                        class="grad-text">connosco</span></h1>
+                <p class="section-subtitle" style="margin:0 auto 40px;">Resposta rápida garantida. Estamos em 3
+                    localizações em Portugal.</p>
+                <!-- Big contact action buttons -->
+                <div class="contact-grid" style="max-width:500px;margin:0 auto 0;">
+                    <a href="tel:+351968841230" class="contact-action-btn">
+                        <div class="icon-wrap phone"><span style="font-size:22px;">📞</span></div>
+                        <div>
+                            <div class="btn-label">Ligar agora</div>
+                            <div class="btn-value">968 841 230</div>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/351968841230" class="contact-action-btn" target="_blank">
+                        <div class="icon-wrap wa"><span style="font-size:22px;">💬</span></div>
+                        <div>
+                            <div class="btn-label">WhatsApp</div>
+                            <div class="btn-value">Mensagem rápida</div>
+                        </div>
+                    </a>
+                    <a href="mailto:info@handpan.pt" class="contact-action-btn" style="grid-column:1/-1;">
+                        <div class="icon-wrap email"><span style="font-size:22px;">✉️</span></div>
+                        <div>
+                            <div class="btn-label">Email</div>
+                            <div class="btn-value">info@handpan.pt</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Locations -->
+        <section class="section" style="padding-top:0;position:relative;z-index:1;">
+            <div class="container">
+                <div class="section-header" style="margin-bottom:24px;">
+                    <span class="section-tag">Estúdios</span>
+                    <h2 class="section-title" style="margin-top:12px;">As nossas localizações</h2>
+                </div>
+                <div class="locations-tabs" id="locTabs">
+                    <button class="loc-tab active" data-loc="ericeira">📍 Ericeira</button>
+                    <button class="loc-tab" data-loc="cascais">⛵ Cascais</button>
+                    <button class="loc-tab" data-loc="lisboa">🏙️ Lisboa</button>
+                </div>
+
+                <!-- Ericeira -->
+                <div class="location-panel active" id="loc-ericeira">
+                    <div class="loc-info-grid">
+                        <div class="loc-info-card">
+                            <h4>📍 Morada</h4>
+                            <p>Rua das Pescas 12<br>2655 Ericeira<br>Portugal</p>
+                        </div>
+                        <div class="loc-info-card">
+                            <h4>🕐 Horário</h4>
+                            <p>Quarta a Domingo<br>10h00 – 20h00<br>Seg/Ter: Fechado</p>
+                        </div>
+                        <div class="loc-info-card">
+                            <h4>🚌 Como chegar</h4>
+                            <p>Linha de autocarro 0423 · 8 min a pé da Praça Principal</p>
+                        </div>
+                        <div class="loc-info-card">
+                            <h4>🎵 Serviços</h4>
+                            <p>Aulas individuais<br>Sound Bath<br>Afinação & Reparação</p>
+                        </div>
+                    </div>
+                    <div class="map-widget">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6271.2853064!2d-9.4167!3d38.9639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1ec5a65c78c8f5%3A0x0!2sEriceira%2C%20Portugal!5e0!3m2!1spt!2spt!4v1000000000000!5m2!1spt!2spt"
+                            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                            title="Mapa Ericeira"></iframe>
+                    </div>
+                </div>
+
+                <!-- Cascais -->
+                <div class="location-panel" id="loc-cascais">
+                    <div class="loc-info-grid">
+                        <div class="loc-info-card">
+                            <h4>📍 Morada</h4>
+                            <p>Avenida do Mar 45<br>2750 Cascais<br>Portugal</p>
+                        </div>
+                        <div class="loc-info-card">
+                            <h4>🕐 Horário</h4>
+                            <p>Terça a Sábado<br>09h00 – 21h00<br>Dom/Seg: Fechado</p>
+                        </div>
+                        <div class="loc-info-card">
+                            <h4>🚆 Como chegar</h4>
+                            <p>Linha de Cascais — Estação de Cascais, 10 min a pé</p>
+                        </div>
+                        <div class="loc-info-card">
+                            <h4>🎵 Serviços</h4>
+                            <p>Aulas individuais & grupo<br>Online<br>Masterclass</p>
+                        </div>
+                    </div>
+                    <div class="map-widget">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6271.2853064!2d-9.4208!3d38.6979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1ece00b0b3c4f7%3A0x0!2sCascais%2C%20Portugal!5e0!3m2!1spt!2spt!4v1000000001000!5m2!1spt!2spt"
+                            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                            title="Mapa Cascais"></iframe>
+                    </div>
+                </div>
+
+                <!-- Lisboa -->
+                <div class="location-panel" id="loc-lisboa">
+                    <div class="loc-info-grid">
+                        <div class="loc-info-card">
+                            <h4>📍 Morada</h4>
+                            <p>Rua da Madalena 88<br>1100 Lisboa<br>Portugal</p>
+                        </div>
+                        <div class="loc-info-card">
+                            <h4>🕐 Horário</h4>
+                            <p>Segunda a Sábado<br>09h00 – 21h00<br>Domingo: 10h–17h</p>
+                        </div>
+                        <div class="loc-info-card">
+                            <h4>🚇 Como chegar</h4>
+                            <p>Metro Rossio (Linha Verde) · 5 min a pé</p>
+                        </div>
+                        <div class="loc-info-card">
+                            <h4>🎵 Serviços</h4>
+                            <p>Todos os serviços<br>Loja física<br>Eventos & Workshops</p>
+                        </div>
+                    </div>
+                    <div class="map-widget">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12538.984769753516!2d-9.1385!3d38.7169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19331a61e4f33b%3A0x400ebbde490a580!2sLisboa!5e0!3m2!1spt!2spt!4v1000000002000!5m2!1spt!2spt"
+                            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                            title="Mapa Lisboa"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section class="section" style="padding-top:0;position:relative;z-index:1;padding-bottom:120px;">
+            <div class="container">
+                <div style="max-width:640px;margin:0 auto;">
+                    <div class="section-header" style="margin-bottom:28px;">
+                        <span class="section-tag">Mensagem</span>
+                        <h2 class="section-title" style="margin-top:12px;">Envie-nos uma mensagem</h2>
+                    </div>
+                    <form id="contactForm" style="display:flex;flex-direction:column;gap:16px;">
+                        <div class="form-grid">
+                            <div>
+                                <label class="form-label">Nome *</label>
+                                <input type="text" class="form-input" placeholder="O seu nome" required>
+                            </div>
+                            <div>
+                                <label class="form-label">Telefone</label>
+                                <input type="tel" class="form-input" placeholder="+351 912 345 678">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label">Email *</label>
+                            <input type="email" class="form-input" placeholder="email@exemplo.pt" required>
+                        </div>
+                        <div>
+                            <label class="form-label">Localização de interesse</label>
+                            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;">
+                                <label
+                                    style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.9rem;"><input
+                                        type="radio" name="loc" value="Ericeira"
+                                        style="accent-color:var(--cta-color);">Ericeira</label>
+                                <label
+                                    style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.9rem;"><input
+                                        type="radio" name="loc" value="Cascais"
+                                        style="accent-color:var(--cta-color);">Cascais</label>
+                                <label
+                                    style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.9rem;"><input
+                                        type="radio" name="loc" value="Lisboa" style="accent-color:var(--cta-color);"
+                                        checked>Lisboa</label>
+                                <label
+                                    style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.9rem;"><input
+                                        type="radio" name="loc" value="Online"
+                                        style="accent-color:var(--cta-color);">Online</label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label">Mensagem *</label>
+                            <textarea class="form-input" rows="4" placeholder="Como podemos ajudar?" required
+                                style="resize:vertical;"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary"
+                            style="font-size:1rem;padding:16px;justify-content:center;">
+                            ✉️ Enviar Mensagem
+                        </button>
+                    </form>
+                    <div class="feedback-msg" id="feedbackMsg">✅ Mensagem enviada! Responderemos em breve.</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="shared-components.js"></script>
+    <script>
+        // Location tabs
+        document.querySelectorAll('.loc-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.loc-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                document.querySelectorAll('.location-panel').forEach(p => p.classList.remove('active'));
+                document.getElementById('loc-' + tab.dataset.loc).classList.add('active');
+            });
+        });
+        // Form submit
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            document.getElementById('feedbackMsg').style.display = 'block';
+            this.reset();
+            setTimeout(() => document.getElementById('feedbackMsg').style.display = 'none', 5000);
+        });
+    </script>
+</body>
+
+</html>

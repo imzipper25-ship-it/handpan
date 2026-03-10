@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Escola — handpan.pt</title>
+    <meta name="description"
+        content="Aulas de handpan individuais e em grupo para todos os níveis. handpan.pt em Lisboa, Ericeira e Cascais.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style-new.css">
+    <style>
+        .page-hero {
+            padding: 120px 0 60px;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .program-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 0 20px 12px;
+            scrollbar-width: none;
+            margin-bottom: 40px;
+        }
+
+        .program-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            padding: 10px 22px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-glass);
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .tab-btn.active {
+            background: var(--cta-color);
+            border-color: var(--cta-color);
+            color: white;
+        }
+
+        .tab-btn:hover:not(.active) {
+            border-color: rgba(139, 92, 246, 0.5);
+            color: var(--text-primary);
+        }
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        @media(max-width:767px) {
+            .program-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .program-card {
+            border-radius: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .program-card .card-header {
+            padding: 32px 28px 24px;
+            position: relative;
+        }
+
+        .program-card .card-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--card-grad, linear-gradient(135deg, rgba(124, 58, 237, 0.2), transparent));
+        }
+
+        .program-card .level-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .program-card .title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .program-card .sub {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .program-card .card-body {
+            padding: 24px 28px;
+        }
+
+        .program-card .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .program-card .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .program-card .feature-list li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .program-card .price-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .program-card .price {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+        }
+
+        .program-card .per {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-left: 4px;
+        }
+
+        .program-card.featured {
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        .featured-label {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(245, 158, 11, 0.9);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .curriculum-block {
+            border-radius: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            padding: 28px;
+            margin-bottom: 16px;
+        }
+
+        .curriculum-block summary {
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .curriculum-block summary::after {
+            content: '▾';
+            transition: transform 0.2s;
+        }
+
+        .curriculum-block[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .curriculum-block p {
+            margin-top: 16px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .faq-item {
+            border-radius: 14px;
+            border: 1px solid var(--border-glass);
+            background: var(--bg-card);
+            padding: 20px;
+            margin-bottom: 12px;
+        }
+
+        .faq-q {
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .faq-a {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .faq-item.open .faq-a {
+            display: block;
+        }
+
+        .faq-item.open .faq-q::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-q::after {
+            content: '+';
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="logo">handpan.pt</a>
+        <ul class="nav-links"></ul>
+    </nav>
+
+    <div class="page-content">
+        <!-- Hero -->
+        <section class="page-hero">
+            <div class="container">
+                <span class="section-tag">Escola</span>
+                <h1 class="section-title" style="margin-top:12px;margin-bottom:16px;">Aulas de <span
+                        class="grad-text">Handpan</span></h1>
+                <p class="section-subtitle" style="margin:0 auto 40px;text-align:center;">Para iniciantes e músicos
+                    avançados. Aprenda com os melhores em Portugal.</p>
+                <a href="inscricao.html" class="btn-primary" style="font-size:1.05rem;">🎵 Reservar Aula Grátis</a>
+            </div>
+        </section>
+
+        <!-- Tabs -->
+        <div style="position:relative;z-index:1;margin-bottom:16px;">
+            <div class="program-tabs" id="programTabs">
+                <button class="tab-btn active" data-filter="all">Todos</button>
+                <button class="tab-btn" data-filter="beginner">Iniciante</button>
+                <button class="tab-btn" data-filter="intermediate">Intermédio</button>
+                <button class="tab-btn" data-filter="advanced">Avançado</button>
+                <button class="tab-btn" data-filter="group">Em Grupo</button>
+            </div>
+        </div>
+
+        <!-- Programs -->
+        <section class="section" style="padding-top:0;position:relative;z-index:1;">
+            <div class="container">
+                <div class="program-grid" id="programGrid">
+
+                    <div class="program-card" data-level="beginner"
+                        style="--card-grad:linear-gradient(135deg,rgba(16,185,129,0.15),transparent)">
+                        <div class="card-header">
+                            <span class="level-badge"
+                                style="background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3);">🌱
+                                Iniciante</span>
+                            <div class="title">Aula Introdutória</div>
+                            <div class="sub">Primeira experiência. 30 minutos gratuitos.</div>
+                        </div>
+                        <div class="card-body">
+                            <ul class="feature-list">
+                                <li>Introdução ao instrumento</li>
+                                <li>Primeiros toques e ritmos</li>
+                                <li>Sem experiência musical necessária</li>
+                                <li>Instrumento fornecido pela escola</li>
+                            </ul>
+                            <div class="price-row">
+                                <div><span class="price" style="color:#10b981;">Grátis</span></div>
+                                <a href="inscricao.html" class="btn-primary"
+                                    style="padding:12px 22px;font-size:0.9rem;">Reservar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-card featured" data-level="beginner"
+                        style="--card-grad:linear-gradient(135deg,rgba(124,58,237,0.2),transparent)">
+                        <div class="card-header">
+                            <span class="level-badge"
+                                style="background:rgba(124,58,237,0.15);color:#c4b5fd;border:1px solid rgba(124,58,237,0.3);">⭐
+                                Popular</span>
+                            <span class="featured-label">Mais escolhido</span>
+                            <div class="title">Aula Individual</div>
+                            <div class="sub">Sessão 1-a-1 personalizada de 60 minutos.</div>
+                        </div>
+                        <div class="card-body">
+                            <ul class="feature-list">
+                                <li>Instrução personalizada ao seu ritmo</li>
+                                <li>Técnica, teoria e improvisação</li>
+                                <li>Todos os níveis bem-vindos</li>
+                                <li>Gravação de progresso incluída</li>
+                                <li>Material didático digital</li>
+                            </ul>
+                            <div class="price-row">
+                                <div><span class="price grad-text">€60</span><span class="per">/hora</span></div>
+                                <a href="inscricao.html" class="btn-primary"
+                                    style="padding:12px 22px;font-size:0.9rem;">Reservar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-card" data-level="group"
+                        style="--card-grad:linear-gradient(135deg,rgba(14,165,233,0.15),transparent)">
+                        <div class="card-header">
+                            <span class="level-badge"
+                                style="background:rgba(14,165,233,0.15);color:#38bdf8;border:1px solid rgba(14,165,233,0.3);">👥
+                                Grupo</span>
+                            <div class="title">Aula em Grupo</div>
+                            <div class="sub">Máximo 6 alunos por sessão de 90 min.</div>
+                        </div>
+                        <div class="card-body">
+                            <ul class="feature-list">
+                                <li>Ambiente descontraído e social</li>
+                                <li>Aprenda com outros alunos</li>
+                                <li>Sessões semanais regulares</li>
+                                <li>Ótimo para quem começa</li>
+                            </ul>
+                            <div class="price-row">
+                                <div><span class="price" style="color:#38bdf8;">€35</span><span
+                                        class="per">/pessoa</span></div>
+                                <a href="inscricao.html" class="btn-primary"
+                                    style="padding:12px 22px;font-size:0.9rem;">Reservar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-card" data-level="intermediate"
+                        style="--card-grad:linear-gradient(135deg,rgba(245,158,11,0.15),transparent)">
+                        <div class="card-header">
+                            <span class="level-badge"
+                                style="background:rgba(245,158,11,0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.3);">🎵
+                                Intermédio</span>
+                            <div class="title">Pacote 5 Aulas</div>
+                            <div class="sub">Progresso rápido com 5 sessões individuais.</div>
+                        </div>
+                        <div class="card-body">
+                            <ul class="feature-list">
+                                <li>5 sessões de 60 minutos</li>
+                                <li>Plano de estudo personalizado</li>
+                                <li>Acesso a biblioteca de partituras</li>
+                                <li>Feedback em vídeo entre aulas</li>
+                            </ul>
+                            <div class="price-row">
+                                <div><span class="price" style="color:#fbbf24;">€280</span><span class="per">/5
+                                        aulas</span></div>
+                                <a href="inscricao.html" class="btn-primary"
+                                    style="padding:12px 22px;font-size:0.9rem;">Reservar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-card" data-level="advanced"
+                        style="--card-grad:linear-gradient(135deg,rgba(236,72,153,0.15),transparent)">
+                        <div class="card-header">
+                            <span class="level-badge"
+                                style="background:rgba(236,72,153,0.15);color:#f472b6;border:1px solid rgba(236,72,153,0.3);">🏆
+                                Avançado</span>
+                            <div class="title">Pacote Intensivo</div>
+                            <div class="sub">10 aulas para transformar a sua técnica.</div>
+                        </div>
+                        <div class="card-body">
+                            <ul class="feature-list">
+                                <li>10 sessões de 60 minutos</li>
+                                <li>Foco em composição e performance</li>
+                                <li>Sessão de gravação profissional</li>
+                                <li>Certificado de conclusão</li>
+                                <li>Prioridade de agendamento</li>
+                            </ul>
+                            <div class="price-row">
+                                <div><span class="price" style="color:#f472b6;">€500</span><span class="per">/10
+                                        aulas</span></div>
+                                <a href="inscricao.html" class="btn-primary"
+                                    style="padding:12px 22px;font-size:0.9rem;">Reservar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-card" data-level="group"
+                        style="--card-grad:linear-gradient(135deg,rgba(16,185,129,0.15),transparent)">
+                        <div class="card-header">
+                            <span class="level-badge"
+                                style="background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3);">🌟
+                                Online</span>
+                            <div class="title">Aula Online</div>
+                            <div class="sub">Aprenda de qualquer lugar do mundo.</div>
+                        </div>
+                        <div class="card-body">
+                            <ul class="feature-list">
+                                <li>Via Zoom ou Google Meet</li>
+                                <li>Flexibilidade total de horário</li>
+                                <li>Gravação da aula enviada</li>
+                                <li>Material de apoio digital</li>
+                            </ul>
+                            <div class="price-row">
+                                <div><span class="price" style="color:#10b981;">€45</span><span class="per">/hora</span>
+                                </div>
+                                <a href="inscricao.html" class="btn-primary"
+                                    style="padding:12px 22px;font-size:0.9rem;">Reservar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Curriculum -->
+        <section class="section" style="position:relative;z-index:1;padding-top:0;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Programa</span>
+                    <h2 class="section-title">O que vai aprender</h2>
+                </div>
+                <details class="curriculum-block">
+                    <summary>Módulo 1 — Fundamentos (Semanas 1–4)</summary>
+                    <p>Postura, consciência do instrumento, batidas de base, escalas pentatónicas. Aprenderá as
+                        primeiras melodias simples e desenvolverá sensibilidade tátil.</p>
+                </details>
+                <details class="curriculum-block">
+                    <summary>Módulo 2 — Ritmo & Melodia (Semanas 5–10)</summary>
+                    <p>Padrões rítmicos complexos, dinâmica (forte/suave), improvisação guiada, harmonia básica.
+                        Primeiro repertório completo.</p>
+                </details>
+                <details class="curriculum-block">
+                    <summary>Módulo 3 — Expressão (Semanas 11–18)</summary>
+                    <p>Técnicas avançadas de percussão, colagem de sons, composição própria, preparação para performance
+                        ao vivo.</p>
+                </details>
+                <details class="curriculum-block">
+                    <summary>Módulo 4 — Performance (Semanas 19–24)</summary>
+                    <p>Improvisação livre, jam sessions, gravação em estúdio, showcase para amigos e família.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section" style="position:relative;z-index:1;padding-top:0;padding-bottom:120px;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">FAQ</span>
+                    <h2 class="section-title">Perguntas frequentes</h2>
+                </div>
+                <div id="faqList">
+                    <div class="faq-item">
+                        <div class="faq-q">Preciso de experiência musical?</div>
+                        <div class="faq-a">Não! A maioria dos nossos alunos começa sem qualquer experiência. O handpan é
+                            intuitivo e acessível a todos.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">O instrumento é fornecido?</div>
+                        <div class="faq-a">Sim, nas primeiras aulas utilizamos os instrumentos da escola. Poderá alugar
+                            um para praticar em casa a partir de €120/mês.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Qual a frequência recomendada de aulas?</div>
+                        <div class="faq-a">Recomendamos pelo menos 1 aula por semana para progressão consistente. Alunos
+                            com 2 aulas/semana progridem o dobro.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">As aulas são em português?</div>
+                        <div class="faq-a">Sim! Também temos aulas em inglês, ucraniano e russo. Informe o idioma
+                            preferido no momento da inscrição.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Posso cancelar ou remarcar?</div>
+                        <div class="faq-a">Sim, com 24h de antecedência sem qualquer custo. Cancelamentos com menos de
+                            24h são cobrados a 50%.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="shared-components.js"></script>
+    <script>
+        // Tab filter
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                document.querySelectorAll('#programGrid .program-card').forEach(card => {
+                    card.style.display = (filter === 'all' || card.dataset.level === filter) ? '' : 'none';
+                });
+            });
+        });
+        // FAQ accordion
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-q').addEventListener('click', () => {
+                item.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+
+</html>

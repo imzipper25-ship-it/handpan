@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Blogue — handpan.pt</title>
+    <meta name="description"
+        content="Artigos sobre handpan, técnicas, afinação, e dicas para músicos. Blogue da handpan.pt Portugal.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style-new.css">
+    <style>
+        .page-hero {
+            padding: 120px 0 60px;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .blog-cat-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 0 20px 16px;
+            scrollbar-width: none;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .blog-cat-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-pill {
+            padding: 9px 20px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-glass);
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .cat-pill.active {
+            background: var(--cta-color);
+            border-color: var(--cta-color);
+            color: #fff;
+        }
+
+        .cat-pill:hover:not(.active) {
+            border-color: rgba(139, 92, 246, 0.5);
+            color: var(--text-primary);
+        }
+
+        .blog-hero-card {
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 21/9;
+            margin-bottom: 48px;
+            cursor: pointer;
+        }
+
+        @media(max-width:767px) {
+            .blog-hero-card {
+                aspect-ratio: 16/9;
+            }
+        }
+
+        .blog-hero-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .blog-hero-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .blog-hero-card .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.1) 60%);
+        }
+
+        .blog-hero-card .content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 32px;
+        }
+
+        .blog-hero-card .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(139, 92, 246, 0.8);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .blog-hero-card h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .blog-hero-card .meta {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        @media(max-width:500px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #c4b5fd;
+            margin-top: 8px;
+        }
+
+        .search-bar {
+            position: relative;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 14px 52px 14px 20px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-glass);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        .search-bar input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-bar input:focus {
+            border-color: rgba(139, 92, 246, 0.6);
+        }
+
+        .search-bar .icon {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="logo">handpan.pt</a>
+        <ul class="nav-links"></ul>
+    </nav>
+
+    <div class="page-content">
+        <section class="page-hero">
+            <div class="container">
+                <span class="section-tag">Blogue</span>
+                <h1 class="section-title" style="margin-top:12px;margin-bottom:16px;">Aprenda & <span
+                        class="grad-text">Inspire-se</span></h1>
+                <p class="section-subtitle" style="margin:0 auto 32px;">Artigos, dicas e guias para apaixonados pelo
+                    handpan.</p>
+            </div>
+        </section>
+
+        <!-- Search -->
+        <div class="container" style="position:relative;z-index:1;">
+            <div class="search-bar">
+                <input type="search" placeholder="Pesquisar artigos..." id="blogSearch">
+                <div class="icon">🔍</div>
+            </div>
+        </div>
+
+        <!-- Category pills -->
+        <div class="blog-cat-tabs" id="catTabs">
+            <button class="cat-pill active" data-c="all">Todos</button>
+            <button class="cat-pill" data-c="guia">Guias</button>
+            <button class="cat-pill" data-c="tecnica">Técnica</button>
+            <button class="cat-pill" data-c="instrumento">Instrumento</button>
+            <button class="cat-pill" data-c="cultura">Cultura</button>
+            <button class="cat-pill" data-c="terapia">Terapia Sonora</button>
+        </div>
+
+        <section class="section" style="padding-top:0;position:relative;z-index:1;padding-bottom:120px;">
+            <div class="container">
+                <!-- Hero Post -->
+                <div class="blog-hero-card">
+                    <img src="https://images.unsplash.com/photo-1610901028484-6d5f8ad83e74?q=80&w=1200&auto=format&fit=crop"
+                        alt="Anatomia do Handpan" onerror="this.src='';this.parentElement.style.background='#1a1a2e'">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <span class="tag">Instrumento</span>
+                        <h2>A Anatomia do Handpan: Um guia completo para principiantes</h2>
+                        <div class="meta">Pedro Araújo · 10 Mar 2026 · 8 min de leitura</div>
+                    </div>
+                </div>
+
+                <!-- Blog grid -->
+                <div class="blog-grid" id="blogGrid">
+                    <div class="blog-card" data-cat="tecnica">
+                        <div class="thumb"><img
+                                src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=600&auto=format&fit=crop"
+                                alt="Afinação" onerror="this.style.background='#1a1a2e'"></div>
+                        <div class="body">
+                            <div class="tag">Técnica</div>
+                            <div class="title">A Arte da Afinação — como manter o seu handpan perfeito</div>
+                            <div class="meta">Ana Costa · 5 Mar 2026 · 5 min</div>
+                            <div class="read-more">Ler mais →</div>
+                        </div>
+                    </div>
+                    <div class="blog-card" data-cat="guia">
+                        <div class="thumb"><img
+                                src="https://images.unsplash.com/photo-1598460678889-4cb5032599c9?q=80&w=600&auto=format&fit=crop"
+                                alt="Guia de iniciante" onerror="this.style.background='#1a1a2e'"></div>
+                        <div class="body">
+                            <div class="tag">Guia</div>
+                            <div class="title">Guia do Iniciante: Os seus primeiros 30 dias com o handpan</div>
+                            <div class="meta">Sofia Lima · 1 Mar 2026 · 6 min</div>
+                            <div class="read-more">Ler mais →</div>
+                        </div>
+                    </div>
+                    <div class="blog-card" data-cat="terapia">
+                        <div class="thumb"><img
+                                src="https://images.unsplash.com/photo-1549834125-906c85a1dd00?q=80&w=600&auto=format&fit=crop"
+                                alt="Sound Healing" onerror="this.style.background='#1a1a2e'"></div>
+                        <div class="body">
+                            <div class="tag">Terapia Sonora</div>
+                            <div class="title">Sound Bath: o poder curativo das vibrações do handpan</div>
+                            <div class="meta">Sofia Lima · 25 Fev 2026 · 7 min</div>
+                            <div class="read-more">Ler mais →</div>
+                        </div>
+                    </div>
+                    <div class="blog-card" data-cat="cultura">
+                        <div class="thumb"><img
+                                src="https://images.unsplash.com/photo-1574091285739-bdb1c95dc9ef?q=80&w=600&auto=format&fit=crop"
+                                alt="Hang Massive" onerror="this.style.background='#1a1a2e'"></div>
+                        <div class="body">
+                            <div class="tag">Cultura</div>
+                            <div class="title">Hang Massive: como dois irmãos mudaram o mundo do handpan</div>
+                            <div class="meta">Pedro Araújo · 20 Fev 2026 · 9 min</div>
+                            <div class="read-more">Ler mais →</div>
+                        </div>
+                    </div>
+                    <div class="blog-card" data-cat="instrumento">
+                        <div class="thumb"><img
+                                src="https://images.unsplash.com/photo-1621360841012-3f82bd6428c0?q=80&w=600&auto=format&fit=crop"
+                                alt="Escolher handpan" onerror="this.style.background='#1a1a2e'"></div>
+                        <div class="body">
+                            <div class="tag">Instrumento</div>
+                            <div class="title">Como escolher o seu primeiro handpan: escala, qualidade e preço</div>
+                            <div class="meta">Mikhail Volkov · 15 Fev 2026 · 10 min</div>
+                            <div class="read-more">Ler mais →</div>
+                        </div>
+                    </div>
+                    <div class="blog-card" data-cat="tecnica">
+                        <div class="thumb"><img
+                                src="https://images.unsplash.com/photo-1595064085577-7c2ef98ec311?q=80&w=600&auto=format&fit=crop"
+                                alt="Improvisação" onerror="this.style.background='#1a1a2e'"></div>
+                        <div class="body">
+                            <div class="tag">Técnica</div>
+                            <div class="title">Improvisação no handpan: encontrar a sua voz musical</div>
+                            <div class="meta">Pedro Araújo · 10 Fev 2026 · 7 min</div>
+                            <div class="read-more">Ler mais →</div>
+                        </div>
+                    </div>
+                    <div class="blog-card" data-cat="guia">
+                        <div class="thumb"><img
+                                src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?q=80&w=600&auto=format&fit=crop"
+                                alt="Praticar em casa" onerror="this.style.background='#1a1a2e'"></div>
+                        <div class="body">
+                            <div class="tag">Guia</div>
+                            <div class="title">Como praticar handpan em casa: rotinas e dicas essenciais</div>
+                            <div class="meta">Sofia Lima · 5 Fev 2026 · 5 min</div>
+                            <div class="read-more">Ler mais →</div>
+                        </div>
+                    </div>
+                    <div class="blog-card" data-cat="terapia">
+                        <div class="thumb"><img
+                                src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?q=80&w=600&auto=format&fit=crop"
+                                alt="Meditação" onerror="this.style.background='#1a1a2e'"></div>
+                        <div class="body">
+                            <div class="tag">Terapia Sonora</div>
+                            <div class="title">Handpan e Meditação: 5 exercícios de mindfulness com o instrumento</div>
+                            <div class="meta">Ana Costa · 1 Fev 2026 · 6 min</div>
+                            <div class="read-more">Ler mais →</div>
+                        </div>
+                    </div>
+                    <div class="blog-card" data-cat="cultura">
+                        <div class="thumb"><img
+                                src="https://images.unsplash.com/photo-1526327934048-d83ddf70f2df?q=80&w=600&auto=format&fit=crop"
+                                alt="História" onerror="this.style.background='#1a1a2e'"></div>
+                        <div class="body">
+                            <div class="tag">Cultura</div>
+                            <div class="title">A história do handpan: do PANArt à revolução global do instrumento</div>
+                            <div class="meta">Pedro Araújo · 25 Jan 2026 · 12 min</div>
+                            <div class="read-more">Ler mais →</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Load more -->
+                <div style="text-align:center;margin-top:40px;">
+                    <button class="btn-secondary" id="loadMore">Carregar mais artigos</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="shared-components.js"></script>
+    <script>
+        document.querySelectorAll('.cat-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                const c = pill.dataset.c;
+                document.querySelectorAll('.blog-card').forEach(card => {
+                    card.style.display = (c === 'all' || card.dataset.cat === c) ? '' : 'none';
+                });
+            });
+        });
+        document.getElementById('blogSearch').addEventListener('input', function () {
+            const q = this.value.toLowerCase();
+            document.querySelectorAll('.blog-card').forEach(card => {
+                const text = card.textContent.toLowerCase();
+                card.style.display = text.includes(q) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>

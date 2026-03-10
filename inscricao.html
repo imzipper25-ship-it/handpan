@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Inscrever-se — handpan.pt</title>
+    <meta name="description"
+        content="Reserve a sua aula de handpan em handpan.pt. Ericeira, Cascais ou Lisboa. Processo simples, 3 passos.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style-new.css">
+    <style>
+        .booking-page {
+            min-height: 100svh;
+            padding: calc(var(--nav-height)+40px) 0 140px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-panel {
+            display: none;
+            animation: fadeInUp 0.4s ease both;
+        }
+
+        .step-panel.active {
+            display: block;
+        }
+
+        .booking-card {
+            max-width: 540px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .step-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .step-sub {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .loc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        @media(max-width:420px) {
+            .loc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .type-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        .type-card {
+            padding: 20px;
+            border-radius: 18px;
+            border: 2px solid var(--border-glass);
+            background: var(--bg-card);
+            cursor: pointer;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            text-align: center;
+        }
+
+        .type-card.selected {
+            border-color: var(--cta-color);
+            background: rgba(139, 92, 246, 0.15);
+        }
+
+        .type-card:active {
+            transform: scale(0.96);
+        }
+
+        .type-card .t-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .type-card .t-name {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .type-card .t-price {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .cal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .cal-header-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .cal-header-btn:hover {
+            border-color: var(--cta-color);
+        }
+
+        .cal-dow {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .cal-dow span {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            padding: 4px 0;
+        }
+
+        .summary-box {
+            border-radius: 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.9rem;
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-row .label {
+            color: var(--text-muted);
+        }
+
+        .summary-row .val {
+            font-weight: 600;
+        }
+
+        .pay-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .pay-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px;
+            border-radius: 14px;
+            border: 1px solid var(--border-glass);
+            background: var(--bg-card);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pay-btn:hover {
+            border-color: var(--cta-color);
+        }
+
+        .pay-btn.apple {
+            background: #000;
+            border-color: #000;
+            color: #fff;
+        }
+
+        .pay-btn.google {
+            background: #fff;
+            border-color: #e0e0e0;
+            color: #1a1a1a;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--border-glass);
+            border-radius: 2px;
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #7c3aed, #6366f1);
+            border-radius: 2px;
+            transition: width 0.4s ease;
+        }
+
+        .success-anim {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            border: 2px solid #10b981;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            animation: scaleIn 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="logo">handpan.pt</a>
+        <ul class="nav-links"></ul>
+    </nav>
+
+    <div class="page-content booking-page">
+        <div class="booking-card">
+
+            <!-- Steps bar -->
+            <div class="steps-bar" id="stepsBar">
+                <div class="step-dot active" id="sd1">1</div>
+                <div class="step-line" id="sl1"></div>
+                <div class="step-dot" id="sd2">2</div>
+                <div class="step-line" id="sl2"></div>
+                <div class="step-dot" id="sd3">3</div>
+                <div class="step-line" id="sl3"></div>
+                <div class="step-dot" id="sd4">✓</div>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width:12%"></div>
+            </div>
+
+            <!-- STEP 1 — Location -->
+            <div class="step-panel active" id="step1">
+                <div class="step-title">Escolha o estúdio</div>
+                <div class="step-sub">Selecione a localização mais conveniente para si.</div>
+                <div class="loc-grid">
+                    <div class="location-card" data-loc="Ericeira" onclick="selectLoc(this)">
+                        <div class="loc-emoji">🌊</div>
+                        <div class="loc-name">Ericeira</div>
+                        <div class="loc-sub">Quartas, 10h–20h</div>
+                    </div>
+                    <div class="location-card" data-loc="Cascais" onclick="selectLoc(this)">
+                        <div class="loc-emoji">⛵</div>
+                        <div class="loc-name">Cascais</div>
+                        <div class="loc-sub">Sextas, 10h–20h</div>
+                    </div>
+                    <div class="location-card" data-loc="Lisboa" onclick="selectLoc(this)">
+                        <div class="loc-emoji">🏙️</div>
+                        <div class="loc-name">Lisboa</div>
+                        <div class="loc-sub">Seg–Sáb, 9h–21h</div>
+                    </div>
+                </div>
+                <button id="toStep2" class="btn-primary"
+                    style="width:100%;justify-content:center;font-size:1rem;padding:16px;" disabled
+                    onclick="goStep(2)">Continuar →</button>
+            </div>
+
+            <!-- STEP 2 — Type + Calendar -->
+            <div class="step-panel" id="step2">
+                <div class="step-title">Tipo de aula & Data</div>
+                <div class="step-sub">Escolha o tipo de aula e o dia que prefere.</div>
+                <div class="type-grid">
+                    <div class="type-card" onclick="selectType(this,'individual')">
+                        <div class="t-icon">🎵</div>
+                        <div class="t-name">Individual</div>
+                        <div class="t-price">€60/hora</div>
+                    </div>
+                    <div class="type-card" onclick="selectType(this,'grupo')">
+                        <div class="t-icon">👥</div>
+                        <div class="t-name">Grupo</div>
+                        <div class="t-price">€35/pessoa</div>
+                    </div>
+                    <div class="type-card" onclick="selectType(this,'intro')">
+                        <div class="t-icon">🌟</div>
+                        <div class="t-name">Introdutória</div>
+                        <div class="t-price">Grátis</div>
+                    </div>
+                    <div class="type-card" onclick="selectType(this,'online')">
+                        <div class="t-icon">💻</div>
+                        <div class="t-name">Online</div>
+                        <div class="t-price">€45/hora</div>
+                    </div>
+                </div>
+
+                <!-- Calendar -->
+                <div class="glass" style="padding:20px;margin-bottom:24px;">
+                    <div class="cal-header">
+                        <button class="cal-header-btn" onclick="prevMonth()">‹</button>
+                        <span id="calMonthLabel" style="font-weight:700;font-size:1rem;"></span>
+                        <button class="cal-header-btn" onclick="nextMonth()">›</button>
+                    </div>
+                    <div class="cal-dow">
+                        <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+                    </div>
+                    <div class="cal-grid" id="calGrid"></div>
+                </div>
+
+                <!-- Time slots -->
+                <div id="timeSlotSection" style="margin-bottom:24px;display:none;">
+                    <div style="font-weight:700;margin-bottom:12px;">Escolha o horário:</div>
+                    <div class="time-slots" id="timeSlots"></div>
+                </div>
+
+                <div style="display:flex;gap:12px;">
+                    <button class="btn-secondary" style="flex:1;justify-content:center;" onclick="goStep(1)">←
+                        Voltar</button>
+                    <button id="toStep3" class="btn-primary"
+                        style="flex:2;justify-content:center;font-size:1rem;padding:16px;" disabled
+                        onclick="goStep(3)">Continuar →</button>
+                </div>
+            </div>
+
+            <!-- STEP 3 — Contact Info -->
+            <div class="step-panel" id="step3">
+                <div class="step-title">Seus dados</div>
+                <div class="step-sub">Quase pronto! Precisamos dos seus contactos.</div>
+
+                <!-- TikTok-style testimonials -->
+                <div class="testimonial-reel" style="margin-bottom:28px;">
+                    <div class="testimonial-card" style="min-width:160px;">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop"
+                            alt="">
+                        <div class="overlay">
+                            <div class="star">★★★★★</div>
+                            <div class="quote">"A melhor decisão da minha vida!"</div>
+                            <div class="author">— Ana, Lisboa</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card" style="min-width:160px;">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop"
+                            alt="">
+                        <div class="overlay">
+                            <div class="star">★★★★★</div>
+                            <div class="quote">"Aprendi em 1 mês o que esperava…"</div>
+                            <div class="author">— Pedro, Cascais</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card" style="min-width:160px;">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=300&auto=format&fit=crop"
+                            alt="">
+                        <div class="overlay">
+                            <div class="star">★★★★★</div>
+                            <div class="quote">"O professor tem uma paciência incrível!"</div>
+                            <div class="author">— Sofia, Ericeira</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:24px;">
+                    <div>
+                        <label class="form-label">Nome completo *</label>
+                        <input type="text" class="form-input" id="fName" placeholder="O seu nome" required>
+                    </div>
+                    <div>
+                        <label class="form-label">Telefone / WhatsApp *</label>
+                        <input type="tel" class="form-input" id="fPhone" placeholder="+351 912 345 678" required>
+                    </div>
+                    <div>
+                        <label class="form-label">Email *</label>
+                        <input type="email" class="form-input" id="fEmail" placeholder="email@exemplo.pt" required>
+                    </div>
+                    <div>
+                        <label class="form-label">Nota (opcional)</label>
+                        <input type="text" class="form-input" id="fNote"
+                            placeholder="Ex: nunca toquei handpan, prefiro tarde">
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:12px;">
+                    <button class="btn-secondary" style="flex:1;justify-content:center;" onclick="goStep(2)">←
+                        Voltar</button>
+                    <button class="btn-primary" style="flex:2;justify-content:center;font-size:1rem;padding:16px;"
+                        onclick="goStep(4)">Ver resumo →</button>
+                </div>
+            </div>
+
+            <!-- STEP 4 — Summary + Payment -->
+            <div class="step-panel" id="step4">
+                <div class="step-title">Confirmar reserva</div>
+                <div class="step-sub">Verifique os detalhes antes de confirmar.</div>
+
+                <div class="summary-box">
+                    <div class="summary-row"><span class="label">Localização</span><span class="val"
+                            id="sumLoc">—</span></div>
+                    <div class="summary-row"><span class="label">Tipo de Aula</span><span class="val"
+                            id="sumType">—</span></div>
+                    <div class="summary-row"><span class="label">Data & Hora</span><span class="val"
+                            id="sumDate">—</span></div>
+                    <div class="summary-row"><span class="label">Nome</span><span class="val" id="sumName">—</span>
+                    </div>
+                    <div class="summary-row" style="margin-top:12px;"><span class="label"
+                            style="font-weight:700;">Total</span><span class="val" id="sumPrice"
+                            style="font-size:1.3rem;" class="grad-text">—</span></div>
+                </div>
+
+                <div style="margin-bottom:16px;font-size:0.9rem;color:var(--text-muted);text-align:center;">Pagamento
+                    seguro com:</div>
+                <div class="pay-options">
+                    <button class="pay-btn apple" onclick="confirmBooking()">🍎 Apple Pay</button>
+                    <button class="pay-btn google" onclick="confirmBooking()">🇬 Google Pay</button>
+                </div>
+                <button onclick="confirmBooking()" class="btn-primary"
+                    style="width:100%;justify-content:center;font-size:1rem;padding:16px;margin-bottom:12px;">
+                    ✅ Confirmar Reserva
+                </button>
+                <div style="text-align:center;font-size:0.78rem;color:var(--text-muted);">🔒 Pagamento 100% seguro ·
+                    Cancele até 24h antes</div>
+
+                <div style="margin-top:16px;">
+                    <button class="btn-secondary" style="width:100%;justify-content:center;" onclick="goStep(3)">←
+                        Editar dados</button>
+                </div>
+            </div>
+
+            <!-- STEP 5 — Success -->
+            <div class="step-panel" id="step5">
+                <div class="success-anim">
+                    <div class="success-circle">✅</div>
+                    <h2 style="font-family:'Outfit',sans-serif;font-size:1.7rem;font-weight:800;margin-bottom:12px;">
+                        Reserva Confirmada!</h2>
+                    <p style="color:var(--text-secondary);margin-bottom:24px;line-height:1.6;">Receberá uma confirmação
+                        por SMS e email. Até breve na <strong>handpan.pt</strong>!</p>
+                    <div style="display:flex;flex-direction:column;gap:12px;">
+                        <a href="https://wa.me/351968841230" class="contact-action-btn"
+                            style="justify-content:center;border-radius:var(--radius-pill);">
+                            <div class="icon-wrap wa"><span style="font-size:20px;">💬</span></div>
+                            <div>
+                                <div class="btn-value">Falar via WhatsApp</div>
+                            </div>
+                        </a>
+                        <a href="index.html" class="btn-secondary" style="justify-content:center;">Voltar ao início</a>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /booking-card -->
+    </div>
+
+    <script src="shared-components.js"></script>
+    <script>
+        let selLoc = '', selType = '', selDate = '', selTime = '', selPrice = '';
+        const prices = { individual: '€60', grupo: '€35', intro: 'Grátis', online: '€45' };
+        const typeLabels = { individual: 'Individual (60 min)', grupo: 'Grupo (90 min)', intro: 'Introdutória (30 min)', online: 'Online (60 min)' };
+
+        function goStep(n) {
+            document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('step' + n).classList.add('active');
+            // Update step dots
+            for (let i = 1; i <= 4; i++) {
+                const dot = document.getElementById('sd' + i);
+                if (i < n) { dot.classList.add('done'); dot.classList.remove('active'); dot.textContent = '✓'; }
+                else if (i === n) { dot.classList.add('active'); dot.classList.remove('done'); }
+                else { dot.classList.remove('active', 'done'); dot.textContent = i; }
+            }
+            for (let i = 1; i <= 3; i++) {
+                const line = document.getElementById('sl' + i);
+                if (i < n) line.classList.add('done'); else line.classList.remove('done');
+            }
+            // Progress
+            const fills = { 1: 12, 2: 37, 3: 62, 4: 87, 5: 100 };
+            document.getElementById('progressFill').style.width = (fills[n] || 87) + '%';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (n === 4) fillSummary();
+        }
+
+        function selectLoc(el) {
+            document.querySelectorAll('.location-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            selLoc = el.dataset.loc;
+            document.getElementById('toStep2').disabled = false;
+        }
+
+        function selectType(el, type) {
+            document.querySelectorAll('.type-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            selType = type;
+            selPrice = prices[type];
+            checkStep2();
+        }
+
+        function checkStep2() {
+            document.getElementById('toStep3').disabled = !(selType && selDate && selTime);
+        }
+
+        function fillSummary() {
+            document.getElementById('sumLoc').textContent = selLoc || '—';
+            document.getElementById('sumType').textContent = typeLabels[selType] || '—';
+            document.getElementById('sumDate').textContent = selDate + (selTime ? ' · ' + selTime : '');
+            document.getElementById('sumName').textContent = document.getElementById('fName').value || '—';
+            document.getElementById('sumPrice').textContent = selPrice || '—';
+        }
+
+        function confirmBooking() {
+            goStep(5);
+        }
+
+        // Calendar
+        let calYear = new Date().getFullYear();
+        let calMonth = new Date().getMonth();
+
+        const monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+        function renderCal() {
+            document.getElementById('calMonthLabel').textContent = monthNames[calMonth] + ' ' + calYear;
+            const grid = document.getElementById('calGrid');
+            grid.innerHTML = '';
+            const firstDay = new Date(calYear, calMonth, 1).getDay();
+            const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+            const today = new Date();
+
+            for (let i = 0; i < firstDay; i++) {
+                const d = document.createElement('div'); d.className = 'cal-day empty'; grid.appendChild(d);
+            }
+            for (let d = 1; d <= daysInMonth; d++) {
+                const date = new Date(calYear, calMonth, d);
+                const isToday = date.toDateString() === today.toDateString();
+                const isPast = date < new Date(today.toDateString());
+                const el = document.createElement('div');
+                el.className = 'cal-day' + (isToday ? ' today' : '') + (isPast ? ' disabled' : '') + (!isPast ? ' available' : '');
+                el.textContent = d;
+                if (!isPast) {
+                    el.addEventListener('click', () => {
+                        document.querySelectorAll('.cal-day.selected').forEach(c => c.classList.remove('selected'));
+                        el.classList.add('selected');
+                        selDate = d + ' de ' + monthNames[calMonth] + ' ' + calYear;
+                        showTimeSlots(date.getDay());
+                    });
+                }
+                grid.appendChild(el);
+            }
+        }
+
+        function showTimeSlots(dow) {
+            const section = document.getElementById('timeSlotSection');
+            const container = document.getElementById('timeSlots');
+            section.style.display = 'block';
+            const slots = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
+            const available = slots.filter((_, i) => i % 3 !== 1); // some slots unavailable
+            container.innerHTML = '';
+            available.forEach(t => {
+                const el = document.createElement('div');
+                el.className = 'time-slot';
+                el.textContent = t;
+                el.addEventListener('click', () => {
+                    document.querySelectorAll('.time-slot.selected').forEach(c => c.classList.remove('selected'));
+                    el.classList.add('selected');
+                    selTime = t;
+                    checkStep2();
+                });
+                container.appendChild(el);
+            });
+        }
+
+        function prevMonth() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCal(); }
+        function nextMonth() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCal(); }
+
+        document.addEventListener('DOMContentLoaded', renderCal);
+    </script>
+</body>
+
+</html>

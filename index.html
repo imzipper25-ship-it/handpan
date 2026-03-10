@@ -1,515 +1,883 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Handpan.pt</title>
-    <meta name="description" content="Learn to play the Handpan in Lisbon. Lessons, workshops, and shop.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>handpan.pt — Escola de Handpan em Portugal</title>
+    <meta name="description"
+        content="handpan.pt é o principal destino para aulas de handpan em Portugal. Ericeira, Cascais e Lisboa. Aulas individuais e em grupo.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style-new.css">
+    <style>
+        /* ── Hero ─── */
+        .hero {
+            min-height: 100svh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: calc(var(--nav-height) + 32px) 0 80px;
+        }
 
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+        .hero-img {
+            position: absolute;
+            inset: 0;
+            background: url('assets/images/hero-new.png.jpg') center/cover no-repeat;
+            opacity: 0.18;
+        }
 
-    <!-- Tailwind CSS (CDN for Dev - in production use build step with provided tailwind.config.js) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Manrope', 'sans-serif'], // Using Manrope as Axiforma fallback
-                        display: ['Manrope', 'sans-serif'],
-                    },
-                    colors: {
-                        cream: '#FAF8F5',
-                        wood: {
-                            light: '#8C7E6F',
-                            DEFAULT: '#4A4036',
-                            dark: '#2E261F',
-                        },
-                        sage: {
-                            light: '#BCC9B9',
-                            DEFAULT: '#8FA290',
-                            dark: '#6B7C6C',
-                        },
-                        stone: '#D6D0C4',
-                    },
-                }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 640px;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.4rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: rgba(240, 240, 245, 0.7);
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 20px;
+            background: rgba(139, 92, 246, 0.12);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #c4b5fd;
+            margin-bottom: 22px;
+            animation: fadeInUp 0.5s ease both;
+        }
+
+        .hero-badge .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #10b981;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.4
             }
         }
-    </script>
 
-    <link rel="stylesheet" href="styles.css">
+        /* ── Canvas 3D ── */
+        .hero-visual {
+            position: absolute;
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        @media (max-width: 900px) {
+            .hero-visual {
+                display: none;
+            }
+        }
+
+        /* ── Stats strip ── */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border-glass);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            margin: 0 0 80px;
+        }
+
+        .stats-strip .stat-item {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            padding: 28px 16px;
+        }
+
+        /* ── Cards ── */
+        .lesson-card {
+            min-width: 280px;
+            border-radius: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            padding: 28px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lesson-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--grad, linear-gradient(135deg, rgba(124, 58, 237, 0.15), transparent));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .lesson-card:hover::before {
+            opacity: 1;
+        }
+
+        .lesson-card .emoji {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .lesson-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .lesson-card p {
+            font-size: 0.88rem;
+            color: rgba(240, 240, 245, 0.65);
+            line-height: 1.6;
+        }
+
+        .lesson-card .price {
+            margin-top: 18px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .lesson-card .price small {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: rgba(240, 240, 245, 0.5);
+        }
+
+        /* ── Contact floating buttons ── */
+        .contact-float {
+            position: fixed;
+            right: 20px;
+            bottom: calc(var(--bottom-nav-height) + var(--sticky-cta-height) + 24px);
+            z-index: 400;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .contact-float {
+                bottom: 30px;
+            }
+        }
+
+        .float-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .float-btn:active {
+            transform: scale(0.92);
+        }
+
+        .float-btn.wa {
+            background: #25d366;
+        }
+
+        .float-btn.tel {
+            background: #0088cc;
+        }
+
+        /* ── Section ── */
+        .home-section {
+            padding: 80px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 767px) {
+            .home-section {
+                padding: 60px 0;
+            }
+        }
+
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        @media (max-width: 767px) {
+            .section-header {
+                margin-bottom: 32px;
+                padding: 0 20px;
+            }
+        }
+
+        /* ── Features grid ── */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 767px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 20px;
+            border-radius: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+        }
+
+        .feature-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: rgba(139, 92, 246, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 18px;
+        }
+
+        .feature-text h4 {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .feature-text p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+    </style>
 </head>
 
-<body class="bg-cream text-wood font-sans antialiased"
-    x-data="{ mobileMenuOpen: false, cartOpen: false, bookingModalOpen: false }">
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-header border-b border-wood/5 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-bold tracking-tight text-wood-dark hover:text-sage transition">
-                        Handpan.pt
-                    </a>
-                </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#about" class="text-wood hover:text-sage-dark font-medium transition">About</a>
-                    <a href="#services" class="text-wood hover:text-sage-dark font-medium transition">Lessons</a>
-                    <a href="shop.html" class="text-wood hover:text-sage-dark font-medium transition">Shop</a>
-                    <a href="#contacts" class="text-wood hover:text-sage-dark font-medium transition">Contacts</a>
-                    <button
-                        class="bg-wood text-cream px-5 py-2.5 rounded-full font-semibold hover:bg-sage-dark transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                        @click="cartOpen = true">
-                        Cart (0)
-                    </button>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button @click="mobileMenuOpen = !mobileMenuOpen"
-                        class="text-wood hover:text-sage focus:outline-none p-2">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" x-show="!mobileMenuOpen" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" x-show="mobileMenuOpen" x-cloak />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div x-show="mobileMenuOpen" x-transition.origin.top
-            class="md:hidden absolute w-full bg-cream/95 backdrop-blur-lg border-b border-wood/10" x-cloak>
-            <div class="px-4 pt-2 pb-6 space-y-2 shadow-xl">
-                <a href="#about" @click="mobileMenuOpen = false"
-                    class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">About</a>
-                <a href="#services" @click="mobileMenuOpen = false"
-                    class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">Lessons</a>
-                <a href="shop.html" @click="mobileMenuOpen = false"
-                    class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">Shop</a>
-                <a href="#contacts" @click="mobileMenuOpen = false"
-                    class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">Contacts</a>
-            </div>
-        </div>
+    <!-- Top Nav -->
+    <nav class="top-nav">
+        <a href="index.html" class="logo">handpan.pt</a>
+        <ul class="nav-links"></ul>
+        <button class="lang-btn" id="desktopLang">🇵🇹 PT</button>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="relative pt-32 pb-40 lg:pt-48 lg:pb-56 overflow-hidden">
-        <!-- Background Image with Overlay -->
-        <div class="absolute inset-0 z-0">
-            <img src="assets/images/hero-new.png.jpg" alt="Handpan Background"
-                class="w-full h-full object-cover object-center"
-                onerror="this.src='https://images.unsplash.com/photo-1621360841012-3f82bd6428c0?q=80&w=2670&auto=format&fit=crop'">
-            <div class="absolute inset-0 bg-gradient-to-r from-cream/90 via-cream/60 to-transparent"></div>
-        </div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-2xl">
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-wood-dark mb-6 leading-tight">
-                    Handpan.pt <br /> Portugal
+    <!-- Hero -->
+    <header class="hero page-content">
+        <div class="hero-img"></div>
+        <div class="hero-gradient"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge animate-fadeup">
+                    <span class="dot"></span>
+                    Escola aberta em Lisboa, Ericeira & Cascais
+                </div>
+                <h1 class="animate-fadeup delay-1">
+                    Bem-vindo à<br>
+                    <span class="grad-text">handpan.pt</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-wood-light mb-10 max-w-lg leading-relaxed">
-                    Discover the healing sounds of the handpan. Join our community in Lisbon, Ericeira, Cascais for
-                    lessons, workshops, and
-                    mastery.
+                <p class="animate-fadeup delay-2">
+                    O principal destino para aulas de handpan em Portugal. Sente a magia das vibrações hipnóticas — do
+                    iniciante ao avançado.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <button @click="bookingModalOpen = true"
-                        class="inline-flex justify-center items-center px-8 py-4 rounded-full bg-wood text-white font-bold text-lg hover:bg-sage-dark transition duration-300 shadow-lg hover:shadow-wood/30 transform hover:-translate-y-1">
-                        Book a Lesson
-                    </button>
-                    <a href="shop.html"
-                        class="inline-flex justify-center items-center px-8 py-4 rounded-full glass-card text-wood-dark font-bold text-lg hover:bg-white/60 transition duration-300 backdrop-blur-sm">
-                        Visit Shop
+                <div class="hero-actions animate-fadeup delay-3">
+                    <a href="inscricao.html" class="btn-primary">
+                        🎵 Inscreva-se já
                     </a>
+                    <a href="escola.html" class="btn-secondary">Ver aulas →</a>
                 </div>
             </div>
+        </div>
+        <!-- 3D WebGL handpan -->
+        <div class="hero-visual">
+            <canvas id="handpan-canvas" width="400" height="400"></canvas>
         </div>
     </header>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-white/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-                <div class="mb-12 lg:mb-0 relative">
-                    <div class="absolute -top-4 -left-4 w-72 h-72 bg-sage/20 rounded-full blur-3xl opacity-50"></div>
-                    <img src="assets/images/about-new.png" alt="About Handpan.pt"
-                        class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px]"
-                        onerror="this.src='https://images.unsplash.com/photo-1598460678889-4cb5032599c9?q=80&w=2574&auto=format&fit=crop'">
+    <!-- Stats Strip -->
+    <section class="home-section" style="padding-top:0;">
+        <div class="container">
+            <div class="stats-strip animate-scalein">
+                <div class="stat-item">
+                    <div class="number">500+</div>
+                    <div class="label">Alunos formados</div>
                 </div>
-                <div>
-                    <h2 class="text-wood-light font-semibold tracking-wide uppercase mb-3">Who We Are</h2>
-                    <h3 class="text-4xl font-bold text-wood-dark mb-6">Connecting Through Sound</h3>
-                    <div class="prose prose-lg text-wood-light">
-                        <p class="mb-6">
-                            Nestled in the heart of Lisbon, Ericeira, Cascais - Handpan.pt is more than just a place
-                            to learn; it's a sanctuary for sound. We believe in the transformative power of the
-                            handpan/pantam.
-                        </p>
-                        <p>
-                            Whether you are touching the steel for the first time or are an experienced player looking
-                            to refine your technique, our expert instructors guide you with patience, passion, and a
-                            deep respect for the instrument's spiritual roots.
-                        </p>
+                <div class="stat-item">
+                    <div class="number">3</div>
+                    <div class="label">Localizações PT</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">10+</div>
+                    <div class="label">Anos de experiência</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lessons Preview -->
+    <section class="home-section">
+        <div class="section-header container">
+            <span class="section-tag">Escola</span>
+            <h2 class="section-title">Aprenda ao seu ritmo</h2>
+            <p class="section-subtitle" style="margin-top:12px;">Aulas individuais e em grupo para iniciantes e
+                avançados.</p>
+        </div>
+        <!-- Swipeable carousel on mobile -->
+        <div class="card-carousel">
+            <div class="lesson-card" style="--grad:linear-gradient(135deg,rgba(124,58,237,0.2),transparent)">
+                <div class="emoji">🎵</div>
+                <h3>Aula Individual</h3>
+                <p>Sessão personalizada 1-a-1 com um dos nossos instrutores experientes. Progrida ao seu próprio ritmo.
+                </p>
+                <div class="price">€60<small>/hora</small></div>
+            </div>
+            <div class="lesson-card" style="--grad:linear-gradient(135deg,rgba(14,165,233,0.2),transparent)">
+                <div class="emoji">👥</div>
+                <h3>Aula em Grupo</h3>
+                <p>Partilhe a experiência com outros apaixonados. Máximo 6 alunos por sessão para atenção personalizada.
+                </p>
+                <div class="price">€35<small>/pessoa</small></div>
+            </div>
+            <div class="lesson-card" style="--grad:linear-gradient(135deg,rgba(16,185,129,0.2),transparent)">
+                <div class="emoji">🌟</div>
+                <h3>Pacote Intensivo</h3>
+                <p>10 aulas individuais com gravação de progresso. Ideal para acelerar o desenvolvimento musical.</p>
+                <div class="price">€500<small>/10 aulas</small></div>
+            </div>
+            <div class="lesson-card" style="--grad:linear-gradient(135deg,rgba(245,158,11,0.2),transparent)">
+                <div class="emoji">🎓</div>
+                <h3>Aula Introdutória</h3>
+                <p>Nunca tocou handpan? Experimente numa sessão de 30 minutos gratuita. Sem compromisso.</p>
+                <div class="price" style="color:#10b981;">Grátis</div>
+            </div>
+        </div>
+        <div class="container" style="margin-top:28px;text-align:center;">
+            <a href="escola.html" class="btn-primary">Ver todos os programas</a>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section class="home-section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Porquê handpan.pt</span>
+                <h2 class="section-title">Uma experiência única</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📍</div>
+                    <div class="feature-text">
+                        <h4>3 Localizações</h4>
+                        <p>Ericeira, Cascais e Lisboa — sempre perto de si.</p>
                     </div>
-                    <div class="mt-8 grid grid-cols-2 gap-6">
-                        <div class="glass-card p-6 rounded-xl">
-                            <div class="text-3xl font-bold text-sage-dark mb-1">500+</div>
-                            <div class="text-wood text-sm font-medium">Students Taught</div>
-                        </div>
-                        <div class="glass-card p-6 rounded-xl">
-                            <div class="text-3xl font-bold text-sage-dark mb-1">Weekly</div>
-                            <div class="text-wood text-sm font-medium">Workshops & Jams</div>
-                        </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌍</div>
+                    <div class="feature-text">
+                        <h4>Multilíngue</h4>
+                        <p>Aulas em Português, Inglês, Ucraniano e Russo.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎶</div>
+                    <div class="feature-text">
+                        <h4>Todos os níveis</h4>
+                        <p>Do absoluto iniciante ao músico avançado.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🛠</div>
+                    <div class="feature-text">
+                        <h4>Loja & Reparação</h4>
+                        <p>Instrumentos, afinação e serviço técnico especializado.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎪</div>
+                    <div class="feature-text">
+                        <h4>Eventos & Workshops</h4>
+                        <p>Concertos, sound baths e masterclasses com artistas internacionais.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💜</div>
+                    <div class="feature-text">
+                        <h4>Comunidade ativa</h4>
+                        <p>Jams semanais e uma comunidade acolhedora de músicos.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-24 bg-cream relative overflow-hidden">
-        <!-- Decor element -->
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-sage/5 skew-x-12 transform origin-top-right"></div>
-
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-wood-dark mb-4">Our Services</h2>
-                <p class="text-lg text-wood-light max-w-2xl mx-auto">From private tuition to instrument repair, we
-                    support every step of your musical journey.</p>
+    <!-- Events Preview -->
+    <section class="home-section" style="padding-top:0;">
+        <div class="section-header container">
+            <span class="section-tag">Próximos Eventos</span>
+            <h2 class="section-title">Viva a música ao vivo</h2>
+        </div>
+        <div class="card-carousel">
+            <div class="event-card">
+                <div class="event-header">
+                    <img src="https://images.unsplash.com/photo-1574091285739-bdb1c95dc9ef?q=80&w=800&auto=format&fit=crop"
+                        alt="Hang Massive Concert" onerror="this.style.background='#1a1a2e'">
+                    <div class="overlay"></div>
+                    <span class="event-badge">Concerto</span>
+                </div>
+                <div class="event-body">
+                    <div class="event-date">📅 22 Mar 2026 · 20h00</div>
+                    <div class="event-title">Hang Massive — Live</div>
+                    <div class="event-loc">📍 Teatro São Luiz, Lisboa</div>
+                </div>
             </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div @click="bookingModalOpen = true"
-                    class="group glass-card p-8 rounded-2xl hover:bg-white transition duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
-                    <div
-                        class="w-14 h-14 bg-sage/20 rounded-full flex items-center justify-center mb-6 text-sage-dark group-hover:bg-sage group-hover:text-white transition-colors duration-300">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-wood-dark mb-4">Lessons</h3>
-                    <p class="text-wood-light mb-6">Private or group sessions tailored to your pace. Learn rhythm,
-                        melody, and touch.</p>
-                    <span
-                        class="text-sage-dark font-bold group-hover:translate-x-1 inline-block transition-transform">Book
-                        Now →</span>
+            <div class="event-card">
+                <div class="event-header">
+                    <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=800&auto=format&fit=crop"
+                        alt="Gong Bath" onerror="this.style.background='#1a1a2e'">
+                    <div class="overlay"></div>
+                    <span class="event-badge">Workshop</span>
                 </div>
-
-                <!-- Service 2 -->
-                <div
-                    class="group glass-card p-8 rounded-2xl hover:bg-white transition duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
-                    <div
-                        class="w-14 h-14 bg-wood/10 rounded-full flex items-center justify-center mb-6 text-wood group-hover:bg-wood group-hover:text-white transition-colors duration-300">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-wood-dark mb-4">Events</h3>
-                    <p class="text-wood-light mb-6">Sound baths, community jams, and masterclasses with world-renowned
-                        players.</p>
-                    <span class="text-wood font-bold group-hover:translate-x-1 inline-block transition-transform">See
-                        schedule →</span>
+                <div class="event-body">
+                    <div class="event-date">📅 29 Mar 2026 · 11h00</div>
+                    <div class="event-title">Gong Bath & Sound Healing</div>
+                    <div class="event-loc">📍 Ericeira Studio</div>
                 </div>
+            </div>
+            <div class="event-card">
+                <div class="event-header">
+                    <img src="https://images.unsplash.com/photo-1595064085577-7c2ef98ec311?q=80&w=800&auto=format&fit=crop"
+                        alt="Workshop" onerror="this.style.background='#1a1a2e'">
+                    <div class="overlay"></div>
+                    <span class="event-badge">Workshop</span>
+                </div>
+                <div class="event-body">
+                    <div class="event-date">📅 5 Abr 2026 · 15h00</div>
+                    <div class="event-title">Masterclass Avançada</div>
+                    <div class="event-loc">📍 Cascais Studio</div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="margin-top:24px;text-align:center;">
+            <a href="eventos.html" class="btn-secondary">Ver todos os eventos →</a>
+        </div>
+    </section>
 
-                <!-- Service 3 -->
-                <div
-                    class="group glass-card p-8 rounded-2xl hover:bg-white transition duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
-                    <div
-                        class="w-14 h-14 bg-stone/40 rounded-full flex items-center justify-center mb-6 text-wood-dark group-hover:bg-wood-dark group-hover:text-white transition-colors duration-300">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                            </path>
-                        </svg>
+    <!-- Shop Preview -->
+    <section class="home-section" style="padding-top:0;">
+        <div class="section-header container">
+            <span class="section-tag">Loja</span>
+            <h2 class="section-title">Instrumentos & Serviços</h2>
+        </div>
+        <div class="container">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
+                <a href="product-handpan.html" class="blog-card glass-hover" style="text-decoration:none;">
+                    <div class="thumb">
+                        <img src="assets/images/Instruments/handpan/handpan.jpeg" alt="Handpan Master Series"
+                            onerror="this.src='https://images.unsplash.com/photo-1621360841012-3f82bd6428c0?q=80&w=600&auto=format&fit=crop'">
                     </div>
-                    <h3 class="text-2xl font-bold text-wood-dark mb-4">Repairs</h3>
-                    <p class="text-wood-light mb-6">Expert tuning and restoration services to keep your instrument
-                        singing perfectly.</p>
-                    <span
-                        class="text-wood-dark font-bold group-hover:translate-x-1 inline-block transition-transform">Get
-                        a quote →</span>
+                    <div class="body">
+                        <div class="tag">Instrumentos</div>
+                        <div class="title">Handpan Master Series</div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+                            <span
+                                style="font-size:1.3rem;font-weight:800;font-family:'Outfit',sans-serif;">€1,800</span>
+                            <span class="badge badge-new">Disponível</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="loja.html" class="service-card glass-hover" style="text-decoration:none;">
+                    <div class="icon" style="background:rgba(245,158,11,0.15);">🔧</div>
+                    <h3>Afinação & Reparação</h3>
+                    <p>Serviço técnico especializado para manter o seu instrumento a soar perfeitamente.</p>
+                    <div class="price grad-text">A partir de €80</div>
+                </a>
+                <a href="loja.html" class="service-card glass-hover" style="text-decoration:none;">
+                    <div class="icon" style="background:rgba(14,165,233,0.15);">🎸</div>
+                    <h3>Aluguer de Instrumento</h3>
+                    <p>Experimente antes de comprar. Aluguer mensal com opção de compra.</p>
+                    <div class="price grad-text">€120<small
+                            style="font-size:0.8rem;font-weight:400;color:var(--text-muted)">/mês</small></div>
+                </a>
+            </div>
+            <div style="text-align:center;margin-top:32px;">
+                <a href="loja.html" class="btn-primary">Visitar a Loja</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials (TikTok-style) -->
+    <section class="home-section" style="padding-top:0;">
+        <div class="section-header container">
+            <span class="section-tag">Depoimentos</span>
+            <h2 class="section-title">O que dizem os nossos alunos</h2>
+        </div>
+        <div class="testimonial-reel">
+            <div class="testimonial-card">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop"
+                    alt="Testemunho">
+                <div class="overlay">
+                    <div class="star">★★★★★</div>
+                    <div class="quote">"Mudou a minha vida. O handpan trouxe uma paz que não conhecia."</div>
+                    <div class="author">— Ana S., Lisboa</div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop"
+                    alt="Testemunho">
+                <div class="overlay">
+                    <div class="star">★★★★★</div>
+                    <div class="quote">"O professor é incrível. Aprendi em 3 meses o que esperava demorar 1 ano."</div>
+                    <div class="author">— Mikhail V., Cascais</div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&auto=format&fit=crop"
+                    alt="Testemunho">
+                <div class="overlay">
+                    <div class="star">★★★★★</div>
+                    <div class="quote">"O ambiente é mágico. Recomendo a toda a gente que queira descobrir a música."
+                    </div>
+                    <div class="author">— Sofia L., Ericeira</div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=400&auto=format&fit=crop"
+                    alt="Testemunho">
+                <div class="overlay">
+                    <div class="star">★★★★★</div>
+                    <div class="quote">"A melhor decisão que tomei. Já levo 6 meses de aulas e adoro cada momento."
+                    </div>
+                    <div class="author">— João M., Lisboa</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Shop Section -->
-    <section id="shop" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-end mb-12">
-                <div>
-                    <h2 class="text-wood-light font-semibold tracking-wide uppercase mb-3">Shop</h2>
-                    <h3 class="text-4xl font-bold text-wood-dark">Handpicked Instruments</h3>
-                </div>
-                <a href="shop.html" class="hidden md:block text-sage-dark font-bold hover:text-wood transition">View all
-                    products →</a>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-                <!-- Product 1: Handpan Master Series -->
-                <a href="product-handpan.html" class="group block">
-                    <div class="relative overflow-hidden rounded-2xl bg-cream aspect-[4/5] mb-6">
-                        <img src="assets/images/Instruments/handpan/handpan.jpeg" alt="Handmade Handpan"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700 ease-out"
-                            onerror="this.src='https://plus.unsplash.com/premium_photo-1621360841012-3f82bd6428c0?q=80&w=2670&auto=format&fit=crop'">
-                        <div
-                            class="absolute inset-x-0 bottom-0 p-6 opacity-0 group-hover:opacity-100 transition duration-300 translate-y-4 group-hover:translate-y-0">
-                            <button
-                                class="w-full bg-white/90 backdrop-blur text-wood-dark font-bold py-4 rounded-xl hover:bg-wood hover:text-white transition shadow-lg">
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-bold text-wood-dark">Handpan Master Series</h4>
-                            <span class="text-lg font-bold text-sage-dark">€1,800</span>
-                        </div>
-                        <p class="text-wood-light text-sm mb-1">Handmade in Spain • Nitrided Steel</p>
-                        <p class="text-xs text-wood-light/70 uppercase tracking-widest">Premium Collection</p>
-                    </div>
-                </a>
-
-                <!-- Product 2: Shamanic Drum -->
-                <a href="product-drum.html" class="group block">
-                    <div class="relative overflow-hidden rounded-2xl bg-cream aspect-[4/5] mb-6">
-                        <img src="assets/images/Instruments/buben/buben front.jpg" alt="Shamanic Drum"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700 ease-out"
-                            onerror="this.src='https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?q=80&w=2670&auto=format&fit=crop'">
-                        <div
-                            class="absolute inset-x-0 bottom-0 p-6 opacity-0 group-hover:opacity-100 transition duration-300 translate-y-4 group-hover:translate-y-0">
-                            <button
-                                class="w-full bg-white/90 backdrop-blur text-wood-dark font-bold py-4 rounded-xl hover:bg-wood hover:text-white transition shadow-lg">
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-bold text-wood-dark">Shamanic Drum</h4>
-                            <span class="text-lg font-bold text-sage-dark">€250</span>
-                        </div>
-                        <p class="text-wood-light text-sm mb-1">Handmade in Spain • Authentic Sound</p>
-                        <p class="text-xs text-wood-light/70 uppercase tracking-widest">Traditional Craft</p>
-                    </div>
-                </a>
-
-                <!-- Product 3: Crystal Singing Bowl -->
-                <a href="product-bowl.html" class="group block">
-                    <div class="relative overflow-hidden rounded-2xl bg-cream aspect-[4/5] mb-6">
-                        <img src="assets/images/Instruments/quartz/DSC03259.jpg" alt="Quartz Crystal Bowl"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700 ease-out"
-                            onerror="this.src='https://images.unsplash.com/photo-1549834125-906c85a1dd00?q=80&w=2668&auto=format&fit=crop'">
-                        <div
-                            class="absolute inset-x-0 bottom-0 p-6 opacity-0 group-hover:opacity-100 transition duration-300 translate-y-4 group-hover:translate-y-0">
-                            <button
-                                class="w-full bg-white/90 backdrop-blur text-wood-dark font-bold py-4 rounded-xl hover:bg-wood hover:text-white transition shadow-lg">
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-bold text-wood-dark">Crystal Singing Bowl</h4>
-                            <span class="text-lg font-bold text-sage-dark">€350</span>
-                        </div>
-                        <p class="text-wood-light text-sm mb-1">Handmade in Spain • Pure Quartz</p>
-                        <p class="text-xs text-wood-light/70 uppercase tracking-widest">Healing Frequencies</p>
-                    </div>
-                </a>
-            </div>
-            <div class="mt-8 text-center md:hidden">
-                <a href="shop.html" class="text-sage-dark font-bold hover:text-wood transition">View all products →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery/Video Section -->
-    <section class="py-24 bg-wood-dark text-white text-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold mb-12">Experience the Sound</h2>
-            <div class="grid md:grid-cols-2 gap-8">
+    <!-- CTA Banner -->
+    <section class="home-section" style="padding-top:0;padding-bottom:120px;">
+        <div class="container">
+            <div class="glass"
+                style="padding:56px 40px;text-align:center;position:relative;overflow:hidden;border-color:rgba(139,92,246,0.3);">
                 <div
-                    class="aspect-video bg-white/5 rounded-2xl overflow-hidden shadow-2xl border border-white/10 relative group cursor-pointer">
-                    <!-- Placeholder for video -->
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div
-                            class="w-16 h-16 rounded-full bg-white/20 backdrop-blur flex items-center justify-center group-hover:scale-110 transition duration-300">
-                            <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg>
-                        </div>
-                    </div>
-                    <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=2670&auto=format&fit=crop"
-                        class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition"
-                        alt="Video thumbnail">
+                    style="position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(124,58,237,0.18) 0%,transparent 70%);pointer-events:none;">
                 </div>
-                <div
-                    class="aspect-video bg-white/5 rounded-2xl overflow-hidden shadow-2xl border border-white/10 relative group cursor-pointer">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div
-                            class="w-16 h-16 rounded-full bg-white/20 backdrop-blur flex items-center justify-center group-hover:scale-110 transition duration-300">
-                            <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg>
-                        </div>
-                    </div>
-                    <img src="https://images.unsplash.com/photo-1595064085577-7c2ef98ec311?q=80&w=2664&auto=format&fit=crop"
-                        class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition"
-                        alt="Video thumbnail">
-                </div>
+                <h2 class="section-title" style="margin-bottom:16px;">Experimente a magia<br>do handpan por si mesmo!
+                </h2>
+                <p style="color:var(--text-secondary);margin-bottom:32px;font-size:1.05rem;">Aula introdutória gratuita
+                    de 30 minutos. Sem compromisso.</p>
+                <a href="inscricao.html" class="btn-primary" style="font-size:1.1rem;padding:18px 40px;">
+                    🎵 Inscreva-se já — É Grátis
+                </a>
+                <p style="margin-top:20px;font-size:0.82rem;color:var(--text-muted);">Sem cartão de crédito • Sem
+                    compromisso • Cancele a qualquer momento</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contacts" class="bg-wood-dark border-t border-white/10 pt-20 pb-10 text-stone">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-                <div class="col-span-1 md:col-span-1">
-                    <span class="text-2xl font-bold text-white block mb-6">Handpan.pt</span>
-                    <p class="text-sm opacity-70 leading-relaxed">
-                        Awakening through sound. <br>
-                        Join our community in Portugal.
-                    </p>
+    <footer class="site-footer">
+        <div class="container">
+            <div
+                style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;margin-bottom:48px;">
+                <div>
+                    <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1.4rem;margin-bottom:12px;"
+                        class="grad-text">handpan.pt</div>
+                    <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.7;">Despertar através do
+                        som.<br>Escola de handpan em Portugal desde 2015.</p>
+                    <div style="display:flex;gap:12px;margin-top:20px;">
+                        <a href="#" style="color:var(--text-muted);font-size:1.2rem;">📸</a>
+                        <a href="#" style="color:var(--text-muted);font-size:1.2rem;">▶️</a>
+                        <a href="#" style="color:var(--text-muted);font-size:1.2rem;">👥</a>
+                    </div>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold mb-6">Locations</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li class="hover:text-white transition cursor-pointer">Lisbon</li>
-                        <li class="hover:text-white transition cursor-pointer">Ericeira</li>
-                        <li class="hover:text-white transition cursor-pointer">Cascais</li>
+                    <h4
+                        style="font-weight:700;margin-bottom:16px;font-size:0.9rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;">
+                        Páginas</h4>
+                    <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+                        <li><a href="escola.html"
+                                style="font-size:0.9rem;color:var(--text-muted);transition:color 0.2s;"
+                                onmouseover="this.style.color='#c4b5fd'"
+                                onmouseout="this.style.color='var(--text-muted)'">Escola</a></li>
+                        <li><a href="eventos.html"
+                                style="font-size:0.9rem;color:var(--text-muted);transition:color 0.2s;"
+                                onmouseover="this.style.color='#c4b5fd'"
+                                onmouseout="this.style.color='var(--text-muted)'">Eventos</a></li>
+                        <li><a href="loja.html" style="font-size:0.9rem;color:var(--text-muted);transition:color 0.2s;"
+                                onmouseover="this.style.color='#c4b5fd'"
+                                onmouseout="this.style.color='var(--text-muted)'">Loja</a></li>
+                        <li><a href="sobre.html" style="font-size:0.9rem;color:var(--text-muted);transition:color 0.2s;"
+                                onmouseover="this.style.color='#c4b5fd'"
+                                onmouseout="this.style.color='var(--text-muted)'">Sobre Nós</a></li>
+                        <li><a href="blogue.html"
+                                style="font-size:0.9rem;color:var(--text-muted);transition:color 0.2s;"
+                                onmouseover="this.style.color='#c4b5fd'"
+                                onmouseout="this.style.color='var(--text-muted)'">Blogue</a></li>
+                        <li><a href="contactos.html"
+                                style="font-size:0.9rem;color:var(--text-muted);transition:color 0.2s;"
+                                onmouseover="this.style.color='#c4b5fd'"
+                                onmouseout="this.style.color='var(--text-muted)'">Contactos</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold mb-6">Connect</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li class="hover:text-white transition cursor-pointer">Instagram</li>
-                        <li class="hover:text-white transition cursor-pointer">Facebook</li>
-                        <li class="hover:text-white transition cursor-pointer">YouTube</li>
+                    <h4
+                        style="font-weight:700;margin-bottom:16px;font-size:0.9rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;">
+                        Localização</h4>
+                    <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+                        <li style="font-size:0.9rem;color:var(--text-muted);">📍 Lisboa</li>
+                        <li style="font-size:0.9rem;color:var(--text-muted);">📍 Ericeira</li>
+                        <li style="font-size:0.9rem;color:var(--text-muted);">📍 Cascais</li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold mb-6">Newsletter</h4>
-                    <form class="space-y-3">
-                        <input type="email" placeholder="Your email"
-                            class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-sage text-white placeholder-white/30 transition">
-                        <button
-                            class="w-full bg-sage text-white font-bold py-3 rounded-lg hover:bg-sage-dark transition">Subscribe</button>
-                    </form>
+                    <h4
+                        style="font-weight:700;margin-bottom:16px;font-size:0.9rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;">
+                        Contacto</h4>
+                    <div style="display:flex;flex-direction:column;gap:10px;">
+                        <a href="tel:+351968841230" class="contact-action-btn"
+                            style="border-radius:14px;padding:14px 18px;">
+                            <div class="icon-wrap phone"><span style="font-size:20px;">📞</span></div>
+                            <div>
+                                <div class="btn-label">Telefone</div>
+                                <div class="btn-value" style="font-size:0.9rem;">968 841 230</div>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/351968841230" target="_blank" class="contact-action-btn"
+                            style="border-radius:14px;padding:14px 18px;">
+                            <div class="icon-wrap wa"><span style="font-size:20px;">💬</span></div>
+                            <div>
+                                <div class="btn-label">WhatsApp</div>
+                                <div class="btn-value" style="font-size:0.9rem;">Mensagem rápida</div>
+                            </div>
+                        </a>
+                        <a href="mailto:info@handpan.pt" class="contact-action-btn"
+                            style="border-radius:14px;padding:14px 18px;">
+                            <div class="icon-wrap email"><span style="font-size:20px;">✉️</span></div>
+                            <div>
+                                <div class="btn-label">Email</div>
+                                <div class="btn-value" style="font-size:0.9rem;">info@handpan.pt</div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="pt-8 border-t border-white/10 text-center text-sm opacity-50">
-                &copy; 2026 Ding Handpan School Lisboa. All rights reserved.
+            <div
+                style="border-top:1px solid var(--border-glass);padding-top:28px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
+                <p style="font-size:0.82rem;color:var(--text-muted);">© 2026 handpan.pt — Todos os direitos reservados.
+                </p>
+                <div style="display:flex;gap:20px;">
+                    <a href="privacidade.html" style="font-size:0.82rem;color:var(--text-muted);">Política de
+                        Privacidade</a>
+                    <a href="sitemap.html" style="font-size:0.82rem;color:var(--text-muted);">Sitemap</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Booking Modal -->
-    <div x-show="bookingModalOpen" class="fixed inset-0 z-[100] overflow-y-auto" aria-labelledby="modal-title"
-        role="dialog" aria-modal="true" x-cloak>
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <!-- Background overlay -->
-            <div x-show="bookingModalOpen" x-transition:enter="ease-out duration-300"
-                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0"
-                class="fixed inset-0 bg-wood-dark/75 backdrop-blur-sm transition-opacity" aria-hidden="true"
-                @click="bookingModalOpen = false"></div>
-
-            <!-- This element is to trick the browser into centering the modal contents. -->
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-            <!-- Modal panel -->
-            <div x-show="bookingModalOpen" x-transition:enter="ease-out duration-300"
-                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                x-transition:leave="ease-in duration-200"
-                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                class="relative inline-block align-bottom bg-cream rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full border border-wood/10">
-
-                <div class="absolute top-0 right-0 pt-4 pr-4">
-                    <button type="button" class="bg-cream rounded-md text-wood-light hover:text-wood focus:outline-none"
-                        @click="bookingModalOpen = false">
-                        <span class="sr-only">Close</span>
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <div class="sm:flex sm:items-start">
-                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                            <h3 class="text-2xl leading-6 font-bold text-wood-dark" id="modal-title">
-                                Book a Lesson
-                            </h3>
-                            <div class="mt-2">
-                                <p class="text-sm text-wood-light">
-                                    Fill in your details to reserve your spot in our handpan classes.
-                                </p>
-                            </div>
-
-                            <form class="mt-6 space-y-4"
-                                @submit.prevent="bookingModalOpen = false; alert('Booking Request Sent!')">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-wood-dark">Name</label>
-                                    <input type="text" name="name" id="name" required
-                                        class="mt-1 block w-full px-3 py-2 bg-white/50 border border-wood/20 rounded-lg focus:outline-none focus:border-sage text-wood-dark placeholder-wood-light/50 sm:text-sm">
-                                </div>
-
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-wood-dark">Email</label>
-                                    <input type="email" name="email" id="email" required
-                                        class="mt-1 block w-full px-3 py-2 bg-white/50 border border-wood/20 rounded-lg focus:outline-none focus:border-sage text-wood-dark placeholder-wood-light/50 sm:text-sm">
-                                </div>
-
-                                <div>
-                                    <label for="phone" class="block text-sm font-medium text-wood-dark">Phone</label>
-                                    <input type="tel" name="phone" id="phone"
-                                        class="mt-1 block w-full px-3 py-2 bg-white/50 border border-wood/20 rounded-lg focus:outline-none focus:border-sage text-wood-dark placeholder-wood-light/50 sm:text-sm">
-                                </div>
-
-                                <div>
-                                    <label for="location" class="block text-sm font-medium text-wood-dark">Location &
-                                        Time</label>
-                                    <select id="location" name="location" required
-                                        class="mt-1 block w-full pl-3 pr-10 py-2 bg-white/50 border border-wood/20 rounded-lg focus:outline-none focus:border-sage text-wood-dark sm:text-sm">
-                                        <option value="Lisbon">Lisbon (Every Monday)</option>
-                                        <option value="Ericeira">Ericeira (Every Wednesday)</option>
-                                        <option value="Cascais">Cascais (Every Friday)</option>
-                                    </select>
-                                </div>
-
-                                <div class="pt-4">
-                                    <button type="submit"
-                                        class="w-full inline-flex justify-center rounded-xl border border-transparent shadow-sm px-4 py-3 bg-wood text-base font-bold text-cream hover:bg-sage-dark focus:outline-none sm:text-sm transition duration-300">
-                                        Confirm Booking
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Floating WhatsApp / Phone -->
+    <div class="contact-float">
+        <a href="https://wa.me/351968841230" class="float-btn wa" title="WhatsApp" target="_blank">💬</a>
+        <a href="tel:+351968841230" class="float-btn tel" title="Ligar">📞</a>
     </div>
 
+    <script src="shared-components.js"></script>
+    <script>
+        // ── 3D WebGL Handpan (simplified optimized sphere) ──────
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('handpan-canvas');
+            if (!canvas) return;
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (!gl) { canvas.style.display = 'none'; return; }
+
+            const W = canvas.width, H = canvas.height;
+            gl.viewport(0, 0, W, H);
+            gl.clearColor(0.05, 0.05, 0.10, 0.0);
+            gl.enable(gl.DEPTH_TEST);
+            gl.enable(gl.BLEND);
+            gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+            // Vertex shader
+            const vsrc = `
+        attribute vec3 aPos;
+        attribute vec3 aNorm;
+        uniform mat4 uMVP;
+        uniform mat3 uNormalMat;
+        varying vec3 vNorm;
+        varying vec3 vPos;
+        void main(){
+          vNorm = normalize(uNormalMat * aNorm);
+          vPos = aPos;
+          gl_Position = uMVP * vec4(aPos, 1.0);
+        }`;
+
+            const fsrc = `
+        precision mediump float;
+        varying vec3 vNorm;
+        varying vec3 vPos;
+        uniform float uTime;
+        void main(){
+          vec3 light = normalize(vec3(1.0, 1.5, 2.0));
+          float diff = max(dot(vNorm, light), 0.0);
+          float spec = pow(max(dot(reflect(-light, vNorm), vec3(0,0,1)), 0.0), 64.0);
+          // Aurora color shift
+          float hue = uTime * 0.3 + vPos.y * 0.5;
+          vec3 col1 = vec3(0.48, 0.22, 0.97);
+          vec3 col2 = vec3(0.05, 0.64, 0.92);
+          vec3 baseColor = mix(col1, col2, sin(hue)*0.5+0.5);
+          vec3 color = baseColor * (0.25 + 0.7 * diff) + vec3(1.0) * spec * 0.4;
+          float alpha = 0.92;
+          gl_FragColor = vec4(color, alpha);
+        }`;
+
+            function makeShader(type, src) {
+                const s = gl.createShader(type);
+                gl.shaderSource(s, src);
+                gl.compileShader(s);
+                return s;
+            }
+
+            const prog = gl.createProgram();
+            gl.attachShader(prog, makeShader(gl.VERTEX_SHADER, vsrc));
+            gl.attachShader(prog, makeShader(gl.FRAGMENT_SHADER, fsrc));
+            gl.linkProgram(prog);
+            gl.useProgram(prog);
+
+            // Generate sphere (handpan-like disc — flattened sphere)
+            const verts = [], norms = [], idxs = [];
+            const rows = 40, cols = 40;
+            for (let r = 0; r <= rows; r++) {
+                const theta = (r / rows) * Math.PI;
+                for (let c = 0; c <= cols; c++) {
+                    const phi = (c / cols) * 2 * Math.PI;
+                    const x = Math.sin(theta) * Math.cos(phi);
+                    const y = Math.sin(theta) * Math.sin(phi) * 0.35; // flatten
+                    const z = Math.cos(theta);
+                    verts.push(x, y, z);
+                    const len = Math.sqrt(x * x + y * y + z * z);
+                    norms.push(x / len, y / len, z / len);
+                }
+            }
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    const a = r * (cols + 1) + c, b = a + 1, d = a + (cols + 1), e = d + 1;
+                    idxs.push(a, b, d, b, e, d);
+                }
+            }
+
+            const vBuf = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, vBuf);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts), gl.STATIC_DRAW);
+
+            const nBuf = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, nBuf);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(norms), gl.STATIC_DRAW);
+
+            const iBuf = gl.createBuffer();
+            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, iBuf);
+            gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(idxs), gl.STATIC_DRAW);
+
+            const aPos = gl.getAttribLocation(prog, 'aPos');
+            const aNorm = gl.getAttribLocation(prog, 'aNorm');
+            const uMVP = gl.getUniformLocation(prog, 'uMVP');
+            const uNM = gl.getUniformLocation(prog, 'uNormalMat');
+            const uTime = gl.getUniformLocation(prog, 'uTime');
+
+            function mat4Mul(a, b) {
+                const out = new Float32Array(16);
+                for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) {
+                    let v = 0; for (let k = 0; k < 4; k++) v += a[i * 4 + k] * b[k * 4 + j];
+                    out[i * 4 + j] = v;
+                }
+                return out;
+            }
+            function perspective(fov, aspect, near, far) {
+                const f = 1 / Math.tan(fov / 2), nf = 1 / (near - far);
+                return new Float32Array([f / aspect, 0, 0, 0, 0, f, 0, 0, 0, 0, (far + near) * nf, -1, 0, 0, 2 * far * near * nf, 0]);
+            }
+            function rotY(a) {
+                const c = Math.cos(a), s = Math.sin(a);
+                return new Float32Array([c, 0, s, 0, 0, 1, 0, 0, -s, 0, c, 0, 0, 0, 0, 1]);
+            }
+            function translate(x, y, z) {
+                return new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1]);
+            }
+
+            let t0 = null;
+            function draw(ts) {
+                if (!t0) t0 = ts;
+                const t = (ts - t0) / 1000;
+                gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+                const proj = perspective(0.9, 1, 0.1, 10);
+                const view = translate(0, 0, -2.2);
+                const model = rotY(t * 0.5);
+                const mvp = mat4Mul(mat4Mul(proj, view), model);
+
+                gl.uniformMatrix4fv(uMVP, false, mvp);
+                gl.uniformMatrix3fv(uNM, false, new Float32Array([1, 0, 0, 0, 1, 0, 0, 0, 1]));
+                gl.uniform1f(uTime, t);
+
+                gl.bindBuffer(gl.ARRAY_BUFFER, vBuf);
+                gl.enableVertexAttribArray(aPos);
+                gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, 0, 0);
+
+                gl.bindBuffer(gl.ARRAY_BUFFER, nBuf);
+                gl.enableVertexAttribArray(aNorm);
+                gl.vertexAttribPointer(aNorm, 3, gl.FLOAT, false, 0, 0);
+
+                gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, iBuf);
+                gl.drawElements(gl.TRIANGLES, idxs.length, gl.UNSIGNED_SHORT, 0);
+
+                requestAnimationFrame(draw);
+            }
+            requestAnimationFrame(draw);
+        });
+    </script>
 </body>
 
 </html>
