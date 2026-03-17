@@ -195,10 +195,10 @@
     <div class="page-content">
         <section class="page-hero">
             <div class="container">
-                <span class="section-tag">Blogue</span>
-                <h1 class="section-title" style="margin-top:12px;margin-bottom:16px;">O Blogue do <span
+                <span class="section-tag" data-i18n="nav.blog">Blogue</span>
+                <h1 class="section-title" style="margin-top:12px;margin-bottom:16px;" data-i18n="bl.hero">O Blogue do <span
                         style="color:var(--cta-color);">Handpan</span></h1>
-                <p class="section-subtitle" style="margin:0 auto 32px;">Artigos, dicas e guias para apaixonados pelo
+                <p class="section-subtitle" style="margin:0 auto 32px;" data-i18n="bl.hero.sub">Artigos, dicas e guias para apaixonados pelo
                     handpan.</p>
             </div>
         </section>
@@ -206,19 +206,19 @@
         <!-- Search -->
         <div class="container" style="position:relative;z-index:1;">
             <div class="search-bar">
-                <input type="search" placeholder="Pesquisar artigos..." id="blogSearch">
+                <input type="search" placeholder="Pesquisar artigos..." id="blogSearch" data-i18n-placeholder="bl.search.ph">
                 <div class="icon">🔍</div>
             </div>
         </div>
 
         <!-- Category pills -->
         <div class="blog-cat-tabs" id="catTabs">
-            <button class="cat-pill active" data-c="all">Todos</button>
-            <button class="cat-pill" data-c="guia">Guias</button>
-            <button class="cat-pill" data-c="tecnica">Técnica</button>
-            <button class="cat-pill" data-c="instrumento">Instrumento</button>
-            <button class="cat-pill" data-c="cultura">Cultura</button>
-            <button class="cat-pill" data-c="terapia">Terapia Sonora</button>
+            <button class="cat-pill active" data-c="all" data-i18n="bl.cat.all">Todos</button>
+            <button class="cat-pill" data-c="guia" data-i18n="bl.cat.guide">Guias</button>
+            <button class="cat-pill" data-c="tecnica" data-i18n="bl.cat.tech">Técnica</button>
+            <button class="cat-pill" data-c="instrumento" data-i18n="bl.cat.inst">Instrumento</button>
+            <button class="cat-pill" data-c="cultura" data-i18n="bl.cat.cult">Cultura</button>
+            <button class="cat-pill" data-c="terapia" data-i18n="bl.cat.ter">Terapia Sonora</button>
         </div>
 
         <section class="section" style="padding-top:0;position:relative;z-index:1;padding-bottom:120px;">
@@ -229,9 +229,9 @@
                         alt="Anatomia do Handpan" onerror="this.src='';this.parentElement.style.background='#f3f4f6'">
                     <div class="overlay"></div>
                     <div class="content">
-                        <span class="tag">Instrumento</span>
-                        <h2>A Anatomia do Handpan: Um guia completo para principiantes</h2>
-                        <div class="meta">Pedro Araújo · 10 Mar 2026 · 8 min de leitura</div>
+                        <span class="tag" data-i18n="bl.cat.inst">Instrumento</span>
+                        <h2 data-i18n="bl.p0.ti">A Anatomia do Handpan: Um guia completo para principiantes</h2>
+                        <div class="meta" data-i18n="bl.p0.meta">Pedro Araújo · 10 Mar 2026 · 8 min de leitura</div>
                     </div>
                 </div>
 
@@ -242,10 +242,10 @@
                                 src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=600&auto=format&fit=crop"
                                 alt="Afinação" onerror="this.style.background='#f3f4f6'"></div>
                         <div class="body">
-                            <div class="tag">Técnica</div>
-                            <div class="title">A Arte da Afinação — como manter o seu handpan perfeito</div>
-                            <div class="meta">Ana Costa · 5 Mar 2026 · 5 min</div>
-                            <div class="read-more">Ler mais →</div>
+                            <div class="tag" data-i18n="bl.cat.tech">Técnica</div>
+                            <div class="title" data-i18n="bl.p1.ti">A Arte da Afinação — como manter o seu handpan perfeito</div>
+                            <div class="meta" data-i18n="bl.p1.meta">Ana Costa · 5 Mar 2026 · 5 min</div>
+                            <div class="read-more" data-i18n="bl.read">Ler mais →</div>
                         </div>
                     </div>
                     <div class="blog-card" data-cat="guia">
@@ -253,10 +253,10 @@
                                 src="https://images.unsplash.com/photo-1598460678889-4cb5032599c9?q=80&w=600&auto=format&fit=crop"
                                 alt="Guia de iniciante" onerror="this.style.background='#f3f4f6'"></div>
                         <div class="body">
-                            <div class="tag">Guia</div>
-                            <div class="title">Guia do Iniciante: Os seus primeiros 30 dias com o handpan</div>
-                            <div class="meta">Sofia Lima · 1 Mar 2026 · 6 min</div>
-                            <div class="read-more">Ler mais →</div>
+                            <div class="tag" data-i18n="bl.cat.guide">Guia</div>
+                            <div class="title" data-i18n="bl.p2.ti">Guia do Iniciante: Os seus primeiros 30 dias com o handpan</div>
+                            <div class="meta" data-i18n="bl.p2.meta">Sofia Lima · 1 Mar 2026 · 6 min</div>
+                            <div class="read-more" data-i18n="bl.read">Ler mais →</div>
                         </div>
                     </div>
                     <div class="blog-card" data-cat="terapia">
@@ -264,10 +264,10 @@
                                 src="https://images.unsplash.com/photo-1549834125-906c85a1dd00?q=80&w=600&auto=format&fit=crop"
                                 alt="Sound Healing" onerror="this.style.background='#f3f4f6'"></div>
                         <div class="body">
-                            <div class="tag">Terapia Sonora</div>
-                            <div class="title">Sound Bath: o poder curativo das vibrações do handpan</div>
-                            <div class="meta">Sofia Lima · 25 Fev 2026 · 7 min</div>
-                            <div class="read-more">Ler mais →</div>
+                            <div class="tag" data-i18n="bl.cat.ter">Terapia Sonora</div>
+                            <div class="title" data-i18n="bl.p3.ti">Sound Bath: o poder curativo das vibrações do handpan</div>
+                            <div class="meta" data-i18n="bl.p3.meta">Sofia Lima · 25 Fev 2026 · 7 min</div>
+                            <div class="read-more" data-i18n="bl.read">Ler mais →</div>
                         </div>
                     </div>
                     <div class="blog-card" data-cat="cultura">
@@ -275,10 +275,10 @@
                                 src="https://images.unsplash.com/photo-1574091285739-bdb1c95dc9ef?q=80&w=600&auto=format&fit=crop"
                                 alt="Hang Massive" onerror="this.style.background='#f3f4f6'"></div>
                         <div class="body">
-                            <div class="tag">Cultura</div>
-                            <div class="title">Hang Massive: como dois irmãos mudaram o mundo do handpan</div>
-                            <div class="meta">Pedro Araújo · 20 Fev 2026 · 9 min</div>
-                            <div class="read-more">Ler mais →</div>
+                            <div class="tag" data-i18n="bl.cat.cult">Cultura</div>
+                            <div class="title" data-i18n="bl.p4.ti">Hang Massive: como dois irmãos mudaram o mundo do handpan</div>
+                            <div class="meta" data-i18n="bl.p4.meta">Pedro Araújo · 20 Fev 2026 · 9 min</div>
+                            <div class="read-more" data-i18n="bl.read">Ler mais →</div>
                         </div>
                     </div>
                     <div class="blog-card" data-cat="instrumento">
@@ -286,10 +286,10 @@
                                 src="https://images.unsplash.com/photo-1621360841012-3f82bd6428c0?q=80&w=600&auto=format&fit=crop"
                                 alt="Escolher handpan" onerror="this.style.background='#f3f4f6'"></div>
                         <div class="body">
-                            <div class="tag">Instrumento</div>
-                            <div class="title">Como escolher o seu primeiro handpan: escala, qualidade e preço</div>
-                            <div class="meta">Mikhail Volkov · 15 Fev 2026 · 10 min</div>
-                            <div class="read-more">Ler mais →</div>
+                            <div class="tag" data-i18n="bl.cat.inst">Instrumento</div>
+                            <div class="title" data-i18n="bl.p5.ti">Como escolher o seu primeiro handpan: escala, qualidade e preço</div>
+                            <div class="meta" data-i18n="bl.p5.meta">Mikhail Volkov · 15 Fev 2026 · 10 min</div>
+                            <div class="read-more" data-i18n="bl.read">Ler mais →</div>
                         </div>
                     </div>
                     <div class="blog-card" data-cat="tecnica">
@@ -297,10 +297,10 @@
                                 src="https://images.unsplash.com/photo-1595064085577-7c2ef98ec311?q=80&w=600&auto=format&fit=crop"
                                 alt="Improvisação" onerror="this.style.background='#f3f4f6'"></div>
                         <div class="body">
-                            <div class="tag">Técnica</div>
-                            <div class="title">Improvisação no handpan: encontrar a sua voz musical</div>
-                            <div class="meta">Pedro Araújo · 10 Fev 2026 · 7 min</div>
-                            <div class="read-more">Ler mais →</div>
+                            <div class="tag" data-i18n="bl.cat.tech">Técnica</div>
+                            <div class="title" data-i18n="bl.p6.ti">Improvisação no handpan: encontrar a sua voz musical</div>
+                            <div class="meta" data-i18n="bl.p6.meta">Pedro Araújo · 10 Fev 2026 · 7 min</div>
+                            <div class="read-more" data-i18n="bl.read">Ler mais →</div>
                         </div>
                     </div>
                     <div class="blog-card" data-cat="guia">
@@ -308,10 +308,10 @@
                                 src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?q=80&w=600&auto=format&fit=crop"
                                 alt="Praticar em casa" onerror="this.style.background='#f3f4f6'"></div>
                         <div class="body">
-                            <div class="tag">Guia</div>
-                            <div class="title">Como praticar handpan em casa: rotinas e dicas essenciais</div>
-                            <div class="meta">Sofia Lima · 5 Fev 2026 · 5 min</div>
-                            <div class="read-more">Ler mais →</div>
+                            <div class="tag" data-i18n="bl.cat.guide">Guia</div>
+                            <div class="title" data-i18n="bl.p7.ti">Como praticar handpan em casa: rotinas e dicas essenciais</div>
+                            <div class="meta" data-i18n="bl.p7.meta">Sofia Lima · 5 Fev 2026 · 5 min</div>
+                            <div class="read-more" data-i18n="bl.read">Ler mais →</div>
                         </div>
                     </div>
                     <div class="blog-card" data-cat="terapia">
@@ -319,10 +319,10 @@
                                 src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?q=80&w=600&auto=format&fit=crop"
                                 alt="Meditação" onerror="this.style.background='#f3f4f6'"></div>
                         <div class="body">
-                            <div class="tag">Terapia Sonora</div>
-                            <div class="title">Handpan e Meditação: 5 exercícios de mindfulness com o instrumento</div>
-                            <div class="meta">Ana Costa · 1 Fev 2026 · 6 min</div>
-                            <div class="read-more">Ler mais →</div>
+                            <div class="tag" data-i18n="bl.cat.ter">Terapia Sonora</div>
+                            <div class="title" data-i18n="bl.p8.ti">Handpan e Meditação: 5 exercícios de mindfulness com o instrumento</div>
+                            <div class="meta" data-i18n="bl.p8.meta">Ana Costa · 1 Fev 2026 · 6 min</div>
+                            <div class="read-more" data-i18n="bl.read">Ler mais →</div>
                         </div>
                     </div>
                     <div class="blog-card" data-cat="cultura">
@@ -330,17 +330,17 @@
                                 src="https://images.unsplash.com/photo-1526327934048-d83ddf70f2df?q=80&w=600&auto=format&fit=crop"
                                 alt="História" onerror="this.style.background='#f3f4f6'"></div>
                         <div class="body">
-                            <div class="tag">Cultura</div>
-                            <div class="title">A história do handpan: do PANArt à revolução global do instrumento</div>
-                            <div class="meta">Pedro Araújo · 25 Jan 2026 · 12 min</div>
-                            <div class="read-more">Ler mais →</div>
+                            <div class="tag" data-i18n="bl.cat.cult">Cultura</div>
+                            <div class="title" data-i18n="bl.p9.ti">A história do handpan: do PANArt à revolução global do instrumento</div>
+                            <div class="meta" data-i18n="bl.p9.meta">Pedro Araújo · 25 Jan 2026 · 12 min</div>
+                            <div class="read-more" data-i18n="bl.read">Ler mais →</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Load more -->
                 <div style="text-align:center;margin-top:40px;">
-                    <button class="btn-secondary" id="loadMore">Carregar mais artigos</button>
+                    <button class="btn-secondary" id="loadMore" data-i18n="bl.btn.load">Carregar mais artigos</button>
                 </div>
             </div>
         </section>

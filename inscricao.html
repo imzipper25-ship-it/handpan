@@ -274,54 +274,54 @@
 
             <!-- STEP 1 — Location -->
             <div class="step-panel active" id="step1">
-                <div class="step-title">Escolha o estúdio</div>
-                <div class="step-sub">Selecione a localização mais conveniente para si.</div>
+                <div class="step-title" data-i18n="bk.s1.ti">Escolha o estúdio</div>
+                <div class="step-sub" data-i18n="bk.s1.sub">Selecione a localização mais conveniente para si.</div>
                 <div class="loc-grid">
                     <div class="location-card" data-loc="Ericeira" onclick="selectLoc(this)">
                         <div class="loc-emoji">🌊</div>
                         <div class="loc-name">Ericeira</div>
-                        <div class="loc-sub">Quartas · 18:30</div>
+                        <div class="loc-sub" data-i18n="bk.l1.sub">Quartas · 18:30</div>
                     </div>
                     <div class="location-card" data-loc="Cascais" onclick="selectLoc(this)">
                         <div class="loc-emoji">⛵</div>
                         <div class="loc-name">Cascais</div>
-                        <div class="loc-sub">Sextas · 17:00 &amp; 18:30</div>
+                        <div class="loc-sub" data-i18n="bk.l2.sub">Sextas · 17:00 &amp; 18:30</div>
                     </div>
                     <div class="location-card" data-loc="Lisboa" onclick="selectLoc(this)">
                         <div class="loc-emoji">🏙️</div>
                         <div class="loc-name">Lisboa</div>
-                        <div class="loc-sub">Segundas · 17:00 &amp; 18:30</div>
+                        <div class="loc-sub" data-i18n="bk.l3.sub">Segundas · 17:00 &amp; 18:30</div>
                     </div>
                 </div>
                 <button id="toStep2" class="btn-primary"
                     style="width:100%;justify-content:center;font-size:1rem;padding:16px;" disabled
-                    onclick="goStep(2)">Continuar →</button>
+                    onclick="goStep(2)" data-i18n="bk.btn.next">Continuar →</button>
             </div>
 
             <!-- STEP 2 — Type + Calendar -->
             <div class="step-panel" id="step2">
-                <div class="step-title">Tipo de aula & Data</div>
-                <div class="step-sub">Escolha o tipo de aula e o dia que prefere.</div>
+                <div class="step-title" data-i18n="bk.s2.ti">Tipo de aula & Data</div>
+                <div class="step-sub" data-i18n="bk.s2.sub">Escolha o tipo de aula e o dia que prefere.</div>
                 <div class="type-grid">
                     <div class="type-card" onclick="selectType(this,'individual')">
                         <div class="t-icon">🎵</div>
-                        <div class="t-name">Individual</div>
-                        <div class="t-price">€50/hora</div>
+                        <div class="t-name" data-i18n="bk.t1.name">Individual</div>
+                        <div class="t-price" data-i18n="bk.t1.pr">€50/hora</div>
                     </div>
                     <div class="type-card" onclick="selectType(this,'grupo')">
                         <div class="t-icon">👥</div>
-                        <div class="t-name">Grupo</div>
-                        <div class="t-price">€20/pessoa</div>
+                        <div class="t-name" data-i18n="bk.t2.name">Grupo</div>
+                        <div class="t-price" data-i18n="bk.t2.pr">€20/pessoa</div>
                     </div>
                     <div class="type-card" onclick="selectType(this,'intro')">
                         <div class="t-icon">🌟</div>
-                        <div class="t-name">Introdutória</div>
-                        <div class="t-price">€20</div>
+                        <div class="t-name" data-i18n="bk.t3.name">Introdutória</div>
+                        <div class="t-price" data-i18n="bk.t3.pr">€20</div>
                     </div>
                     <div class="type-card" onclick="selectType(this,'online')">
                         <div class="t-icon">💻</div>
-                        <div class="t-name">Online</div>
-                        <div class="t-price">€35/hora</div>
+                        <div class="t-name" data-i18n="bk.t4.name">Online</div>
+                        <div class="t-price" data-i18n="bk.t4.pr">€35/hora</div>
                     </div>
                 </div>
 
@@ -333,30 +333,30 @@
                         <button class="cal-header-btn" onclick="nextMonth()">›</button>
                     </div>
                     <div class="cal-dow">
-                        <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+                        <span data-i18n="bk.dow.su">Dom</span><span data-i18n="bk.dow.mo">Seg</span><span data-i18n="bk.dow.tu">Ter</span><span data-i18n="bk.dow.we">Qua</span><span data-i18n="bk.dow.th">Qui</span><span data-i18n="bk.dow.fr">Sex</span><span data-i18n="bk.dow.sa">Sáb</span>
                     </div>
                     <div class="cal-grid" id="calGrid"></div>
                 </div>
 
                 <!-- Time slots -->
                 <div id="timeSlotSection" style="margin-bottom:24px;display:none;">
-                    <div style="font-weight:700;margin-bottom:12px;">Escolha o horário:</div>
+                    <div style="font-weight:700;margin-bottom:12px;" data-i18n="bk.time.sel">Escolha o horário:</div>
                     <div class="time-slots" id="timeSlots"></div>
                 </div>
 
                 <div style="display:flex;gap:12px;">
-                    <button class="btn-secondary" style="flex:1;justify-content:center;" onclick="goStep(1)">←
+                    <button class="btn-secondary" style="flex:1;justify-content:center;" onclick="goStep(1)" data-i18n="bk.btn.back">←
                         Voltar</button>
                     <button id="toStep3" class="btn-primary"
                         style="flex:2;justify-content:center;font-size:1rem;padding:16px;" disabled
-                        onclick="goStep(3)">Continuar →</button>
+                        onclick="goStep(3)" data-i18n="bk.btn.next">Continuar →</button>
                 </div>
             </div>
 
             <!-- STEP 3 — Contact Info -->
             <div class="step-panel" id="step3">
-                <div class="step-title">Seus dados</div>
-                <div class="step-sub">Quase pronto! Precisamos dos seus contactos.</div>
+                <div class="step-title" data-i18n="bk.s3.ti">Seus dados</div>
+                <div class="step-sub" data-i18n="bk.s3.sub">Quase pronto! Precisamos dos seus contactos.</div>
 
                 <!-- TikTok-style testimonials -->
                 <div class="testimonial-reel" style="margin-bottom:28px;">
@@ -365,7 +365,7 @@
                             alt="">
                         <div class="overlay">
                             <div class="star">★★★★★</div>
-                            <div class="quote">"A melhor decisão da minha vida!"</div>
+                            <div class="quote" data-i18n="bk.test.1.q">"A melhor decisão da minha vida!"</div>
                             <div class="author">— Ana, Lisboa</div>
                         </div>
                     </div>
@@ -374,7 +374,7 @@
                             alt="">
                         <div class="overlay">
                             <div class="star">★★★★★</div>
-                            <div class="quote">"Aprendi em 1 mês o que esperava…"</div>
+                            <div class="quote" data-i18n="bk.test.2.q">"Aprendi em 1 mês o que esperava…"</div>
                             <div class="author">— Pedro, Cascais</div>
                         </div>
                     </div>
@@ -383,7 +383,7 @@
                             alt="">
                         <div class="overlay">
                             <div class="star">★★★★★</div>
-                            <div class="quote">"O professor tem uma paciência incrível!"</div>
+                            <div class="quote" data-i18n="bk.test.3.q">"O professor tem uma paciência incrível!"</div>
                             <div class="author">— Sofia, Ericeira</div>
                         </div>
                     </div>
@@ -391,66 +391,66 @@
 
                 <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:24px;">
                     <div>
-                        <label class="form-label">Nome completo *</label>
-                        <input type="text" class="form-input" id="fName" placeholder="O seu nome" required>
+                        <label class="form-label" data-i18n="bk.f.name">Nome completo *</label>
+                        <input type="text" class="form-input" id="fName" placeholder="O seu nome" required data-i18n-placeholder="bk.f.name.ph">
                     </div>
                     <div>
-                        <label class="form-label">Telefone / WhatsApp *</label>
+                        <label class="form-label" data-i18n="bk.f.phone">Telefone / WhatsApp *</label>
                         <input type="tel" class="form-input" id="fPhone" placeholder="+351 912 345 678" required>
                     </div>
                     <div>
-                        <label class="form-label">Email *</label>
+                        <label class="form-label" data-i18n="bk.f.email">Email *</label>
                         <input type="email" class="form-input" id="fEmail" placeholder="email@exemplo.pt" required>
                     </div>
                     <div>
-                        <label class="form-label">Nota (opcional)</label>
+                        <label class="form-label" data-i18n="bk.f.note">Nota (opcional)</label>
                         <input type="text" class="form-input" id="fNote"
-                            placeholder="Ex: nunca toquei handpan, prefiro tarde">
+                            placeholder="Ex: nunca toquei handpan, prefiro tarde" data-i18n-placeholder="bk.f.note.ph">
                     </div>
                 </div>
 
                 <div style="display:flex;gap:12px;">
-                    <button class="btn-secondary" style="flex:1;justify-content:center;" onclick="goStep(2)">←
+                    <button class="btn-secondary" style="flex:1;justify-content:center;" onclick="goStep(2)" data-i18n="bk.btn.back">←
                         Voltar</button>
                     <button class="btn-primary" style="flex:2;justify-content:center;font-size:1rem;padding:16px;"
-                        onclick="goStep(4)">Ver resumo →</button>
+                        onclick="goStep(4)" data-i18n="bk.btn.sum">Ver resumo →</button>
                 </div>
             </div>
 
             <!-- STEP 4 — Summary + Payment -->
             <div class="step-panel" id="step4">
-                <div class="step-title">Confirmar reserva</div>
-                <div class="step-sub">Verifique os detalhes antes de confirmar.</div>
+                <div class="step-title" data-i18n="bk.s4.ti">Confirmar reserva</div>
+                <div class="step-sub" data-i18n="bk.s4.sub">Verifique os detalhes antes de confirmar.</div>
 
                 <div class="summary-box">
-                    <div class="summary-row"><span class="label">Localização</span><span class="val"
+                    <div class="summary-row"><span class="label" data-i18n="bk.sum.l">Localização</span><span class="val"
                             id="sumLoc">—</span></div>
-                    <div class="summary-row"><span class="label">Tipo de Aula</span><span class="val"
+                    <div class="summary-row"><span class="label" data-i18n="bk.sum.t">Tipo de Aula</span><span class="val"
                             id="sumType">—</span></div>
-                    <div class="summary-row"><span class="label">Data & Hora</span><span class="val"
+                    <div class="summary-row"><span class="label" data-i18n="bk.sum.d">Data & Hora</span><span class="val"
                             id="sumDate">—</span></div>
-                    <div class="summary-row"><span class="label">Nome</span><span class="val" id="sumName">—</span>
+                    <div class="summary-row"><span class="label" data-i18n="bk.sum.n">Nome</span><span class="val" id="sumName">—</span>
                     </div>
                     <div class="summary-row" style="margin-top:12px;"><span class="label"
-                            style="font-weight:700;">Total</span><span class="val" id="sumPrice"
+                            style="font-weight:700;" data-i18n="bk.sum.tot">Total</span><span class="val" id="sumPrice"
                             style="font-size:1.3rem;" class="grad-text">—</span></div>
                 </div>
 
-                <div style="margin-bottom:16px;font-size:0.9rem;color:var(--text-muted);text-align:center;">Pagamento
+                <div style="margin-bottom:16px;font-size:0.9rem;color:var(--text-muted);text-align:center;" data-i18n="bk.pay.sec">Pagamento
                     seguro com:</div>
                 <div class="pay-options">
                     <button class="pay-btn apple" onclick="confirmBooking()">🍎 Apple Pay</button>
                     <button class="pay-btn google" onclick="confirmBooking()">🇬 Google Pay</button>
                 </div>
                 <button onclick="confirmBooking()" class="btn-primary"
-                    style="width:100%;justify-content:center;font-size:1rem;padding:16px;margin-bottom:12px;">
+                    style="width:100%;justify-content:center;font-size:1rem;padding:16px;margin-bottom:12px;" data-i18n="bk.btn.conf">
                     ✅ Confirmar Reserva
                 </button>
-                <div style="text-align:center;font-size:0.78rem;color:var(--text-muted);">🔒 Pagamento 100% seguro ·
+                <div style="text-align:center;font-size:0.78rem;color:var(--text-muted);" data-i18n="bk.pay.gua">🔒 Pagamento 100% seguro ·
                     Cancele até 24h antes</div>
 
                 <div style="margin-top:16px;">
-                    <button class="btn-secondary" style="width:100%;justify-content:center;" onclick="goStep(3)">←
+                    <button class="btn-secondary" style="width:100%;justify-content:center;" onclick="goStep(3)" data-i18n="bk.btn.edit">←
                         Editar dados</button>
                 </div>
             </div>
@@ -459,19 +459,19 @@
             <div class="step-panel" id="step5">
                 <div class="success-anim">
                     <div class="success-circle">✅</div>
-                    <h2 style="font-family:'Outfit',sans-serif;font-size:1.7rem;font-weight:800;margin-bottom:12px;">
+                    <h2 style="font-family:'Outfit',sans-serif;font-size:1.7rem;font-weight:800;margin-bottom:12px;" data-i18n="bk.s5.ti">
                         Reserva Confirmada!</h2>
-                    <p style="color:var(--text-secondary);margin-bottom:24px;line-height:1.6;">Receberá uma confirmação
+                    <p style="color:var(--text-secondary);margin-bottom:24px;line-height:1.6;" data-i18n="bk.s5.sub">Receberá uma confirmação
                         por SMS e email. Até breve na <strong>handpan.pt</strong>!</p>
                     <div style="display:flex;flex-direction:column;gap:12px;">
                         <a href="https://wa.me/351968841230" class="contact-action-btn"
                             style="justify-content:center;border-radius:var(--radius-pill);">
                             <div class="icon-wrap wa"><span style="font-size:20px;">💬</span></div>
                             <div>
-                                <div class="btn-value">Falar via WhatsApp</div>
+                                <div class="btn-value" data-i18n="bk.btn.wa">Falar via WhatsApp</div>
                             </div>
                         </a>
-                        <a href="index.html" class="btn-secondary" style="justify-content:center;">Voltar ao início</a>
+                        <a href="index.html" class="btn-secondary" style="justify-content:center;" data-i18n="bk.btn.home">Voltar ao início</a>
                     </div>
                 </div>
             </div>
@@ -548,9 +548,18 @@
         let calYear = new Date().getFullYear();
         let calMonth = new Date().getMonth();
 
-        const monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+        const getMonthNames = () => {
+             const mNames = {
+                 pt: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                 en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                 ua: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень']
+             };
+             const lang = window.activeLang || 'pt';
+             return mNames[lang];
+        };
 
         function renderCal() {
+            const monthNames = getMonthNames();
             document.getElementById('calMonthLabel').textContent = monthNames[calMonth] + ' ' + calYear;
             const grid = document.getElementById('calGrid');
             grid.innerHTML = '';
@@ -578,7 +587,9 @@
                     el.addEventListener('click', () => {
                         document.querySelectorAll('.cal-day.selected').forEach(c => c.classList.remove('selected'));
                         el.classList.add('selected');
-                        selDate = d + ' de ' + monthNames[calMonth] + ' ' + calYear;
+                        
+                        const de = window.activeLang === 'en' ? 'of' : 'de';
+                        selDate = d + ' ' + (window.activeLang === 'ua' ? '' : de + ' ') + monthNames[calMonth] + ' ' + calYear;
                         showTimeSlots();
                     });
                 }
@@ -611,6 +622,9 @@
 
         function prevMonth() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCal(); }
         function nextMonth() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCal(); }
+
+        // Also update calendar when language changes
+        window.addEventListener('languageChanged', renderCal);
 
         document.addEventListener('DOMContentLoaded', renderCal);
     </script>

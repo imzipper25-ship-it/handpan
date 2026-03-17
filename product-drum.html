@@ -44,57 +44,9 @@
 <body class="bg-cream text-wood font-sans antialiased" x-data="{ mobileMenuOpen: false, cartOpen: false }">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-header border-b border-wood/5 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="index.html"
-                        class="text-2xl font-bold tracking-tight text-wood-dark hover:text-sage transition">
-                        Handpan.pt
-                    </a>
-                </div>
-
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="index.html#about" class="text-wood hover:text-sage-dark font-medium transition">About</a>
-                    <a href="index.html#services"
-                        class="text-wood hover:text-sage-dark font-medium transition">Lessons</a>
-                    <a href="shop.html" class="text-wood hover:text-sage-dark font-medium transition">Shop</a>
-                    <a href="index.html#contacts"
-                        class="text-wood hover:text-sage-dark font-medium transition">Contacts</a>
-                    <button
-                        class="bg-wood text-cream px-5 py-2.5 rounded-full font-semibold hover:bg-sage-dark transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                        @click="cartOpen = true">
-                        Cart (0)
-                    </button>
-                </div>
-
-                <div class="md:hidden flex items-center">
-                    <button @click="mobileMenuOpen = !mobileMenuOpen"
-                        class="text-wood hover:text-sage focus:outline-none p-2">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" x-show="!mobileMenuOpen" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" x-show="mobileMenuOpen" x-cloak />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div x-show="mobileMenuOpen" x-transition.origin.top
-            class="md:hidden absolute w-full bg-cream/95 backdrop-blur-lg border-b border-wood/10" x-cloak>
-            <div class="px-4 pt-2 pb-6 space-y-2 shadow-xl">
-                <a href="index.html#about" @click="mobileMenuOpen = false"
-                    class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">About</a>
-                <a href="index.html#services" @click="mobileMenuOpen = false"
-                    class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">Lessons</a>
-                <a href="shop.html" @click="mobileMenuOpen = false"
-                    class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">Shop</a>
-                <a href="index.html#contacts" @click="mobileMenuOpen = false"
-                    class="block px-3 py-3 rounded-md text-base font-medium text-wood hover:bg-sage/20">Contacts</a>
-            </div>
-        </div>
+    <nav class="top-nav">
+        <a href="index.html" class="logo">handpan.pt</a>
+        <ul class="nav-links"></ul>
     </nav>
 
     <!-- Product Detail -->
@@ -114,23 +66,23 @@
                 <div>
                     <div class="mb-4">
                         <span
-                            class="inline-block px-4 py-1 bg-wood/10 text-wood-dark rounded-full text-sm font-semibold uppercase tracking-wider">Traditional
+                            class="inline-block px-4 py-1 bg-wood/10 text-wood-dark rounded-full text-sm font-semibold uppercase tracking-wider" data-i18n="p2.tag">Traditional
                             Craft</span>
                     </div>
 
-                    <h1 class="text-4xl md:text-5xl font-bold text-wood-dark mb-4">Shamanic Drum</h1>
+                    <h1 class="text-4xl md:text-5xl font-bold text-wood-dark mb-4" data-i18n="p2.title">Shamanic Drum</h1>
 
                     <div class="flex items-baseline gap-4 mb-8">
                         <span class="text-4xl font-bold text-sage-dark">€250</span>
                     </div>
 
                     <div class="prose prose-lg text-wood-light mb-8">
-                        <p class="text-lg mb-4">
+                        <p class="text-lg mb-4" data-i18n="p2.desc1">
                             Connect with ancient rhythms through our authentic Shamanic Drum. Handcrafted in Spain
                             using traditional methods, this drum produces deep, resonant tones perfect for meditation,
                             healing ceremonies, and spiritual practices.
                         </p>
-                        <p>
+                        <p data-i18n="p2.desc2">
                             Each drum is unique, made with natural materials and blessed with intention. The authentic
                             sound creates powerful vibrations that facilitate deep meditative states and spiritual
                             journeys.
@@ -139,7 +91,7 @@
 
                     <!-- Specifications -->
                     <div class="bg-white/50 rounded-xl p-6 mb-8">
-                        <h3 class="text-xl font-bold text-wood-dark mb-4">Specifications</h3>
+                        <h3 class="text-xl font-bold text-wood-dark mb-4" data-i18n="prod.specs">Specifications</h3>
                         <ul class="space-y-3">
                             <li class="flex items-center gap-3">
                                 <svg class="w-5 h-5 text-sage-dark flex-shrink-0" fill="currentColor"
@@ -148,7 +100,7 @@
                                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                         clip-rule="evenodd" />
                                 </svg>
-                                <span class="text-wood">Handmade in Spain</span>
+                                <span class="text-wood" data-i18n="p1.sp1">Handmade in Spain</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <svg class="w-5 h-5 text-sage-dark flex-shrink-0" fill="currentColor"
@@ -157,7 +109,7 @@
                                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                         clip-rule="evenodd" />
                                 </svg>
-                                <span class="text-wood">Natural Materials</span>
+                                <span class="text-wood" data-i18n="p2.sp2">Natural Materials</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <svg class="w-5 h-5 text-sage-dark flex-shrink-0" fill="currentColor"
@@ -166,7 +118,7 @@
                                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                         clip-rule="evenodd" />
                                 </svg>
-                                <span class="text-wood">Authentic Sound</span>
+                                <span class="text-wood" data-i18n="p2.sp3">Authentic Sound</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <svg class="w-5 h-5 text-sage-dark flex-shrink-0" fill="currentColor"
@@ -175,19 +127,19 @@
                                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                         clip-rule="evenodd" />
                                 </svg>
-                                <span class="text-wood">Includes Beater</span>
+                                <span class="text-wood" data-i18n="p2.sp4">Includes Beater</span>
                             </li>
                         </ul>
                     </div>
 
                     <!-- Add to Cart Button -->
                     <button
-                        class="w-full bg-wood text-cream px-8 py-4 rounded-xl font-bold text-lg hover:bg-sage-dark transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 mb-4">
+                        class="w-full bg-wood text-cream px-8 py-4 rounded-xl font-bold text-lg hover:bg-sage-dark transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 mb-4" data-i18n="p2.btn">
                         Add to Cart - €250
                     </button>
 
-                    <a href="shop.html"
-                        class="block text-center text-wood-light hover:text-wood transition font-medium">
+                    <a href="loja.html"
+                        class="block text-center text-wood-light hover:text-wood transition font-medium" data-i18n="prod.back">
                         ← Back to Shop
                     </a>
                 </div>
@@ -201,21 +153,21 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                 <div class="col-span-1 md:col-span-1">
                     <span class="text-2xl font-bold text-white block mb-6">Handpan.pt</span>
-                    <p class="text-sm opacity-70 leading-relaxed">
-                        Awakening through sound. <br>
-                        Join our community in Portugal.
+                    <p class="text-sm opacity-70 leading-relaxed" data-i18n="ft.desc">
+                        Despertar através do som. <br>
+                        Junte-se à nossa comunidade em Portugal.
                     </p>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold mb-6">Locations</h4>
+                    <h4 class="text-white font-bold mb-6" data-i18n="ft.loc">Localizações</h4>
                     <ul class="space-y-3 text-sm">
-                        <li class="hover:text-white transition cursor-pointer">Lisbon</li>
+                        <li class="hover:text-white transition cursor-pointer">Lisboa</li>
                         <li class="hover:text-white transition cursor-pointer">Ericeira</li>
                         <li class="hover:text-white transition cursor-pointer">Cascais</li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold mb-6">Connect</h4>
+                    <h4 class="text-white font-bold mb-6" data-i18n="ft.con">Ligue-se</h4>
                     <ul class="space-y-3 text-sm">
                         <li class="hover:text-white transition cursor-pointer">Instagram</li>
                         <li class="hover:text-white transition cursor-pointer">Facebook</li>
@@ -223,21 +175,21 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold mb-6">Newsletter</h4>
+                    <h4 class="text-white font-bold mb-6" data-i18n="ft.news">Newsletter</h4>
                     <form class="space-y-3">
-                        <input type="email" placeholder="Your email"
+                        <input type="email" placeholder="O seu email" data-i18n-placeholder="ft.email"
                             class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-sage text-white placeholder-white/30 transition">
                         <button
-                            class="w-full bg-sage text-white font-bold py-3 rounded-lg hover:bg-sage-dark transition">Subscribe</button>
+                            class="w-full bg-sage text-white font-bold py-3 rounded-lg hover:bg-sage-dark transition" data-i18n="ft.sub">Subscrever</button>
                     </form>
                 </div>
             </div>
-            <div class="pt-8 border-t border-white/10 text-center text-sm opacity-50">
-                &copy; 2026 Ding Handpan School Lisboa. All rights reserved.
+            <div class="pt-8 border-t border-white/10 text-center text-sm opacity-50" data-i18n="ft.copy">
+                &copy; 2026 Ding Handpan School Lisboa. Todos os direitos reservados.
             </div>
         </div>
     </footer>
-
+    <script src="shared-components.js"></script>
 </body>
 
 </html>
