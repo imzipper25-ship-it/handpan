@@ -1,0 +1,59 @@
+[
+  {
+    "id": "1",
+    "slug": "anatomia-do-handpan",
+    "title": {
+      "pt": "A Anatomia do Handpan: Um guia completo para principiantes",
+      "en": "Handpan Anatomy: A complete guide for beginners",
+      "ua": "Анатомія хандпану: повний посібник для початківців"
+    },
+    "excerpt": {
+      "pt": "Descubra as partes do handpan e como cada nota é produzida.",
+      "en": "Discover the parts of the handpan and how each note is produced.",
+      "ua": "Дізнайтеся про частини хандпану та як виробляється кожна нота."
+    },
+    "category": "instrumento",
+    "author": "Pedro Araújo",
+    "publishedAt": "2026-03-10",
+    "readingMinutes": 8,
+    "coverImage": "https://images.unsplash.com/photo-1610901028484-6d5f8ad83e74?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "2",
+    "slug": "arte-da-afinacao",
+    "title": {
+      "pt": "A Arte da Afinação — como manter o seu handpan perfeito",
+      "en": "The Art of Tuning — how to keep your handpan perfect",
+      "ua": "Мистецтво налаштування — як зберегти ваш хандпан ідеальним"
+    },
+    "excerpt": {
+      "pt": "Aprenda a identificar quando o seu handpan precisa de afinação.",
+      "en": "Learn to identify when your handpan needs tuning.",
+      "ua": "Навчіться визначати, коли ваш хандпан потребує налаштування."
+    },
+    "category": "tecnica",
+    "author": "Ana Costa",
+    "publishedAt": "2026-03-05",
+    "readingMinutes": 5,
+    "coverImage": "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=600&auto=format&fit=crop"
+  },
+  {
+    "id": "3",
+    "slug": "guia-do-iniciante",
+    "title": {
+      "pt": "Guia do Iniciante: Os seus primeiros 30 dias com o handpan",
+      "en": "Beginner's Guide: Your first 30 days with the handpan",
+      "ua": "Керівництво для початківця: Ваші перші 30 днів з хандпаном"
+    },
+    "excerpt": {
+      "pt": "Um plano estruturado para começar a tocar handpan com confiança.",
+      "en": "A structured plan to start playing handpan with confidence.",
+      "ua": "Структурований план для впевненого початку гри на хандпані."
+    },
+    "category": "guia",
+    "author": "Sofia Lima",
+    "publishedAt": "2026-03-01",
+    "readingMinutes": 6,
+    "coverImage": "https://images.unsplash.com/photo-1598460678889-4cb5032599c9?q=80&w=600&auto=format&fit=crop"
+  }
+]

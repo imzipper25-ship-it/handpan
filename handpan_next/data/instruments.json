@@ -1,0 +1,68 @@
+[
+  {
+    "id": "1",
+    "slug": "handpan-master-series",
+    "name": "Handpan Master Series",
+    "tuning": "D Minor",
+    "price": 1800,
+    "currency": "EUR",
+    "photos": [
+      "/assets/images/Instruments/handpan/DSC03259.jpg",
+      "/assets/images/Instruments/handpan/DSC03260.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/embed/example1",
+    "description": "Experience the pinnacle of handpan craftsmanship with our Master Series.",
+    "descriptionLong": "Each instrument is meticulously handcrafted in Spain using premium nitrided steel, ensuring exceptional sound quality and durability. This handpan features a rich, resonant tone with perfect harmonic balance.",
+    "category": "handpan",
+    "inStock": true,
+    "specs": {
+      "Notes": "9",
+      "Material": "Nitrided Steel",
+      "Origin": "Spain",
+      "Tuning": "D Minor",
+      "Includes": "Protective Case"
+    }
+  },
+  {
+    "id": "2",
+    "slug": "shamanic-drum",
+    "name": "Shamanic Drum",
+    "tuning": "N/A",
+    "price": 250,
+    "currency": "EUR",
+    "photos": [
+      "/assets/images/Instruments/drum/DSC03259.jpg"
+    ],
+    "description": "Connect with ancient rhythms through our authentic Shamanic Drum.",
+    "descriptionLong": "Handcrafted in Spain using traditional methods, this drum produces deep, resonant tones perfect for meditation, healing ceremonies, and spiritual practices.",
+    "category": "drum",
+    "inStock": true,
+    "specs": {
+      "Material": "Natural Materials",
+      "Sound": "Authentic",
+      "Origin": "Spain",
+      "Includes": "Beater"
+    }
+  },
+  {
+    "id": "3",
+    "slug": "crystal-singing-bowl",
+    "name": "Crystal Singing Bowl",
+    "tuning": "Chakra-tuned",
+    "price": 350,
+    "currency": "EUR",
+    "photos": [
+      "/assets/images/Instruments/quartz/DSC03259.jpg"
+    ],
+    "description": "Experience the pure, ethereal tones of our Crystal Singing Bowl.",
+    "descriptionLong": "Handcrafted in Spain from 99.9% pure quartz crystal, this bowl produces healing frequencies that resonate with the body's energy centers.",
+    "category": "bowl",
+    "inStock": true,
+    "specs": {
+      "Material": "99.9% Pure Quartz Crystal",
+      "Frequency": "Chakra-Tuned",
+      "Origin": "Spain",
+      "Includes": "Mallet and Ring"
+    }
+  }
+]
