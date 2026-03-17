@@ -24,20 +24,148 @@
         { code: 'pt', flag: '🇵🇹', label: 'Português' },
         { code: 'en', flag: '🇬🇧', label: 'English' },
         { code: 'ua', flag: '🇺🇦', label: 'Українська' },
-        { code: 'ru', flag: '🇷🇺', label: 'Русский' },
     ];
     let activeLang = localStorage.getItem('lang') || 'pt';
 
     function getCurrentLang() { return LANGS.find(l => l.code === activeLang) || LANGS[0]; }
 
+    const translations = {
+        pt: {
+            "hero.welcome": "Bem-vindo à",
+            "hero.main": "o principal destino para aulas de handpan em Portugal!",
+            "hero.desc": "Aprenda, crie e conecte-se através da magia deste instrumento num ambiente moderno e inspirador.",
+            "btn.start": "Começar Agora",
+            "btn.video": "▶ Ver Vídeo",
+            "stat.title1": "Alunos formados",
+            "stat.title2": "Localizações PT",
+            "stat.title3": "Anos de experiência",
+            "sec.school": "Aprenda ao seu ritmo",
+            "sec.school.sub": "Aulas individuais e em grupo para iniciantes e avançados.",
+            "card.indiv.title": "Aula Individual",
+            "card.indiv.desc": "Sessão personalizada 1-a-1 com um dos nossos instrutores experientes. Progrida ao seu próprio ritmo.",
+            "card.group.title": "Aula em Grupo",
+            "card.group.desc": "Partilhe a experiência com outros apaixonados. Máximo 6 alunos por sessão para atenção personalizada.",
+            "card.pack.title": "Pacote Intensivo",
+            "card.pack.desc": "10 aulas individuais com gravação de progresso. Ideal para acelerar o desenvolvimento musical.",
+            "card.intro.title": "Aula Introdutória",
+            "card.intro.desc": "Nunca tocou handpan? Experimente numa sessão de 30 minutos gratuita. Sem compromisso.",
+            "btn.programs": "Ver todos os programas",
+            "sec.why": "Uma experiência única",
+            "sec.events": "Viva a música ao vivo",
+            "btn.events": "Ver todos os eventos →",
+            "sec.shop": "Instrumentos & Serviços",
+            "sec.test": "O que dizem os nossos alunos",
+            "sec.cta": "Experimente a magia<br>do handpan por si mesmo!",
+            "sec.cta.sub": "Aula introdutória gratuita de 30 minutos. Sem compromisso.",
+            "nav.home": "Início",
+            "nav.school": "Escola",
+            "nav.book": "Inscrever",
+            "nav.events": "Eventos",
+            "nav.shop": "Loja",
+            "nav.about": "Sobre Nós",
+            "nav.blog": "Blogue",
+            "nav.contact": "Contactos"
+        },
+        en: {
+            "hero.welcome": "Welcome to",
+            "hero.main": "the premier destination for handpan lessons in Portugal!",
+            "hero.desc": "Learn, create, and connect through the magic of this instrument in a modern and inspiring environment.",
+            "btn.start": "Start Now",
+            "btn.video": "▶ Watch Video",
+            "stat.title1": "Students taught",
+            "stat.title2": "PT Locations",
+            "stat.title3": "Years experience",
+            "sec.school": "Learn at your own pace",
+            "sec.school.sub": "Private and group lessons for beginners and advanced players.",
+            "card.indiv.title": "Private Lesson",
+            "card.indiv.desc": "Personalized 1-on-1 session with our experienced instructors. Progress at your own pace.",
+            "card.group.title": "Group Lesson",
+            "card.group.desc": "Share the experience with other enthusiasts. Max 6 students per session for personalized attention.",
+            "card.pack.title": "Intensive Package",
+            "card.pack.desc": "10 private lessons with progress recording. Ideal to accelerate musical development.",
+            "card.intro.title": "Introductory Lesson",
+            "card.intro.desc": "Never played handpan? Try a free 30-minute session. No commitment.",
+            "btn.programs": "View all programs",
+            "sec.why": "A unique experience",
+            "sec.events": "Experience live music",
+            "btn.events": "View all events →",
+            "sec.shop": "Instruments & Services",
+            "sec.test": "What our students say",
+            "sec.cta": "Experience the magic<br>of the handpan yourself!",
+            "sec.cta.sub": "Free 30-minute introductory lesson. No strings attached.",
+            "nav.home": "Home",
+            "nav.school": "School",
+            "nav.book": "Book",
+            "nav.events": "Events",
+            "nav.shop": "Shop",
+            "nav.about": "About Us",
+            "nav.blog": "Blog",
+            "nav.contact": "Contact"
+        },
+        ua: {
+            "hero.welcome": "Ласкаво просимо до",
+            "hero.main": "найкращого місця для уроків хендпану в Португалії!",
+            "hero.desc": "Навчайтесь, створюйте та спілкуйтеся через магію цього інструменту в сучасному та надихаючому середовищі.",
+            "btn.start": "Почати зараз",
+            "btn.video": "▶ Дивитися відео",
+            "stat.title1": "Учнів навчено",
+            "stat.title2": "Локацій у Португалії",
+            "stat.title3": "Років досвіду",
+            "sec.school": "Навчайтесь у власному темпі",
+            "sec.school.sub": "Індивідуальні та групові заняття для початківців і досвідчених.",
+            "card.indiv.title": "Індивідуальний урок",
+            "card.indiv.desc": "Персональна сесія 1 на 1 з нашими досвідченими інструкторами. Прогресуйте у власному темпі.",
+            "card.group.title": "Груповий урок",
+            "card.group.desc": "Поділіться досвідом з іншими ентузіастами. Макс. 6 учнів для індивідуальної уваги.",
+            "card.pack.title": "Інтенсивний пакет",
+            "card.pack.desc": "10 індивідуальних уроків із записом прогресу. Ідеально для прискорення розвитку.",
+            "card.intro.title": "Вступний урок",
+            "card.intro.desc": "Ніколи не грали на хендпані? Спробуйте безкоштовне 30-хвилинне заняття.",
+            "btn.programs": "Переглянути всі програми",
+            "sec.why": "Унікальний досвід",
+            "sec.events": "Відчуйте живу музику",
+            "btn.events": "Переглянути всі події →",
+            "sec.shop": "Інструменти та Послуги",
+            "sec.test": "Що кажуть наші учні",
+            "sec.cta": "Відчуйте магію<br>хендпану самі!",
+            "sec.cta.sub": "Безкоштовний 30-хвилинний вступний урок. Без зобов'язань.",
+            "nav.home": "Головна",
+            "nav.school": "Школа",
+            "nav.book": "Записатись",
+            "nav.events": "Події",
+            "nav.shop": "Магазин",
+            "nav.about": "Про нас",
+            "nav.blog": "Блог",
+            "nav.contact": "Контакти"
+        }
+    };
+
+    function t(key) {
+        if (!translations[activeLang]) return translations['pt'][key] || key;
+        return translations[activeLang][key] || translations['pt'][key] || key;
+    }
+
+    function applyTranslations() {
+        if(activeLang === 'pt') return;
+        const dict = translations[activeLang];
+        if(!dict) return;
+        
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if(dict[key]) {
+                el.innerHTML = dict[key];
+            }
+        });
+    }
+
     // ── Inject Bottom Nav ───────────────────────────────────
     function injectBottomNav() {
         const nav = [
-            { id: 'index.html', href: 'index.html', icon: homeIcon(), label: 'Início' },
-            { id: 'escola.html', href: 'escola.html', icon: schoolIcon(), label: 'Escola' },
-            { id: 'inscricao.html', href: 'inscricao.html', icon: calIcon(), label: 'Inscrever' },
-            { id: 'eventos.html', href: 'eventos.html', icon: starIcon(), label: 'Eventos' },
-            { id: 'loja.html', href: 'loja.html', icon: shopIcon(), label: 'Loja' },
+            { id: 'index.html', href: 'index.html', icon: homeIcon(), label: t('nav.home') },
+            { id: 'escola.html', href: 'escola.html', icon: schoolIcon(), label: t('nav.school') },
+            { id: 'inscricao.html', href: 'inscricao.html', icon: calIcon(), label: t('nav.book') },
+            { id: 'eventos.html', href: 'eventos.html', icon: starIcon(), label: t('nav.events') },
+            { id: 'loja.html', href: 'loja.html', icon: shopIcon(), label: t('nav.shop') },
         ];
 
         const langCurrent = getCurrentLang();
@@ -108,18 +236,33 @@
         const list = topNav.querySelector('.nav-links');
         if (!list) return;
         const links = [
-            { href: 'index.html', label: 'Início' },
-            { href: 'escola.html', label: 'Escola' },
-            { href: 'inscricao.html', label: 'Inscrever' },
-            { href: 'eventos.html', label: 'Eventos' },
-            { href: 'loja.html', label: 'Loja' },
-            { href: 'sobre.html', label: 'Sobre Nós' },
-            { href: 'blogue.html', label: 'Blog' },
-            { href: 'contactos.html', label: 'Contactos' },
+            { href: 'index.html', label: t('nav.home') },
+            { href: 'escola.html', label: t('nav.school') },
+            { href: 'inscricao.html', label: t('nav.book') },
+            { href: 'eventos.html', label: t('nav.events') },
+            { href: 'loja.html', label: t('nav.shop') },
+            { href: 'sobre.html', label: t('nav.about') },
+            { href: 'blogue.html', label: t('nav.blog') },
+            { href: 'contactos.html', label: t('nav.contact') },
         ];
         list.innerHTML = links.map(l =>
             `<li><a href="${l.href}" class="${page === l.href ? 'active' : ''}">${l.label}</a></li>`
         ).join('');
+    }
+
+    function initDesktopLang() {
+        const btn = document.getElementById('desktopLang');
+        if(!btn) return;
+        const current = getCurrentLang();
+        btn.innerHTML = `${current.flag} ${current.code.toUpperCase()}`;
+        
+        btn.addEventListener('click', () => {
+            const currentIndex = LANGS.findIndex(l => l.code === activeLang);
+            const nextIndex = (currentIndex + 1) % LANGS.length;
+            const nextLang = LANGS[nextIndex];
+            localStorage.setItem('lang', nextLang.code);
+            location.reload();
+        });
     }
 
     // ── Init ────────────────────────────────────────────────
@@ -128,6 +271,8 @@
         injectBottomNav();
         injectStickyCTA();
         injectTopNavLinks();
+        initDesktopLang();
+        applyTranslations();
     });
 
     // ── SVG Icons ───────────────────────────────────────────
