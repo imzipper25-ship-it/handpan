@@ -64,7 +64,29 @@
             "nav.shop": "Loja",
             "nav.about": "Sobre Nós",
             "nav.blog": "Blogue",
-            "nav.contact": "Contactos"
+            "nav.contact": "Contactos",
+            "esc.hero": "Aulas de <span class=\"grad-text\">Handpan</span>",
+            "esc.hero.sub": "Para iniciantes e músicos avançados. Aprenda com os melhores em Portugal.",
+            "esc.hero.btn": "🎵 Reservar Aula Grátis",
+            "esc.tab.all": "Todos",
+            "esc.tab.beg": "Iniciante",
+            "esc.tab.int": "Intermédio",
+            "esc.tab.adv": "Avançado",
+            "esc.tab.grp": "Em Grupo",
+            "esc.card.btn": "Reservar",
+            "esc.card.intro.sub": "Primeira experiência. 30 minutos gratuitos.",
+            "esc.card.indiv.sub": "Sessão 1-a-1 personalizada de 60 minutos.",
+            "esc.card.grp.sub": "Máximo 6 alunos por sessão de 90 min.",
+            "esc.card.pack5": "Pacote 5 Aulas",
+            "esc.card.pack5.sub": "Progresso rápido com 5 sessões individuais.",
+            "esc.card.pack10": "Pacote Intensivo",
+            "esc.card.pack10.sub": "10 aulas para transformar a sua técnica.",
+            "esc.card.online": "Aula Online",
+            "esc.card.online.sub": "Aprenda de qualquer lugar do mundo.",
+            "esc.prog": "Programa",
+            "esc.prog.title": "O que vai aprender",
+            "esc.faq": "FAQ",
+            "esc.faq.title": "Perguntas frequentes"
         },
         en: {
             "hero.welcome": "Welcome to",
@@ -100,7 +122,29 @@
             "nav.shop": "Shop",
             "nav.about": "About Us",
             "nav.blog": "Blog",
-            "nav.contact": "Contact"
+            "nav.contact": "Contact",
+            "esc.hero": "Handpan <span class=\"grad-text\">Lessons</span>",
+            "esc.hero.sub": "For beginners and advanced musicians. Learn with the best in Portugal.",
+            "esc.hero.btn": "🎵 Book Free Lesson",
+            "esc.tab.all": "All",
+            "esc.tab.beg": "Beginner",
+            "esc.tab.int": "Intermediate",
+            "esc.tab.adv": "Advanced",
+            "esc.tab.grp": "Group",
+            "esc.card.btn": "Book",
+            "esc.card.intro.sub": "First experience. 30 free minutes.",
+            "esc.card.indiv.sub": "Personalized 1-on-1 session of 60 minutes.",
+            "esc.card.grp.sub": "Maximum 6 students per session of 90 min.",
+            "esc.card.pack5": "5 Lesson Package",
+            "esc.card.pack5.sub": "Fast progress with 5 individual sessions.",
+            "esc.card.pack10": "Intensive Package",
+            "esc.card.pack10.sub": "10 lessons to transform your technique.",
+            "esc.card.online": "Online Lesson",
+            "esc.card.online.sub": "Learn from anywhere in the world.",
+            "esc.prog": "Program",
+            "esc.prog.title": "What you will learn",
+            "esc.faq": "FAQ",
+            "esc.faq.title": "Frequently asked questions"
         },
         ua: {
             "hero.welcome": "Ласкаво просимо до",
@@ -136,7 +180,29 @@
             "nav.shop": "Магазин",
             "nav.about": "Про нас",
             "nav.blog": "Блог",
-            "nav.contact": "Контакти"
+            "nav.contact": "Контакти",
+            "esc.hero": "Уроки <span class=\"grad-text\">Хендпану</span>",
+            "esc.hero.sub": "Для початківців та досвідчених музикантів. Навчайтесь у найкращих у Португалії.",
+            "esc.hero.btn": "🎵 Забронювати урок (Безкоштовно)",
+            "esc.tab.all": "Всі",
+            "esc.tab.beg": "Початківець",
+            "esc.tab.int": "Середній",
+            "esc.tab.adv": "Просунутий",
+            "esc.tab.grp": "Група",
+            "esc.card.btn": "Забронювати",
+            "esc.card.intro.sub": "Перший досвід. 30 безкоштовних хвилин.",
+            "esc.card.indiv.sub": "Персональна 1-на-1 сесія на 60 хвилин.",
+            "esc.card.grp.sub": "Максимум 6 студентів на сесію 90 хв.",
+            "esc.card.pack5": "Пакет з 5 уроків",
+            "esc.card.pack5.sub": "Швидкий прогрес з 5 індивідуальними сесіями.",
+            "esc.card.pack10": "Інтенсивний пакет",
+            "esc.card.pack10.sub": "10 уроків для трансформації вашої техніки.",
+            "esc.card.online": "Онлайн урок",
+            "esc.card.online.sub": "Навчайтесь з будь-якої точки світу.",
+            "esc.prog": "Програма",
+            "esc.prog.title": "Чому ви навчитесь",
+            "esc.faq": "FAQ",
+            "esc.faq.title": "Часті запитання"
         }
     };
 
@@ -254,14 +320,85 @@
         const btn = document.getElementById('desktopLang');
         if(!btn) return;
         const current = getCurrentLang();
-        btn.innerHTML = `${current.flag} ${current.code.toUpperCase()}`;
+        btn.innerHTML = `${current.flag} ${current.code.toUpperCase()} <span style="font-size:10px;margin-left:4px;">▼</span>`;
         
-        btn.addEventListener('click', () => {
-            const currentIndex = LANGS.findIndex(l => l.code === activeLang);
-            const nextIndex = (currentIndex + 1) % LANGS.length;
-            const nextLang = LANGS[nextIndex];
-            localStorage.setItem('lang', nextLang.code);
-            location.reload();
+        // Ensure nav has relative positioning context if needed, but we'll use fixed or relative wrapper
+        const parent = btn.parentElement;
+        parent.style.position = 'relative';
+
+        const drop = document.createElement('div');
+        drop.className = 'lang-dropdown desktop-lang-dropdown';
+        // Add absolute positioning under the button
+        drop.style.cssText = `
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            padding: 8px;
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 140px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        `;
+
+        LANGS.forEach(l => {
+            const opt = document.createElement('div');
+            opt.className = 'lang-option';
+            opt.style.cssText = `
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px 14px;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: background 0.15s;
+                font-size: 0.9rem;
+                font-weight: 500;
+                color: var(--text-secondary);
+            `;
+            opt.innerHTML = `<span class="flag" style="font-size:18px;">${l.flag}</span><span class="label">${l.label}</span>`;
+            
+            if(l.code === current.code) {
+                opt.style.background = 'rgba(59, 130, 246, 0.1)';
+                opt.style.color = '#3b82f6';
+            }
+
+            opt.addEventListener('mouseover', () => {
+                if(l.code !== current.code) {
+                    opt.style.background = 'rgba(0, 0, 0, 0.04)';
+                    opt.style.color = '#3b82f6';
+                }
+            });
+            opt.addEventListener('mouseout', () => {
+                if(l.code !== current.code) {
+                    opt.style.background = 'transparent';
+                    opt.style.color = 'var(--text-secondary)';
+                }
+            });
+
+            opt.addEventListener('click', (e) => {
+                e.stopPropagation();
+                localStorage.setItem('lang', l.code);
+                location.reload();
+            });
+            drop.appendChild(opt);
+        });
+
+        parent.appendChild(drop);
+
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = drop.style.display === 'flex';
+            drop.style.display = isOpen ? 'none' : 'flex';
+        });
+
+        document.addEventListener('click', () => {
+            drop.style.display = 'none';
         });
     }
 

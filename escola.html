@@ -76,6 +76,9 @@
             border: 1px solid var(--border-glass);
             overflow: hidden;
             transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .program-card:hover {
@@ -127,6 +130,9 @@
 
         .program-card .card-body {
             padding: 24px 28px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .program-card .feature-list {
@@ -134,7 +140,8 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-bottom: 24px;
+            margin-bottom: auto;
+            padding-bottom: 24px;
         }
 
         .program-card .feature-list li {
@@ -143,6 +150,7 @@
             gap: 10px;
             font-size: 0.9rem;
             color: var(--text-secondary);
+            line-height: 1.6;
         }
 
         .program-card .feature-list li::before {
@@ -215,9 +223,10 @@
 
         .curriculum-block p {
             margin-top: 16px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.8;
+            letter-spacing: 0.2px;
         }
 
         .faq-item {
@@ -238,9 +247,10 @@
         }
 
         .faq-a {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.8;
+            letter-spacing: 0.2px;
             margin-top: 12px;
             display: none;
         }
@@ -274,22 +284,22 @@
         <section class="page-hero">
             <div class="container">
                 <span class="section-tag">Escola</span>
-                <h1 class="section-title" style="margin-top:12px;margin-bottom:16px;">Aulas de <span
+                <h1 class="section-title" data-i18n="esc.hero" style="margin-top:12px;margin-bottom:16px;">Aulas de <span
                         class="grad-text">Handpan</span></h1>
-                <p class="section-subtitle" style="margin:0 auto 40px;text-align:center;">Para iniciantes e músicos
+                <p class="section-subtitle" data-i18n="esc.hero.sub" style="margin:0 auto 40px;text-align:center;">Para iniciantes e músicos
                     avançados. Aprenda com os melhores em Portugal.</p>
-                <a href="inscricao.html" class="btn-primary" style="font-size:1.05rem;">🎵 Reservar Aula Grátis</a>
+                <a href="inscricao.html" class="btn-primary" data-i18n="esc.hero.btn" style="font-size:1.05rem;">🎵 Reservar Aula Grátis</a>
             </div>
         </section>
 
         <!-- Tabs -->
-        <div style="position:relative;z-index:1;margin-bottom:16px;">
+        <div class="container" style="position:relative;z-index:1;margin-bottom:16px;">
             <div class="program-tabs" id="programTabs">
-                <button class="tab-btn active" data-filter="all">Todos</button>
-                <button class="tab-btn" data-filter="beginner">Iniciante</button>
-                <button class="tab-btn" data-filter="intermediate">Intermédio</button>
-                <button class="tab-btn" data-filter="advanced">Avançado</button>
-                <button class="tab-btn" data-filter="group">Em Grupo</button>
+                <button class="tab-btn active" data-filter="all" data-i18n="esc.tab.all">Todos</button>
+                <button class="tab-btn" data-filter="beginner" data-i18n="esc.tab.beg">Iniciante</button>
+                <button class="tab-btn" data-filter="intermediate" data-i18n="esc.tab.int">Intermédio</button>
+                <button class="tab-btn" data-filter="advanced" data-i18n="esc.tab.adv">Avançado</button>
+                <button class="tab-btn" data-filter="group" data-i18n="esc.tab.grp">Em Grupo</button>
             </div>
         </div>
 
@@ -304,8 +314,8 @@
                             <span class="level-badge"
                                 style="background:rgba(16,185,129,0.1);color:#10b981;border:1px solid rgba(16,185,129,0.2);">🌱
                                 Iniciante</span>
-                            <div class="title">Aula Introdutória</div>
-                            <div class="sub">Primeira experiência. 30 minutos gratuitos.</div>
+                            <div class="title" data-i18n="card.intro.title">Aula Introdutória</div>
+                            <div class="sub" data-i18n="esc.card.intro.sub">Primeira experiência. 30 minutos gratuitos.</div>
                         </div>
                         <div class="card-body">
                             <ul class="feature-list">
@@ -316,7 +326,7 @@
                             </ul>
                             <div class="price-row">
                                 <div><span class="price" style="color:#10b981;">€20</span></div>
-                                <a href="inscricao.html" class="btn-primary"
+                                <a href="inscricao.html" class="btn-primary" data-i18n="esc.card.btn"
                                     style="padding:12px 22px;font-size:0.9rem;">Reservar</a>
                             </div>
                         </div>
@@ -329,8 +339,8 @@
                                 style="background:rgba(59,130,246,0.1);color:#2563eb;border:1px solid rgba(59,130,246,0.2);">⭐
                                 Popular</span>
                             <span class="featured-label">Mais escolhido</span>
-                            <div class="title">Aula Individual</div>
-                            <div class="sub">Sessão 1-a-1 personalizada de 60 minutos.</div>
+                            <div class="title" data-i18n="card.indiv.title">Aula Individual</div>
+                            <div class="sub" data-i18n="esc.card.indiv.sub">Sessão 1-a-1 personalizada de 60 minutos.</div>
                         </div>
                         <div class="card-body">
                             <ul class="feature-list">
@@ -342,7 +352,7 @@
                             </ul>
                             <div class="price-row">
                                 <div><span class="price" style="color:#2563eb;">€50</span><span class="per">/hora</span></div>
-                                <a href="inscricao.html" class="btn-primary"
+                                <a href="inscricao.html" class="btn-primary" data-i18n="esc.card.btn"
                                     style="padding:12px 22px;font-size:0.9rem;">Reservar</a>
                             </div>
                         </div>
@@ -354,8 +364,8 @@
                             <span class="level-badge"
                                 style="background:rgba(14,165,233,0.1);color:#0284c7;border:1px solid rgba(14,165,233,0.2);">👥
                                 Grupo</span>
-                            <div class="title">Aula em Grupo</div>
-                            <div class="sub">Máximo 6 alunos por sessão de 90 min.</div>
+                            <div class="title" data-i18n="card.group.title">Aula em Grupo</div>
+                            <div class="sub" data-i18n="esc.card.grp.sub">Máximo 6 alunos por sessão de 90 min.</div>
                         </div>
                         <div class="card-body">
                             <ul class="feature-list">
@@ -367,7 +377,7 @@
                             <div class="price-row">
                                 <div><span class="price" style="color:#0284c7;">€20</span><span
                                         class="per">/pessoa</span></div>
-                                <a href="inscricao.html" class="btn-primary"
+                                <a href="inscricao.html" class="btn-primary" data-i18n="esc.card.btn"
                                     style="padding:12px 22px;font-size:0.9rem;">Reservar</a>
                             </div>
                         </div>
@@ -379,8 +389,8 @@
                             <span class="level-badge"
                                 style="background:rgba(245,158,11,0.1);color:#d97706;border:1px solid rgba(245,158,11,0.2);">🎵
                                 Intermédio</span>
-                            <div class="title">Pacote 5 Aulas</div>
-                            <div class="sub">Progresso rápido com 5 sessões individuais.</div>
+                            <div class="title" data-i18n="esc.card.pack5">Pacote 5 Aulas</div>
+                            <div class="sub" data-i18n="esc.card.pack5.sub">Progresso rápido com 5 sessões individuais.</div>
                         </div>
                         <div class="card-body">
                             <ul class="feature-list">
@@ -392,7 +402,7 @@
                             <div class="price-row">
                                 <div><span class="price" style="color:#d97706;">€225</span><span class="per">/5
                                         aulas</span></div>
-                                <a href="inscricao.html" class="btn-primary"
+                                <a href="inscricao.html" class="btn-primary" data-i18n="esc.card.btn"
                                     style="padding:12px 22px;font-size:0.9rem;">Reservar</a>
                             </div>
                         </div>
@@ -404,8 +414,8 @@
                             <span class="level-badge"
                                 style="background:rgba(236,72,153,0.1);color:#db2777;border:1px solid rgba(236,72,153,0.2);">🏆
                                 Avançado</span>
-                            <div class="title">Pacote Intensivo</div>
-                            <div class="sub">10 aulas para transformar a sua técnica.</div>
+                            <div class="title" data-i18n="esc.card.pack10">Pacote Intensivo</div>
+                            <div class="sub" data-i18n="esc.card.pack10.sub">10 aulas para transformar a sua técnica.</div>
                         </div>
                         <div class="card-body">
                             <ul class="feature-list">
@@ -418,7 +428,7 @@
                             <div class="price-row">
                                 <div><span class="price" style="color:#db2777;">€430</span><span class="per">/10
                                         aulas</span></div>
-                                <a href="inscricao.html" class="btn-primary"
+                                <a href="inscricao.html" class="btn-primary" data-i18n="esc.card.btn"
                                     style="padding:12px 22px;font-size:0.9rem;">Reservar</a>
                             </div>
                         </div>
@@ -430,8 +440,8 @@
                             <span class="level-badge"
                                 style="background:rgba(16,185,129,0.1);color:#059669;border:1px solid rgba(16,185,129,0.2);">🌟
                                 Online</span>
-                            <div class="title">Aula Online</div>
-                            <div class="sub">Aprenda de qualquer lugar do mundo.</div>
+                            <div class="title" data-i18n="esc.card.online">Aula Online</div>
+                            <div class="sub" data-i18n="esc.card.online.sub">Aprenda de qualquer lugar do mundo.</div>
                         </div>
                         <div class="card-body">
                             <ul class="feature-list">
@@ -443,7 +453,7 @@
                             <div class="price-row">
                                 <div><span class="price" style="color:#059669;">€35</span><span class="per">/hora</span>
                                 </div>
-                                <a href="inscricao.html" class="btn-primary"
+                                <a href="inscricao.html" class="btn-primary" data-i18n="esc.card.btn"
                                     style="padding:12px 22px;font-size:0.9rem;">Reservar</a>
                             </div>
                         </div>
@@ -457,8 +467,8 @@
         <section class="section" style="position:relative;z-index:1;padding-top:0;">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-tag">Programa</span>
-                    <h2 class="section-title">O que vai aprender</h2>
+                    <span class="section-tag" data-i18n="esc.prog">Programa</span>
+                    <h2 class="section-title" data-i18n="esc.prog.title">O que vai aprender</h2>
                 </div>
                 <details class="curriculum-block">
                     <summary>Módulo 1 — Fundamentos (Semanas 1–4)</summary>
@@ -486,8 +496,8 @@
         <section class="section" style="position:relative;z-index:1;padding-top:0;padding-bottom:120px;">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-tag">FAQ</span>
-                    <h2 class="section-title">Perguntas frequentes</h2>
+                    <span class="section-tag" data-i18n="esc.faq">FAQ</span>
+                    <h2 class="section-title" data-i18n="esc.faq.title">Perguntas frequentes</h2>
                 </div>
                 <div id="faqList">
                     <div class="faq-item">
