@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Виртуальный Хендпан</title>
+    <link rel="stylesheet" href="assets/css/virtual-handpan.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Screen 1: Email Form -->
+        <div id="email-screen" class="screen active">
+            <div class="content">
+                <h1 class="title">Виртуальный Хендпан</h1>
+                <p class="subtitle">Попробуй сыграть свою первую мелодию на экране телефона!</p>
+                <form id="email-form">
+                    <div class="input-wrapper">
+                        <input type="email" id="user-email" placeholder="Твой Email" required autocomplete="email">
+                    </div>
+                    <button type="submit" class="cta-button pulse">Начать игру</button>
+                    <p class="disclaimer">Убедись, что звук включен (отключи беззвучный режим)</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Screen 2: Tutorial -->
+        <div id="tutorial-screen" class="screen hidden">
+            <div class="content">
+                <div class="thumbs-animation">
+                    <div class="thumb left-thumb">👇</div>
+                    <div class="thumb right-thumb">👇</div>
+                </div>
+                <h2>Нажимай по очереди!</h2>
+            </div>
+        </div>
+
+        <!-- Screen 3: Game Area -->
+        <div id="game-screen" class="screen hidden">
+            <!-- Game UI Overlay -->
+            <div id="game-header">
+                <div class="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
+                <div id="sequence-display" class="sequence-box">
+                    Слушай и повторяй...
+                </div>
+            </div>
+
+            <!-- Handpan Container -->
+            <div id="handpan-container">
+                <div class="handpan-base"></div>
+                
+                <!-- Notes will be positioned absolutely -->
+                <div class="note-btn ding" data-note="0"><span>1</span></div>
+                
+                <div class="note-btn pos-2" data-note="1"><span>2</span></div>
+                <div class="note-btn pos-3" data-note="2"><span>3</span></div>
+                <div class="note-btn pos-4" data-note="3"><span>4</span></div>
+                <div class="note-btn pos-5" data-note="4"><span>5</span></div>
+                <div class="note-btn pos-6" data-note="5"><span>6</span></div>
+                <div class="note-btn pos-7" data-note="6"><span>7</span></div>
+                <div class="note-btn pos-8" data-note="7"><span>8</span></div>
+                <div class="note-btn pos-9" data-note="8"><span>9</span></div>
+            </div>
+        </div>
+
+        <!-- Screen 4: Outro -->
+        <div id="outro-screen" class="screen hidden">
+            <div class="content fade-in-up">
+                <h2>Потрясающе! 🎉</h2>
+                <p>Ты только что сыграл свою первую мелодию на хендпане.</p>
+                <p class="highlight-text">Представь, как это будет звучать вживую!</p>
+                <div class="cta-container">
+                    <a href="inscricao.html" class="cta-button large bounce">Записаться на живой урок</a>
+                    <button id="replay-btn" class="secondary-button">Сыграть еще раз</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/virtual-handpan.js"></script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+/* css/virtual-handpan.css */
+
+:root {
+    --bg-color: #0b0f19;
+    --primary-color: #0ea5e9;
+    --primary-hover: #0284c7;
+    --text-color: #f8fafc;
+    --handpan-bg: #1e293b;
+    --handpan-rim: #0f172a;
+    --note-bg: #334155;
+    --note-active: #38bdf8;
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    overflow: hidden; /* Prevent scrolling on mobile */
+    touch-action: none; /* Disables default touch actions like pull-to-refresh */
+}
+
+/* Typography & General */
+h1.title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #0ea5e9, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}
+
+p.subtitle {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 10;
+}
+
+.screen.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.screen.hidden {
+    display: none;
+}
+
+.content {
+    width: 90%;
+    max-width: 400px;
+    padding: 2rem;
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+/* Forms & Buttons */
+.input-wrapper {
+    margin-bottom: 1.5rem;
+}
+
+input[type="email"] {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-radius: 9999px;
+    border: 2px solid #334155;
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="email"]:focus {
+    border-color: var(--primary-color);
+}
+
+.cta-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+    transition: transform 0.2s, background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.cta-button:active {
+    transform: scale(0.95);
+    background: var(--primary-hover);
+}
+
+.cta-button.large {
+    font-size: 1.25rem;
+    padding: 1.2rem 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.secondary-button {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.8rem 1.5rem;
+    border-radius: 9999px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.2s;
+}
+
+.disclaimer {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-top: 1.5rem;
+}
+
+/* Tutorial Animation */
+.thumbs-animation {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.left-thumb {
+    animation: tap-left 1.5s infinite;
+}
+
+.right-thumb {
+    animation: tap-right 1.5s infinite;
+    animation-delay: 0.75s;
+}
+
+@keyframes tap-left {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(0.9); text-shadow: 0 0 20px rgba(14, 165, 233, 0.8); }
+}
+
+@keyframes tap-right {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(0.9); text-shadow: 0 0 20px rgba(14, 165, 233, 0.8); }
+}
+
+/* Game Area */
+#game-header {
+    position: absolute;
+    top: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 20;
+}
+
+.sequence-box {
+    background: rgba(15, 23, 42, 0.8);
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+}
+
+.highlight {
+    color: var(--primary-color);
+}
+.dimmed {
+    color: #475569;
+}
+
+/* The Handpan */
+#handpan-container {
+    position: relative;
+    width: 95vw;
+    height: 95vw;
+    max-width: 500px;
+    max-height: 500px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, var(--handpan-bg) 0%, var(--handpan-rim) 100%);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 20px 50px rgba(0,0,0,0.5);
+    border: 2px solid #334155;
+    /* Adjust for mobile centering */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.handpan-base {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    border-radius: 50%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><circle cx="50%" cy="50%" r="48%" stroke="rgba(255,255,255,0.05)" stroke-width="2" fill="none"/></svg>');
+    pointer-events: none;
+}
+
+/* Notes */
+.note-btn {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, var(--note-bg) 0%, #1e293b 80%);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 5px 15px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #cbd5e1;
+    transform: translate(-50%, -50%);
+    transition: background 0.1s, transform 0.1s, box-shadow 0.1s;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.note-btn span {
+    pointer-events: none;
+}
+
+/* Active State (Touch) */
+.note-btn.active {
+    background: radial-gradient(circle at center, var(--note-active) 0%, var(--primary-hover) 80%);
+    box-shadow: inset 0 0 20px rgba(255,255,255,0.4), 0 0 30px var(--primary-color);
+    transform: translate(-50%, -50%) scale(0.92);
+    color: white;
+}
+
+/* Target highlight in game */
+.note-btn.target-pulse {
+    animation: target-ring 1s infinite alternate;
+}
+
+@keyframes target-ring {
+    0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7); }
+    100% { box-shadow: 0 0 0 20px rgba(14, 165, 233, 0); }
+}
+
+/* Positions matching a typical alternating scale 
+   Left: Even notes, Right: Odd notes. Ding in center */
+
+.ding {
+    top: 50%; left: 50%;
+    width: 25%; height: 25%;
+    font-size: 1.5rem;
+}
+
+/* Radius = 36% to fit nicely */
+/* bottom: 180deg */
+.pos-2 { top: 86%; left: 50%; width: 17%; height: 17%; }
+/* bottom-right: 135deg */
+.pos-3 { top: 75%; left: 75%; width: 15%; height: 15%; }
+/* bottom-left: 225deg */
+.pos-4 { top: 75%; left: 25%; width: 15%; height: 15%; }
+/* right: 90deg */
+.pos-5 { top: 50%; left: 86%; width: 15%; height: 15%; }
+/* left: 270deg */
+.pos-6 { top: 50%; left: 14%; width: 15%; height: 15%; }
+/* top-right: 45deg */
+.pos-7 { top: 25%; left: 75%; width: 13%; height: 13%; }
+/* top-left: 315deg */
+.pos-8 { top: 25%; left: 25%; width: 13%; height: 13%; }
+/* top: 0deg */
+.pos-9 { top: 14%; left: 50%; width: 13%; height: 13%; }
+
+/* Utilities */
+.fade-in-up {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
