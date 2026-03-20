@@ -158,9 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const text = levelSequence.slice(start, end).map((val, idx) => {
             const absIdx = start + idx;
-            if (absIdx === currentStep)      return `<span class="highlight">${val + 1}</span>`;
-            if (absIdx < currentStep)        return `<span class="dimmed">${val + 1}</span>`;
-            return `<span>${val + 1}</span>`;
+            if (absIdx === currentStep)      return `<span class="highlight">${val}</span>`;
+            if (absIdx < currentStep)        return `<span class="dimmed">${val}</span>`;
+            return `<span>${val}</span>`;
         }).join(' · ');
 
         sequenceDisplay.innerHTML = text;
@@ -227,8 +227,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─── Touch Handling (Multi-touch) ─────────────────────────────────────────
     notesBtns.forEach(btn => {
-        btn.addEventListener('touchstart', (e) => {
+        btn.addEventListener('touchstart', async (e) => {
             e.preventDefault();
+
+            if (!audioCtx) await initAudio();
 
             for (let i = 0; i < e.changedTouches.length; i++) {
                 const noteIndex = parseInt(btn.getAttribute('data-note'), 10);
