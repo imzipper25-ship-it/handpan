@@ -1,6 +1,20 @@
 // virtual-handpan.js
 
 document.addEventListener('DOMContentLoaded', () => {
+    // ─── Translations Helper ──────────────────────────────────────────────────
+    function t(key, defaultText) {
+        if (typeof translations !== 'undefined') {
+            const lang = localStorage.getItem('lang') || 'pt';
+            if (translations[lang] && translations[lang][key]) {
+                return translations[lang][key];
+            }
+            if (translations['pt'] && translations['pt'][key]) {
+                return translations['pt'][key];
+            }
+        }
+        return defaultText;
+    }
+
     // ─── UI Elements ──────────────────────────────────────────────────────────
     const emailScreen    = document.getElementById('email-screen');
     const tutorialScreen = document.getElementById('tutorial-screen');
@@ -203,14 +217,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!email) return;
 
         // Loading state
-        submitBtn.textContent = 'Загрузка...';
+        submitBtn.textContent = t('vh.loading', 'A carregar...');
         submitBtn.disabled = true;
 
         console.log('Email captured:', email);
 
         await initAudio(); // must happen inside user gesture for iOS
 
-        submitBtn.textContent = 'Начать игру';
+        submitBtn.textContent = t('vh.start', 'Começar');
         submitBtn.disabled = false;
 
         showScreen(tutorialScreen);

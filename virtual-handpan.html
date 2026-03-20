@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Виртуальный Хендпан</title>
+    <title>Handpan Virtual</title>
     <link rel="stylesheet" href="assets/css/virtual-handpan.css">
 </head>
 <body>
@@ -11,14 +11,14 @@
         <!-- Screen 1: Email Form -->
         <div id="email-screen" class="screen active">
             <div class="content">
-                <h1 class="title">Виртуальный Хендпан</h1>
-                <p class="subtitle">Попробуй сыграть свою первую мелодию на экране телефона!</p>
+                <h1 class="title" data-i18n="vh.title">Handpan Virtual</h1>
+                <p class="subtitle" data-i18n="vh.subtitle">Toca a tua primeira melodia no ecrã do teu telemóvel!</p>
                 <form id="email-form">
                     <div class="input-wrapper">
-                        <input type="email" id="user-email" placeholder="Твой Email" required autocomplete="email">
+                        <input type="email" id="user-email" data-i18n="vh.email" placeholder="O teu Email" required autocomplete="email">
                     </div>
-                    <button type="submit" class="cta-button pulse">Начать игру</button>
-                    <p class="disclaimer">Убедись, что звук включен (отключи беззвучный режим)</p>
+                    <button type="submit" class="cta-button pulse" data-i18n="vh.start">Começar</button>
+                    <p class="disclaimer" data-i18n="vh.sound_warn">Certifica-te de que o som está ligado (desativa o modo silencioso)</p>
                 </form>
             </div>
         </div>
@@ -30,7 +30,7 @@
                     <div class="thumb left-thumb">👇</div>
                     <div class="thumb right-thumb">👇</div>
                 </div>
-                <h2>Нажимай по очереди!</h2>
+                <h2 data-i18n="vh.tutorial">Clica à vez!</h2>
             </div>
         </div>
 
@@ -41,8 +41,8 @@
                 <div class="progress-bar-container">
                     <div id="progress-bar"></div>
                 </div>
-                <div id="sequence-display" class="sequence-box">
-                    Слушай и повторяй...
+                <div id="sequence-display" class="sequence-box" data-i18n="vh.listen">
+                    Ouve e repete...
                 </div>
             </div>
 
@@ -67,18 +67,19 @@
         <!-- Screen 4: Outro -->
         <div id="outro-screen" class="screen hidden">
             <div class="content fade-in-up">
-                <h2>Потрясающе! 🎉</h2>
-                <p>Ты только что сыграл свою первую мелодию на хендпане.</p>
-                <p class="highlight-text">Представь, как это будет звучать вживую!</p>
+                <h2 data-i18n="vh.outro_title">Incrível! 🎉</h2>
+                <p data-i18n="vh.outro_line1">Acabaste de tocar a tua primeira melodia no handpan.</p>
+                <p class="highlight-text" data-i18n="vh.outro_line2">Imagina como soaria ao vivo!</p>
                 <div class="cta-container">
-                    <a href="inscricao.html" class="cta-button large bounce">Записаться на живой урок</a>
-                    <button id="replay-btn" class="secondary-button">Сыграть еще раз</button>
+                    <a href="inscricao.html" class="cta-button large bounce" data-i18n="vh.book_lesson">Inscrever na aula presencial</a>
+                    <button id="replay-btn" class="secondary-button" data-i18n="vh.replay">Tocar de novo</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Scripts -->
+    <script src="i18n.js"></script>
     <script src="assets/js/virtual-handpan.js"></script>
 </body>
 </html>

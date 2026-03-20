@@ -46,7 +46,21 @@ const translations = {
         "footer.desc": "Despertar através do som.<br>Escola de handpan em Portugal desde 2015.",
         "footer.pages": "Páginas",
         "footer.loc": "Localização",
-        "footer.contact": "Contacto"
+        "footer.contact": "Contacto",
+        "btn.hearing_gift": "🎁 Testa o teu ouvido musical — e ganha um presente!",
+        "vh.title": "Handpan Virtual",
+        "vh.subtitle": "Toca a tua primeira melodia no ecrã do teu telemóvel!",
+        "vh.email": "O teu Email",
+        "vh.start": "Começar",
+        "vh.sound_warn": "Certifica-te de que o som está ligado (desativa o modo silencioso)",
+        "vh.tutorial": "Clica à vez!",
+        "vh.listen": "Ouve e repete...",
+        "vh.outro_title": "Incrível! 🎉",
+        "vh.outro_line1": "Acabaste de tocar a tua primeira melodia no handpan.",
+        "vh.outro_line2": "Imagina como soaria ao vivo!",
+        "vh.book_lesson": "Inscrever na aula presencial",
+        "vh.replay": "Tocar de novo",
+        "vh.loading": "A carregar..."
     },
     en: {
         "nav.home": "Home",
@@ -95,7 +109,21 @@ const translations = {
         "footer.desc": "Awakening through sound.<br>Handpan school in Portugal since 2015.",
         "footer.pages": "Pages",
         "footer.loc": "Location",
-        "footer.contact": "Contact"
+        "footer.contact": "Contact",
+        "btn.hearing_gift": "🎁 Test your musical ear — and get a gift!",
+        "vh.title": "Virtual Handpan",
+        "vh.subtitle": "Try playing your first melody on your phone screen!",
+        "vh.email": "Your Email",
+        "vh.start": "Start Game",
+        "vh.sound_warn": "Make sure sound is on (turn off silent mode)",
+        "vh.tutorial": "Tap in order!",
+        "vh.listen": "Listen and repeat...",
+        "vh.outro_title": "Awesome! 🎉",
+        "vh.outro_line1": "You just played your first handpan melody.",
+        "vh.outro_line2": "Imagine how it sounds live!",
+        "vh.book_lesson": "Book a live lesson",
+        "vh.replay": "Play again",
+        "vh.loading": "Loading..."
     },
     ua: {
         "nav.home": "Головна",
@@ -144,7 +172,21 @@ const translations = {
         "footer.desc": "Пробудження через звук.<br>Школа хендпану в Португалії з 2015 року.",
         "footer.pages": "Сторінки",
         "footer.loc": "Локація",
-        "footer.contact": "Контакти"
+        "footer.contact": "Контакти",
+        "btn.hearing_gift": "🎁 Перевір свій музичний слух — і отримай подарунок!",
+        "vh.title": "Віртуальний Хендпан",
+        "vh.subtitle": "Спробуй зіграти свою першу мелодію на екрані телефону!",
+        "vh.email": "Твій Email",
+        "vh.start": "Почати гру",
+        "vh.sound_warn": "Переконайся, що звук увімкнено (вимкни беззвучний режим)",
+        "vh.tutorial": "Натискай по черзі!",
+        "vh.listen": "Слухай і повторюй...",
+        "vh.outro_title": "Неймовірно! 🎉",
+        "vh.outro_line1": "Ти щойно зіграв свою першу мелодію на хендпані.",
+        "vh.outro_line2": "Уяви, як це звучатиме наживо!",
+        "vh.book_lesson": "Записатися на живий урок",
+        "vh.replay": "Зіграти ще раз",
+        "vh.loading": "Завантаження..."
     }
 };
 
