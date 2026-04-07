@@ -211,6 +211,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ─── Email Form ───────────────────────────────────────────────────────────
+    function showSoftNotification(msg) {
+        const toast = document.createElement('div');
+        toast.textContent = msg;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.backgroundColor = 'rgba(0,0,0,0.8)';
+        toast.style.color = 'white';
+        toast.style.padding = '10px 20px';
+        toast.style.borderRadius = '20px';
+        toast.style.zIndex = '9999';
+        toast.style.fontSize = '14px';
+        toast.style.pointerEvents = 'none';
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s ease';
+        document.body.appendChild(toast);
+        
+        requestAnimationFrame(() => toast.style.opacity = '1');
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+
+    async function sendEmailAndStart(email) {
+        try {
+            if (typeof emailjs !== 'undefined') {
+                await emailjs.send(
+                    'service_2nx9fpt',
+                    'YOUR_TEMPLATE_ID',
+                    { user_email: email },
+                    'YOUR_PUBLIC_KEY'
+                );
+                console.log('Email sent successfully via EmailJS');
+            } else {
+                console.warn('EmailJS SDK not loaded');
+            }
+        } catch (error) {
+            console.error('Error sending email:', error);
+            showSoftNotification(t('vh.email_error', 'Erro ao enviar email, mas vamos começar!'));
+        }
+        
+        // Start game flow
+        submitBtn.textContent = t('vh.start', 'Começar');
+        submitBtn.disabled = false;
+
+        showScreen(tutorialScreen);
+        setTimeout(() => {
+            showScreen(gameScreen);
+            startGame();
+        }, 2500);
+    }
+
     emailForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const email = document.getElementById('user-email').value.trim();
@@ -224,14 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         await initAudio(); // must happen inside user gesture for iOS
 
-        submitBtn.textContent = t('vh.start', 'Começar');
-        submitBtn.disabled = false;
-
-        showScreen(tutorialScreen);
-        setTimeout(() => {
-            showScreen(gameScreen);
-            startGame();
-        }, 2500);
+        await sendEmailAndStart(email);
     });
 
     replayBtn.addEventListener('click', () => {
